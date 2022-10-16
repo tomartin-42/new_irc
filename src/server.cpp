@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/15 18:14:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:12:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,4 @@ void    server::sincronizate_polls()
         it++;
     }
     set_value_poll_list(get_fd_socket(), POLLIN);
-	}
+}

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/15 19:12:54 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:05:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ class com
     public:
     	com(const int);
 		~com();	
-    	void	socket_lisent();
-    	int		accept_connection_in_socket();
-        int		preparation_com();
-    	int		disconnect_user(const int fd, std::string reason);
-    	int		get_port() const;
-    	int		get_fd_socket() const;
-		int		set_value_poll_list(const int fd, const short event);
+    	void		socket_lisent();
+    	int			accept_connection_in_socket();
+        int			preparation_com();
+    	int			disconnect_user(const int fd, std::string reason);
+    	int			get_port() const;
+    	int			get_fd_socket() const;
+		int			set_value_poll_list(const int fd, const short event);
+		int			send_msg(const int fd, const str::strint);
+		std::string	recv_msg(const int fd);
 
 		void	print_all_pollfd();
 	};

@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/15 19:15:36 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:24:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	com::accept_connection_in_socket()
 	socklen_t				addr_len = sizeof(sockaddr_storage);
 	int						new_fd = -1;
 
-	if(this->poll_list[0].revents == 1)
+	if(this->poll_list[0].revents == POLLIN)
 	{
 		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client), &addr_len);
 		fcntl(new_fd, F_SETFL, O_NONBLOCK);
@@ -119,9 +119,7 @@ int    com::preparation_com()
 //Send a msg send a message with the reason for the disconnection
 int	com::disconnect_user(const int fd, std::string reason)
 {
-	(void)reason;
-
-	//AQUI SE LE ENVIARIA EL RASON//////////////////////////////////
+	this->send_msg(fd, reason);
 	this->delete_in_poll_list(fd);
 	this->close_connection(fd);
 
@@ -185,6 +183,24 @@ int	com::set_value_poll_list(const int fd, const short event)
 	return -1;
 }
 
+//To send a msg
+int	com::send_msg(const int fd, const std::string msg)
+{
+	return send(fd, (char*)&(msg[0]), msg.size(), MSG_DONTWAIT);
+}
+
+//To read a msg
+std::string recv_msg(const int fd)
+{
+    char    buff[512];
+    ssize_t aux = 0;
+
+    bzero(buff, 512);
+    aux = recv(fd, &buff, 512, MSG_DONTWAIT);
+    if(aux > 0)
+        return std::string(buff);
+    return std::string("");
+}
 
 //-------------TO DEBUG--------------------//
 
