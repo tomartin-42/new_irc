@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/16 18:12:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:21:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	server::accept_new_connect()
 	}
 	if(n_connections > MAX_CONNECTIONS)
 	{
+		this->users.find(fd)->second.set_type(EXPULSE);
 		disconnect_user(fd, "PIRATE SERVER LLENO");
 		this->n_connections--;
 		this->delete_user(fd);

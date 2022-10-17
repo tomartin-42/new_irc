@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 10:14:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:17:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 #define SOCKET 'S'
 #define UNKNOW 'U'
 #define OPERATOR 'O'
+#define EXPULSE 'E'
 
 //--------------Template functions----------------//
 

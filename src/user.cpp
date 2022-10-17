@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/15 19:06:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:23:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ std::time_t	user::get_start_time() const
 
 short   user::send_or_recive() const
 {
+	if(this->type == EXPULSE)
+		return POLLRDBAND;
     if(this->msg_out.check_if_empty())
         return POLLIN;
     return POLLOUT;
