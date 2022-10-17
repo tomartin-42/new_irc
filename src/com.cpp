@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/16 18:24:50 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:10:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int    com::preparation_com()
 {
     int answ;
 
-    print_all_pollfd();
     this->reset_to_zero_revents();
     answ = poll(&this->poll_list[0], this->poll_list.size(), 1000);
     if(answ == -1)
@@ -119,6 +118,8 @@ int    com::preparation_com()
 //Send a msg send a message with the reason for the disconnection
 int	com::disconnect_user(const int fd, std::string reason)
 {
+
+	this->set_value_poll_list(fd, POLLRDBAND);
 	this->send_msg(fd, reason);
 	this->delete_in_poll_list(fd);
 	this->close_connection(fd);
@@ -167,6 +168,8 @@ void	com::delete_in_poll_list(const int fd)
 	}
 }
 
+//Set one value in the poll_list
+//Find the fd if not foun retunr -1 else return 1
 int	com::set_value_poll_list(const int fd, const short event)
 {
     std::vector<pollfd>::iterator it = this->poll_list.begin();
@@ -204,6 +207,7 @@ std::string recv_msg(const int fd)
 
 //-------------TO DEBUG--------------------//
 
+//Print all pollfd list with values
 void	com::print_all_pollfd()
 {
 	std::vector<pollfd>::iterator it = this->poll_list.begin();

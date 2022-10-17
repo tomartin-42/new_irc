@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/16 20:05:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:15:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class com
     	int			get_port() const;
     	int			get_fd_socket() const;
 		int			set_value_poll_list(const int fd, const short event);
-		int			send_msg(const int fd, const str::strint);
+		int			send_msg(const int fd, const std::string);
 		std::string	recv_msg(const int fd);
 
 		void	print_all_pollfd();
