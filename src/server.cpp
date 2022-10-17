@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 10:21:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:44:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,23 @@ void    server::sincronizate_polls()
         control = set_value_poll_list(it->first, it->second.send_or_recive());
         it++;
     }
-    set_value_poll_list(get_fd_socket(), POLLIN);
+		set_value_poll_list(get_fd_socket(), POLLIN);
+}
+
+//This function is in charge of reading the revents
+//and makes the decision if it sends or reads a msg
+void	server::read_or_write_all_users()
+{
+    std::map<int, user>::iterator   it = users.begin();
+    short							revent;
+    
+    while(it != users.end())
+    {
+    	revent = get_revent(it->first);
+    	if(revent == POLLIN)
+    		//To Read
+    	if(revent == POLLOUT)
+    		//To Write
+        it++;
+    }
 }

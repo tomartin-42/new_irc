@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/14 20:16:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:22:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ class user
 		void		set_nick(const std::string name);
 		void		set_type(const char type);
 		std::time_t get_start_time() const;
-        short        send_or_recive() const;
+        short       send_or_recive() const;
 };
 #endif

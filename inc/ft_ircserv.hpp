@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 10:17:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:23:47 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #define	HOST_NAME	"irc.teamA.com"
 #define	VERSION		"1.0"
-#define	MAX_CONNECTIONS	8
+#define	MAX_CONNECTIONS	3
 #define	DEFAULT_PORT	4242
 
 //----------------Times-------------------------//

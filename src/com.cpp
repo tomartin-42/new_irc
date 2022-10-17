@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 10:10:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:42:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,4 +219,16 @@ void	com::print_all_pollfd()
 		std::cout << "REVENT-> " << it->revents << std::endl;
 		it++;
 	}
+}
+
+short	com::get_revent(const int fd)
+{
+    std::vector<pollfd>::iterator it = this->poll_list.begin();
+
+    while(it != this->poll_list.end())
+    {
+    	if(it->fd == fd)
+    		return it->revents;
+	}
+	return -1;
 }
