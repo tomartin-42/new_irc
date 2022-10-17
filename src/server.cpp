@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 11:44:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:28:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void    server::sincronizate_polls()
         control = set_value_poll_list(it->first, it->second.send_or_recive());
         it++;
     }
-		set_value_poll_list(get_fd_socket(), POLLIN);
+	set_value_poll_list(get_fd_socket(), POLLIN);
+    (void)control;
 }
 
 //This function is in charge of reading the revents
@@ -83,8 +84,10 @@ void	server::read_or_write_all_users()
     	revent = get_revent(it->first);
     	if(revent == POLLIN)
     		//To Read
+            it->second.msg_in.add_msg(recv_msg(it->first));
     	if(revent == POLLOUT)
     		//To Write
+            send_msg(it->first, it->second.msg_out.extract_msg());
         it++;
     }
 }

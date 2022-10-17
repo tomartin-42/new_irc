@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 11:22:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 20:35:45 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ class user
 								//the connetion open and don't login
 								//into the serve. Check for each 10s 
 								//if is login ok, do nothing
+
+	public:
 		msg			msg_in;
 		msg			msg_out;
 
-	public:
 		user(int fd, char type);
 		void		set_nick(const std::string name);
 		void		set_type(const char type);

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 11:42:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:12:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <sys/socket.h>
 #include <string>
+#include <cstring>
 #include <fcntl.h>
 #include <vector>
 #include <netinet/in.h>

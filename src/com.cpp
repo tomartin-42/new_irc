@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 11:42:13 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:17:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int    com::preparation_com()
 {
     int answ;
 
+    print_all_pollfd();
     this->reset_to_zero_revents();
     answ = poll(&this->poll_list[0], this->poll_list.size(), 1000);
     if(answ == -1)
@@ -193,7 +194,7 @@ int	com::send_msg(const int fd, const std::string msg)
 }
 
 //To read a msg
-std::string recv_msg(const int fd)
+std::string com::recv_msg(const int fd)
 {
     char    buff[512];
     ssize_t aux = 0;
@@ -203,22 +204,6 @@ std::string recv_msg(const int fd)
     if(aux > 0)
         return std::string(buff);
     return std::string("");
-}
-
-//-------------TO DEBUG--------------------//
-
-//Print all pollfd list with values
-void	com::print_all_pollfd()
-{
-	std::vector<pollfd>::iterator it = this->poll_list.begin();
-
-	while(it != this->poll_list.end())
-	{
-		std::cout << "FD-> " << it->fd << std::endl;
-		std::cout << "EVENT-> " << it->events << std::endl;
-		std::cout << "REVENT-> " << it->revents << std::endl;
-		it++;
-	}
 }
 
 short	com::get_revent(const int fd)
@@ -232,3 +217,20 @@ short	com::get_revent(const int fd)
 	}
 	return -1;
 }
+//-------------TO DEBUG--------------------//
+
+//Print all pollfd list with values
+void	com::print_all_pollfd()
+{
+	std::vector<pollfd>::iterator it = this->poll_list.begin();
+
+	while(it != this->poll_list.end())
+	{
+		std::cout << "FD-> " << it->fd << std::endl;
+		std::cout << "EVENT-> " << it->events << std::endl;
+		std::cout << "REVENT-> " << it->revents << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
+		it++;
+	}
+}
+
