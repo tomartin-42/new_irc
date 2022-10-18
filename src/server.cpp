@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 21:28:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:28:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,18 @@ void	server::accept_new_connect()
 	int	fd;
 
 	fd = accept_connection_in_socket();
-	std::cout << "accep_new_connect in server fd= " << fd << std::endl;
+//	std::cout << "accep_new_connect in server fd= " << fd << std::endl;
 	if(fd != -1)
 	{
 		insert_new_user(fd);
 		this->n_connections++;
 		std::cout << "HOLA" << std::endl;
+		send_msg(fd, "HOLA\n");
 	}
 	if(n_connections > MAX_CONNECTIONS)
 	{
 		this->users.find(fd)->second.set_type(EXPULSE);
-		disconnect_user(fd, "PIRATE SERVER LLENO");
+	//	disconnect_user(fd, "PIRATE SERVER LLENO");
 		this->n_connections--;
 		this->delete_user(fd);
 		return;
@@ -81,13 +82,35 @@ void	server::read_or_write_all_users()
     
     while(it != users.end())
     {
-    	revent = get_revent(it->first);
-    	if(revent == POLLIN)
+    	if(it->first != get_fd_socket())
+		{
+			revent = get_revent(it->first);
+			if(revent & POLLIN)
     		//To Read
-            it->second.msg_in.add_msg(recv_msg(it->first));
-    	if(revent == POLLOUT)
+			//	it->second.msg_in.add_msg(recv_msg(it->first));
+				send_all(recv_msg(it->first));
+			if(revent & POLLOUT)
     		//To Write
-            send_msg(it->first, it->second.msg_out.extract_msg());
-        it++;
+				send_msg(it->first, it->second.msg_out.extract_msg());
+		}
+		it++;
     }
+}
+
+void	server::send_all(std::string msg)
+{
+    std::map<int, user>::iterator   it = users.begin();
+    int	num;
+    
+    while(it != users.end())
+    {
+    	if(it->first != get_fd_socket())
+		{
+			it->second.msg_out.add_msg(msg);
+			num = send_msg(it->first, it->second.msg_out.extract_msg());
+			std::cout << "NUM " << num << " " << it->first << std::endl; 
+			it->second.msg_out.pop_msg();
+		}
+		it++;
+	}
 }

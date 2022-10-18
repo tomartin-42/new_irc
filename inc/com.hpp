@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 21:12:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/18 09:14:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ class com
 		int			set_value_poll_list(const int fd, const short event);
 		int			send_msg(const int fd, const std::string);
 		std::string	recv_msg(const int fd);
-		short		get_revent(const int fd);
+		short		get_revent(const int fd) const;
 
 		void	print_all_pollfd();
 	};

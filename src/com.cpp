@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 21:17:12 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:30:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int	com::accept_connection_in_socket()
 	socklen_t				addr_len = sizeof(sockaddr_storage);
 	int						new_fd = -1;
 
-	if(this->poll_list[0].revents == POLLIN)
+	if(this->poll_list[0].revents & POLLIN)
 	{
 		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client), &addr_len);
 		fcntl(new_fd, F_SETFL, O_NONBLOCK);
-		this->poll_list.push_back((pollfd){new_fd, 0, 0});
+		this->poll_list.push_back((pollfd){new_fd, POLLIN, 0});
 	}
 	return new_fd;
 }
@@ -106,8 +106,8 @@ int    com::preparation_com()
 {
     int answ;
 
-    print_all_pollfd();
-    this->reset_to_zero_revents();
+//    print_all_pollfd();
+    //this->reset_to_zero_revents();
     answ = poll(&this->poll_list[0], this->poll_list.size(), 1000);
     if(answ == -1)
     	throw com_exceptions(5);
@@ -196,7 +196,7 @@ int	com::send_msg(const int fd, const std::string msg)
 //To read a msg
 std::string com::recv_msg(const int fd)
 {
-    char    buff[512];
+    char    buff[513];
     ssize_t aux = 0;
 
     bzero(buff, 512);
@@ -206,14 +206,15 @@ std::string com::recv_msg(const int fd)
     return std::string("");
 }
 
-short	com::get_revent(const int fd)
+short	com::get_revent(const int fd) const
 {
-    std::vector<pollfd>::iterator it = this->poll_list.begin();
+    std::vector<pollfd>::const_iterator it = this->poll_list.begin();
 
     while(it != this->poll_list.end())
     {
     	if(it->fd == fd)
     		return it->revents;
+    	it++;
 	}
 	return -1;
 }
