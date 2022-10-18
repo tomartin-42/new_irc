@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/18 11:04:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:06:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class server : public com
 	public:
 		server(int port);
 		void	accept_new_connect();
-        void    sincronizate_polls();
         void	read_or_write_all_users();
         void	send_all(std::string msg);
 };

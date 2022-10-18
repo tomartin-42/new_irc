@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/18 11:28:07 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/18 20:22:32 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	server::accept_new_connect()
 	int	fd;
 
 	fd = accept_connection_in_socket();
-//	std::cout << "accep_new_connect in server fd= " << fd << std::endl;
 	if(fd != -1)
 	{
 		insert_new_user(fd);
@@ -54,23 +53,6 @@ void	server::accept_new_connect()
 		this->delete_user(fd);
 		return;
 	}
-}
-
-//This function sincronizate all user with the need to
-//send or recive to pollfd struct in com
-//Them set socket_fd to POLLIN
-void    server::sincronizate_polls()
-{
-    std::map<int, user>::iterator   it = users.begin();
-    int                             control = 1;
-    
-    while(it != users.end())
-    {
-        control = set_value_poll_list(it->first, it->second.send_or_recive());
-        it++;
-    }
-	set_value_poll_list(get_fd_socket(), POLLIN);
-    (void)control;
 }
 
 //This function is in charge of reading the revents

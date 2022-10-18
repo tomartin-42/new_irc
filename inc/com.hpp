@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/18 09:14:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:18:45 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ class com
 
 		void	open_socket();
         void	set_data_socket(const int port);
-        void    reset_to_zero_revents();
     	void	close_connection(const int fd);
     	void	insert_in_poll_list(const int fd);
     	void	delete_in_poll_list(const int fd);
