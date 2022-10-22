@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/22 17:17:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:16:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,10 @@ void	server::send_msg_from_user(const int fd)
 		usr->second.msg_out.resize_front_msg(b_send);
 }
 
+void	server::recv_msg_from_user(const int fd)
+{
+	std::string	msg;
 
-	
+	msg = recv_msg(fd);
+	this->users.find(fd)->second.msg_int.add_msg(msg);
+}

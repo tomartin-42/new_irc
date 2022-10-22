@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/22 17:08:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:34:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,23 @@ std::string	msg::get_next_msg()
 
 void	msg::add_msg(const char* str) 
 {
-	/*
 	this->buff_aux.append(str);
 
 	while(this->buff_aux.find("\x0d\x0a", 0) != std::string::npos)
 		this->msg_q.push(this->get_next_msg());
-	*/
-	std::cout << "QUEEEEEEE" << std::endl;
-	this->msg_q.push(std::string(str));
 
 }
 
 void	msg::add_msg(const std::string str)
 {
-	this->msg_q.push(str);
+	if(str.find("\x0d\x0a", 0) == std::string::npos)
+	{
+		str[511] = "\x0d";
+		str[510] = "\x0a";
+	}
+	this->buff_aux.append(str);
+	while(this->buff_aux.find("\x0d\x0a", 0) != std::string::npos)
+		this->msg_q.push(this->get_next_msg());
 }
 
 std::string	msg::extract_msg()
@@ -89,8 +92,9 @@ void	msg::pop_msg()
 	this->msg_q.pop();
 }
 
+//dell the first n_char from msg_q.front()
 void	msg::resize_front_msg(const int n_chars)
 {
-	msg_q.front().resize(n_chars);
+	msg_q.front().resize(const_cast<int>(this->mag_g.front().size()) - n_chars);
 }
 
