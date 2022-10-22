@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/18 21:06:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:03:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ class server : public com
 		server(int port);
 		void	accept_new_connect();
         void	read_or_write_all_users();
-        void	send_all(std::string msg);
+        void	send_msg_from_user(const int fd);
 };
 #endif

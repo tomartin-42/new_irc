@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/18 11:19:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:08:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,9 @@ void	msg::pop_msg()
 {
 	this->msg_q.pop();
 }
+
+void	msg::resize_front_msg(const int n_chars)
+{
+	msg_q.front().resize(n_chars);
+}
+

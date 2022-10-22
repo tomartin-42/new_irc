@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 18:01:05 by tomartin          #+#    #+#             */
-/*   Updated: 2022/05/30 13:33:12 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:05:01 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class msg
 		int			msg_q_size();
 		int			msg_front_len();
 		void		pop_msg();
+		void		resize_front_msg(const int n_chars);
 };
 
 #endif
