@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/26 20:14:27 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:42:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,6 @@ std::string com::recv_msg(const int fd)
     char    buff[513];
     ssize_t aux = 0;
 
-    bzero(buff, 512);
     aux = recv(fd, &buff, 512, MSG_DONTWAIT);
     buff[aux] = '\0';
     if(aux > 0)
