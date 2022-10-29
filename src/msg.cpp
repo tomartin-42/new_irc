@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/26 21:38:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:45:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ bool	msg::check_if_empty() const
 	return false;
 }
 
+//This function limit the msg_q front to 512 and
+//put the correct end characters 
+std::string	& msg::msg_adecuation(std::string &str)
+{
+	if(str.size() > 510)
+	{
+		str.resize(513);
+		str[510] = '\x0d';
+		str[511] = '\x0a';
+		str[512] = '\0';
+	}
+	return str;
+}
+
+//Use when ther is more than one msg in one read
+//Have a buffer when save all not end msg
 std::string	msg::get_next_msg()
 {
 	std::string::size_type	point;
@@ -60,6 +76,7 @@ msg::~msg()
 		this->msg_q.pop();
 }
 
+//From debug
 void	msg::print_all_msg()
 {
 	std::queue<std::string>	aux(this->msg_q);
@@ -92,3 +109,16 @@ void	msg::resize_front_msg(const int n_chars)
 	msg_q.front().resize(static_cast<int>(this->msg_q.front().size()) - n_chars);
 }
 
+//This function add str to msg_g
+//Only use when the str is ok and dont need parse
+void	msg::direct_push(const std::string str)
+{
+	this->msg_q.push(str);
+}
+
+//This function add str to msg_g
+//Only use when the str is ok and dont need parse
+void	msg::direct_push(const char* str)
+{
+	this->msg_q.push(std::string(str));
+}

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 18:01:05 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/22 17:05:01 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:45:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class msg
 		std::string				buff_aux;
 	
 		std::string	get_next_msg();
+		std::string	& msg_adecuation(std::string &str);
 	public:
 		~msg();
 		bool		check_if_empty() const;
@@ -36,6 +37,8 @@ class msg
 		int			msg_front_len();
 		void		pop_msg();
 		void		resize_front_msg(const int n_chars);
+		void		direct_push(const std::string str);
+		void		direct_push(const char* str);
 };
 
 #endif
