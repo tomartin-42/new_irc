@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/28 12:42:35 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:37:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,14 +175,20 @@ int	com::set_value_poll_list(const int fd, const short event)
 }
 
 //To send a msg
+//If can't send all of chars change the socket to POLLOUT 
+//Oterwise set to POLLIN
 int	com::send_msg(const int fd, const std::string msg)
 {
     int   send_leng;
 
 	send_leng = send(fd, (char*)&(msg[0]), msg.size(), MSG_DONTWAIT);
     if(send_leng < static_cast<int>(msg.size()))
-       //implementar para POLLOUT
+	{
+    	this->set_value_poll_list(fd, POLLOUT);
         return send_leng;
+	}
+	else
+		this->set_value_poll_list(fd, POLLIN);
     return send_leng;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/26 21:36:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:34:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	server::accept_new_connect()
 	{
 		insert_new_user(fd);
 		this->n_connections++;
-		std::cout << "HOLA" << std::endl;
+		std::cout << "CONEXION IN" << std::endl;
 		send_msg(fd, "HOLA\n");
 	}
 	if(n_connections > MAX_CONNECTIONS)
@@ -55,29 +55,29 @@ void	server::accept_new_connect()
 	}
 }
 
-//This function is in charge of reading the revents
-//and makes the decision if it sends or reads a msg
-/*void	server::read_or_write_all_users()
+//This function send msgs from msg_out queue in users
+//Only send if msg_out queue have any msg
+//If msg can't send all chars, it resize msg and erase
+//the character send suscefull
+void	server::send_msgs()
 {
-    std::map<int, user>::iterator   it = users.begin();
-    short							revent;
-    
-    while(it != users.end())
-    {
-    	if(it->first != get_fd_socket())
+	std::map<int, user>::iterator	usr_it = users.begin();
+	int								send_leng;
+
+	while(usr_it != users.end())
+	{
+		if(usr_it->second.msg_out.msg_q_size() != 0)
 		{
-			revent = get_revent(it->first);
-			if(revent & POLLIN)
-    		//To Read
-			//	it->second.msg_in.add_msg(recv_msg(it->first));
-			if(revent & POLLOUT)
-    		//To Write
-				send_msg(it->first, it->second.msg_out.extract_msg());
+			send_leng = send_msg(usr_it->first, usr_it->second.msg_out.extract_msg());
+			if(send_leng < usr_it->second.msg_out.msg_front_len())
+				usr_it->second.msg_out.erase_front_msg(send_leng);
+			else
+				usr_it->second.msg_out.pop_msg();
 		}
-		it++;
-    }
+		usr_it++;
+	}
 }
-*/
+
 //This funciton sen a msg from user
 //If the msg dont sent complety put the fd in POLLOUT
 //and risize the msg to next send

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/29 15:45:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:20:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ bool	msg::check_if_empty() const
 
 //This function limit the msg_q front to 512 and
 //put the correct end characters 
+//Use in get_next_msg
 std::string	& msg::msg_adecuation(std::string &str)
 {
 	if(str.size() > 510)
 	{
-		str.resize(513);
+		str.resize(512);
 		str[510] = '\x0d';
 		str[511] = '\x0a';
-		str[512] = '\0';
 	}
 	return str;
 }
@@ -42,7 +42,7 @@ std::string	msg::get_next_msg()
 	point = this->buff_aux.find("\x0d\x0a", 0);
 	std::string	ret(this->buff_aux.substr(0, (point)));
 	this->buff_aux.erase(0, (point + 2));
-	return ret;
+	return this->msg_adecuation(ret);
 }
 
 void	msg::add_msg(const char* str) 
@@ -104,9 +104,9 @@ void	msg::pop_msg()
 }
 
 //dell the first n_char from msg_q.front()
-void	msg::resize_front_msg(const int n_chars)
+void	msg::erase_front_msg(const int n_chars)
 {
-	msg_q.front().resize(static_cast<int>(this->msg_q.front().size()) - n_chars);
+	msg_q.front().erase(0, n_chars);
 }
 
 //This function add str to msg_g
