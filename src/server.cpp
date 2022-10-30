@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/30 09:31:07 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/30 09:42:43 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void    server::orchestation()
 	while(usr_it != users.end())
     {
         //TO READ
-        //
-        //
+        this->recv_msgs(usr_it->first);
+        //TO SEND
         this->send_msgs(usr_it->first);
         usr_it++;
     }
@@ -93,6 +93,15 @@ void	server::send_msgs(const int fd)
 			    usr_it->second.msg_out.pop_msg();
 		}
     }
+}
+
+//This function read and load msg in one user
+void    server::recv_msgs(const int fd)
+{
+    std::map<int, user>::iterator	usr_it = users.find(fd);
+
+    if((get_event(usr_it->first) & POLLIN) && (get_revent(usr_it->first) & POLLIN)) 
+        usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
 }
 
 //This funciton sen a msg from user
