@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/29 17:37:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/30 09:13:16 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,19 @@ short	com::get_revent(const int fd) const
     {
     	if(it->fd == fd)
     		return it->revents;
+    	it++;
+	}
+	return -1;
+}
+
+short    com::get_event(const int fd) const
+{
+    std::vector<pollfd>::const_iterator it = this->poll_list.begin();
+
+    while(it != this->poll_list.end())
+    {
+    	if(it->fd == fd)
+    		return it->events;
     	it++;
 	}
 	return -1;

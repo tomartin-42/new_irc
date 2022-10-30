@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/29 17:34:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/30 09:31:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,44 @@ void	server::accept_new_connect()
 	}
 }
 
-//This function send msgs from msg_out queue in users
+
+//This function scroll through the entire list of users
+//If the user have POLLIN event, it read de msg
+//If the user have msg in msg_q_out, it send msg
+void    server::orchestation()
+{
+	std::map<int, user>::iterator	usr_it = users.begin();
+
+	while(usr_it != users.end())
+    {
+        //TO READ
+        //
+        //
+        this->send_msgs(usr_it->first);
+        usr_it++;
+    }
+}
+
+//This function send msgs from msg_out queue in user
 //Only send if msg_out queue have any msg
 //If msg can't send all chars, it resize msg and erase
 //the character send suscefull
-void	server::send_msgs()
+void	server::send_msgs(const int fd)
 {
-	std::map<int, user>::iterator	usr_it = users.begin();
-	int								send_leng;
+	std::map<int, user>::iterator	usr_it = users.find(fd);
+    int                             send_leng;
 
-	while(usr_it != users.end())
-	{
-		if(usr_it->second.msg_out.msg_q_size() != 0)
-		{
-			send_leng = send_msg(usr_it->first, usr_it->second.msg_out.extract_msg());
+   if(!(get_event(usr_it->first) & POLLOUT) || (get_revent(usr_it->first) & POLLOUT)) 
+   {
+       if(usr_it->second.msg_out.msg_q_size() != 0)
+	   {
+            send_leng = send_msg(usr_it->first, usr_it->second.msg_out.extract_msg());
 			if(send_leng < usr_it->second.msg_out.msg_front_len())
-				usr_it->second.msg_out.erase_front_msg(send_leng);
+			    usr_it->second.msg_out.erase_front_msg(send_leng);
 			else
-				usr_it->second.msg_out.pop_msg();
+			    usr_it->second.msg_out.pop_msg();
 		}
-		usr_it++;
-	}
+    }
 }
 
 //This funciton sen a msg from user
