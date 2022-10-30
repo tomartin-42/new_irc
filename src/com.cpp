@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/30 09:13:16 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:46:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,9 @@ std::string com::recv_msg(const int fd)
     ssize_t aux = 0;
 
     aux = recv(fd, &buff, 512, MSG_DONTWAIT);
+	std::cout << "chars " << aux << std::endl;
+	if(!aux)
+		this->disconnect_user(fd, "COM ERROR");
     buff[aux] = '\0';
     if(aux > 0)
         return std::string(buff);

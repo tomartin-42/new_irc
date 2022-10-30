@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/30 09:42:43 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:34:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ server::server(int port) : com(port)
 
 	this->n_connections = 0;
 	socket_lisent();
-	users.insert(std::pair<int, user>(fd, user(fd, SOCKET)));
+	//users.insert(std::pair<int, user>(fd, user(fd, SOCKET)));
 	set_value_poll_list(fd, POLLIN);
 }
 
@@ -43,6 +43,7 @@ void	server::accept_new_connect()
 		insert_new_user(fd);
 		this->n_connections++;
 		std::cout << "CONEXION IN" << std::endl;
+		std::cout << "FD " << fd << std::endl;
 		send_msg(fd, "HOLA\n");
 	}
 	if(n_connections > MAX_CONNECTIONS)
@@ -100,8 +101,14 @@ void    server::recv_msgs(const int fd)
 {
     std::map<int, user>::iterator	usr_it = users.find(fd);
 
-    if((get_event(usr_it->first) & POLLIN) && (get_revent(usr_it->first) & POLLIN)) 
-        usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
+	std::cout << "FD " << fd << std::endl;
+	std::cout << "event " << get_event(usr_it->first) << std::endl;
+	std::cout << "revent " << get_revent(usr_it->first) << std::endl;
+    if((get_event(usr_it->first) & POLLIN) && (get_revent(usr_it->first) & POLLIN))
+	{
+			std::cout << "KK" << std::endl;
+			usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
+	}
 }
 
 //This funciton sen a msg from user
