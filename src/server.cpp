@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/30 19:34:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:43:43 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	server::accept_new_connect()
 		insert_new_user(fd);
 		this->n_connections++;
 		std::cout << "CONEXION IN" << std::endl;
-		std::cout << "FD " << fd << std::endl;
 		send_msg(fd, "HOLA\n");
 	}
 	if(n_connections > MAX_CONNECTIONS)
@@ -63,14 +62,24 @@ void	server::accept_new_connect()
 void    server::orchestation()
 {
 	std::map<int, user>::iterator	usr_it = users.begin();
+	std::map<int, user>::iterator	current_it;
 
 	while(usr_it != users.end())
     {
-        //TO READ
+		if (get_revent(usr_it->first) & POLLHUP)
+		{
+			//Desconectar
+			current_it = usr_it;
+			disconnect_user(current_it->first, "");
+			++usr_it;
+			users.erase(current_it);
+			continue;
+		}
+    	//TO READ
         this->recv_msgs(usr_it->first);
         //TO SEND
         this->send_msgs(usr_it->first);
-        usr_it++;
+        ++usr_it;
     }
 }
 
@@ -104,9 +113,10 @@ void    server::recv_msgs(const int fd)
 	std::cout << "FD " << fd << std::endl;
 	std::cout << "event " << get_event(usr_it->first) << std::endl;
 	std::cout << "revent " << get_revent(usr_it->first) << std::endl;
-    if((get_event(usr_it->first) & POLLIN) && (get_revent(usr_it->first) & POLLIN))
+    if((get_revent(usr_it->first) & POLLIN))
+    //if((get_event(usr_it->first) & POLLIN) && (get_revent(usr_it->first) & POLLIN))
 	{
-			std::cout << "KK" << std::endl;
+			std::cout << "KK: " << (get_revent(usr_it->first) & POLLHUP) << std::endl;
 			usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
 	}
 }
