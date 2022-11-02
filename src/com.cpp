@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/31 13:04:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:39:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,21 @@ int    com::preparation_com()
 //Rutine to disconnect one user. Close connection and 
 //remove form poll_list
 //Send a msg send a message with the reason for the disconnection
-int	com::disconnect_user(const int fd, std::string reason)
+void	com::disconnect_user(const int fd, std::string reason)
 {
-
 	this->set_value_poll_list(fd, POLLRDBAND);
 	this->send_msg(fd, reason);
 	this->delete_in_poll_list(fd);
 	this->close_connection(fd);
-
-	return 1;
 }
 
+//Rutine to disconnect one user. Close connection and 
+//remove form poll_list
+void	com::disconnect_user(const int fd)
+{
+	this->delete_in_poll_list(fd);
+	this->close_connection(fd);
+}
 //Close one connection
 //Need the fd to close
 void	com::close_connection(const int fd)
@@ -199,7 +203,6 @@ std::string com::recv_msg(const int fd)
     ssize_t aux = 0;
 
     aux = recv(fd, &buff, 512, MSG_DONTWAIT);
-	std::cout << "chars " << aux << std::endl;
 //	if(!aux)
 //		this->disconnect_user(fd, "COM ERROR");
     buff[aux] = '\0';

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/29 17:20:20 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:41:18 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,6 @@ msg::~msg()
 		this->msg_q.pop();
 }
 
-//From debug
-void	msg::print_all_msg()
-{
-	std::queue<std::string>	aux(this->msg_q);
-
-	while(!aux.empty())
-	{
-		std::cout << "MSG: " << aux.front() << std::endl;
-		aux.pop();
-	}
-}
-
 int		msg::msg_q_size()
 {
 	return (this->msg_q.size());
@@ -103,7 +91,8 @@ void	msg::pop_msg()
 	this->msg_q.pop();
 }
 
-//dell the first n_char from msg_q.front()
+//Dell the first n_char from msg_q.front()
+//Use this function when don't send all chars in msg
 void	msg::erase_front_msg(const int n_chars)
 {
 	msg_q.front().erase(0, n_chars);
@@ -121,4 +110,16 @@ void	msg::direct_push(const std::string str)
 void	msg::direct_push(const char* str)
 {
 	this->msg_q.push(std::string(str));
+}
+
+//From debug
+void	msg::print_all_msg()
+{
+	std::queue<std::string>	aux(this->msg_q);
+
+	while(!aux.empty())
+	{
+		std::cout << "MSG: " << aux.front() << std::endl;
+		aux.pop();
+	}
 }

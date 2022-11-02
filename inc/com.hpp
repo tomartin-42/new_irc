@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/30 09:07:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:27:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ class com
     	void		socket_lisent();
     	int			accept_connection_in_socket();
         int			preparation_com();
-    	int			disconnect_user(const int fd, std::string reason);
+    	void		disconnect_user(const int fd, std::string reason);
+    	void		disconnect_user(const int fd);
     	int			get_port() const;
     	int			get_fd_socket() const;
 		int			set_value_poll_list(const int fd, const short event);

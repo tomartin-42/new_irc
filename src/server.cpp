@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/31 13:43:43 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:46:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ server::server(int port) : com(port)
 {
 	int	fd = get_fd_socket();
 
-	this->n_connections = 0;
 	socket_lisent();
 	//users.insert(std::pair<int, user>(fd, user(fd, SOCKET)));
 	set_value_poll_list(fd, POLLIN);
@@ -25,12 +24,12 @@ server::server(int port) : com(port)
 
 void	server::insert_new_user(const int fd)
 {
-		users.insert(std::make_pair(fd, user(fd, UNKNOW)));
+	users.insert(std::make_pair(fd, user(fd, UNKNOW)));
 }
 
 void	server::delete_user(const int fd)
 {
-		users.erase(fd);
+	users.erase(fd);
 }
 
 void	server::accept_new_connect()
@@ -41,15 +40,13 @@ void	server::accept_new_connect()
 	if(fd != -1)
 	{
 		insert_new_user(fd);
-		this->n_connections++;
-		std::cout << "CONEXION IN" << std::endl;
+		std::cout << "CONEXION IN FD " << fd << std::endl;
 		send_msg(fd, "HOLA\n");
 	}
-	if(n_connections > MAX_CONNECTIONS)
+	if(users.size() > MAX_CONNECTIONS)
 	{
 		this->users.find(fd)->second.set_type(EXPULSE);
 		disconnect_user(fd, "PIRATE SERVER LLENO");
-		this->n_connections--;
 		this->delete_user(fd);
 		return;
 	}
@@ -70,7 +67,7 @@ void    server::orchestation()
 		{
 			//Desconectar
 			current_it = usr_it;
-			disconnect_user(current_it->first, "");
+			disconnect_user(current_it->first);
 			++usr_it;
 			users.erase(current_it);
 			continue;
@@ -92,16 +89,15 @@ void	server::send_msgs(const int fd)
 	std::map<int, user>::iterator	usr_it = users.find(fd);
     int                             send_leng;
 
-   if(!(get_event(usr_it->first) & POLLOUT) || (get_revent(usr_it->first) & POLLOUT)) 
+	if(usr_it->second.msg_out.msg_q_size() == 0)
+		return;
+	if(!(get_event(usr_it->first) & POLLOUT) || (get_revent(usr_it->first) & POLLOUT)) 
    {
-       if(usr_it->second.msg_out.msg_q_size() != 0)
-	   {
-            send_leng = send_msg(usr_it->first, usr_it->second.msg_out.extract_msg());
-			if(send_leng < usr_it->second.msg_out.msg_front_len())
-			    usr_it->second.msg_out.erase_front_msg(send_leng);
-			else
-			    usr_it->second.msg_out.pop_msg();
-		}
+		send_leng = send_msg(usr_it->first, usr_it->second.msg_out.extract_msg());
+		if(send_leng < usr_it->second.msg_out.msg_front_len())
+			usr_it->second.msg_out.erase_front_msg(send_leng);
+		else
+		    usr_it->second.msg_out.pop_msg();
     }
 }
 
@@ -110,20 +106,13 @@ void    server::recv_msgs(const int fd)
 {
     std::map<int, user>::iterator	usr_it = users.find(fd);
 
-	std::cout << "FD " << fd << std::endl;
-	std::cout << "event " << get_event(usr_it->first) << std::endl;
-	std::cout << "revent " << get_revent(usr_it->first) << std::endl;
     if((get_revent(usr_it->first) & POLLIN))
-    //if((get_event(usr_it->first) & POLLIN) && (get_revent(usr_it->first) & POLLIN))
-	{
-			std::cout << "KK: " << (get_revent(usr_it->first) & POLLHUP) << std::endl;
-			usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
-	}
+		usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
 }
 
+/*
 //This funciton sen a msg from user
 //If the msg dont sent complety put the fd in POLLOUT
-//and risize the msg to next send
 void	server::send_msg_from_user(const int fd)
 {
 	std::string						msg;
@@ -132,14 +121,10 @@ void	server::send_msg_from_user(const int fd)
 
 	msg = usr->second.msg_out.extract_msg();
 	b_send = send_msg(fd, msg);
-	if(b_send == static_cast<int>(msg.size()))
-		usr->second.msg_out.pop_msg();
-	else
-    {
+	if(b_send < static_cast<int>(msg.size()))
 		set_value_poll_list(fd, POLLOUT);
-    }
 }
-
+*/
 /*void	server::recv_msg_from_user(const int fd)
 {
 	std::string	msg;

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/30 09:36:22 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:34:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 class server : public com
 {
 	private:
-		int					n_connections;
 		std::map<int, user>	users;
 
 		void	insert_new_user(const int fd);
@@ -34,6 +33,6 @@ class server : public com
 		server(int port);
 		void	accept_new_connect();
         void	read_or_write_all_users();
-        void	send_msg_from_user(const int fd);
+   //     void	send_msg_from_user(const int fd);
 };
 #endif
