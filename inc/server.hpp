@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/02 11:34:39 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/03 10:13:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define _SERVER_HPP_
 
 #include <map>
-//#include "server_exceptions.hpp"
+#include "server_exceptions.hpp"
 #include "com.hpp"
 #include "user.hpp"
 

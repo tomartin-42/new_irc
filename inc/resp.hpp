@@ -6,14 +6,15 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 12:11:27 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/02 12:25:01 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:04:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _RESP.HPP_
-# define _RESP.HPP_
+#ifndef _RESP_HPP_
+# define _RESP_HPP_
 
 class	resp
 {
-}
+
+};
 #endif

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/02 11:46:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/03 10:22:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	server::insert_new_user(const int fd)
 
 void	server::delete_user(const int fd)
 {
-	users.erase(fd);
+	this->users.erase(fd);
+	disconnect_user(fd);	
 }
 
 void	server::accept_new_connect()
@@ -67,9 +68,10 @@ void    server::orchestation()
 		{
 			//Desconectar
 			current_it = usr_it;
-			disconnect_user(current_it->first);
+			delete_user(current_it->first);
+			//disconnect_user(current_it->first);
 			++usr_it;
-			users.erase(current_it);
+			//users.erase(current_it);
 			continue;
 		}
     	//TO READ
