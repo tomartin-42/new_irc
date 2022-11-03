@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:17:37 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/11 11:39:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:47:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,28 @@ void com_exceptions::open_socket_fail()
 {
 	std::cerr << "Open socket error" << std::endl;
 	std::cerr << this->what() << std::endl;
-	exit(1);
 }
 
 void com_exceptions::fcntl_fail()
 {
 	std::cerr << "fcntl error" << std::endl;
 	std::cerr << this->what() << std::endl;
-	exit(1);
 }
 
 void com_exceptions::bind_fail()
 {
 	std::cerr << "bind error" << std::endl;
 	std::cerr << this->what() << std::endl;
-	exit(1);
 }
 
 void com_exceptions::listen_fail()
 {
 	std::cerr << "listen error" << std::endl;
 	std::cerr << this->what() << std::endl;
-	exit(1);
 }
 
 void com_exceptions::poll_fail()
 {
 	std::cerr << "poll error" << std::endl;
 	std::cerr << this->what() << std::endl;
-	exit(1);
 }
