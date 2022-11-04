@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/04 12:21:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/05 13:47:27 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,220 @@ std::string	resp::generate_send_code(const int &code)
 
 std::string resp::generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4);
 {
+	this->set_head_len = 0;
     std::string send_code(generate_send_code(code));
+    //Temporal
+    std::string user("tommy");
+	std::string host("c1r5s6.42madrid.com");
+	std::string msg;
 
-
+	std::string	head(":" + host + " " + send_code + " " + user + " ");
+	this->set_head_len = head.size() + 1;
+	switch (code)
+	{
+		case 1:
+			return head + RPL_WELCOME(arg1);
+		case 2:
+			return head + RPL_YOURHOST(arg1, arg2);
+		case 3:
+			return head + RPL_CREATED(arg1);
+		case 4:
+			return head + RPL_MYINFO(arg1, arg2, arg3, arg4);
+		case 5:
+			return head + RPL_BOUNCE(arg1, arg2);
+		case 200:
+			return head + RPL_TRACELINK(arg1, arg2);
+		case 203:
+			return head + RPL_TRACEUNKNOWN(arg1);
+		case 204:
+			return head + RPL_TRACEOPERATOR(arg1);
+		case 205:
+			return head + RPL_TRACEUSER(arg1);
+		case 206:
+			return head + RPL_TRACESERVER(arg1);
+		case 211:
+			return head + RPL_STATSLINKINFO(arg1);
+		case 212:
+			return head + RPL_STATSCOMMANDS(arg1);
+		case 219:
+			return head + RPL_ENDOFSTATS(arg1);
+		case 221:
+			return head + RPL_UMODEIS(arg1);
+		case 242:
+			return head + RPL_STATSUPTIME(arg1);
+		case 251:
+			return head + RPL_LUSERCLIENT(arg1, arg2, arg3);
+		case 252:
+			return head + RPL_LUSEROP(arg1);
+		case 253:
+			return head + RPL_LUSERUNKNOWN(arg1);
+		case 254:
+			return head + RPL_LUSERCHANNELS(arg1);
+		case 255:
+			return head + RPL_LUSERME(arg1, arg2);
+		case 256:
+			return head + RPL_ADMINME(arg1);
+		case 257:
+			return head + RPL_ADMINLOC1(arg1);
+		case 258:
+			return head + RPL_ADMINLOC2(arg1);
+		case 259:
+			return head + RPL_ADMINEMAIL(arg1);
+		case 262:
+			return head + RPL_TRACEEND(arg1, arg2);
+		case 301:
+			return head + RPL_AWAY(arg1, arg2);
+		case 302:
+			return head + RPL_USERHOST(arg1);
+		case 303:
+			return head + RPL_ISON(arg1);
+		case 305:
+			return head + RPL_UNAWAY();
+		case 306:
+			return head + RPL_NOWAWAY();
+		case 311:
+			return head + RPL_WHOISUSER(arg1, arg2, arg3, arg4);
+		case 313:
+			return head + RPL_WHOISOPERATOR(arg1);
+		case 314:
+			return head + RPL_WHOWASUSER(arg1, arg2, arg3, arg4);
+		case 315:
+			return head + RPL_ENDOFWHO(arg1);
+		case 317:
+			return head + RPL_WHOISIDLE(arg1, arg2, arg3);
+		case 318:
+			return head + RPL_ENDOFWHOIS(arg1);
+		case 319:
+			return head + RPL_WHOISCHANNELS(arg1, arg2);
+		case 322:
+			return head + RPL_LIST(arg1, arg2);
+		case 323:
+			return head + RPL_LISTEND();
+		case 324:
+			return head + RPL_CHANNELMODEIS(arg1, arg2, arg3);
+		case 329:
+			return head + RPL_CREATIONTIME(arg1, arg2);
+		case 331:
+			return head + ERR_NOTOPIC(arg1);
+		case 332:
+			return head + RPL_TOPIC(arg1, arg2);
+		case 341:
+			return head + RPL_INVITING(arg1, arg2);
+		case 351:
+			return head + RPL_VERSION(arg1, arg2, arg3, arg4);
+		case 352:
+			return head + RPL_WHOREPLY(arg1);
+		case 353:
+			return head + RPL_NAMREPLY(arg1, arg2);
+		case 364:
+			return head + RPL_LINKS(arg1, arg2, arg3, arg4);
+		case 365:
+			return head + RPL_ENDOFLINKS(arg1);
+		case 366:
+			return head + RPL_ENDOFNAMES(arg1);
+		case 367:
+			return head + RPL_BANLIST(arg1);
+		case 368:
+			return head + RPL_ENDOFBANLIST(arg1);
+		case 369:
+			return head + RPL_ENDOFWHOWAS(arg1);
+		case 371:
+			return head + RPL_INFO(arg1);
+		case 372:
+			return head + RPL_MOTD(arg1);
+		case 374:
+			return head + RPL_ENDOFINFO();
+		case 375:
+			return head + RPL_MOTDSTART(arg1);
+		case 376:
+			return head + RPL_ENDOFMOTD();
+		case 381:
+			return head + RPL_YOUREOPER();
+		case 382:
+			return head + RPL_REHASHING(arg1);
+		case 391:
+			return head + RPL_TIME(arg1, arg2);
+		case 401:
+			return head + ERR_NOSUCHNICK(arg1);
+		case 402:
+			return head + ERR_NOSUCHSERVER(arg1);
+		case 403:
+			return head + ERR_NOSUCHCHANNEL(arg1);
+		case 404:
+			return head + ERR_CANNOTSENDTOCHAN(arg1);
+		case 406:
+			return head + ERR_WASNOSUCHNICK(arg1);
+		case 409:
+			return head + ERR_NOORIGIN();
+		case 410:
+			return head + ERR_INVALIDCAP(arg1);
+		case 411:
+			return head + ERR_NORECIPIENT(arg1);
+		case 412:
+			return head + ERR_NOTEXTTOSEND();
+		case 421:
+			return head + ERR_UNKNOWNCOMMAND(arg1);
+		case 422:
+			return head + ERR_NOMOTD();
+		case 423:
+			return head + ERR_NOADMININFO(arg1);
+		case 424:
+			return head + ERR_FILEERROR(arg1, arg2);
+		case 431:
+			return head + ERR_NONICKNAMEGIVEN();
+		case 432:
+			return head + ERR_ERRONEUSNICKNAME(arg1);
+		case 433:
+			return head + ERR_NICKNAMEINUSE(arg1);
+		case 436:
+			return head + ERR_NICKCOLLISION(arg1, arg2, arg3);
+		case 441:
+			return head + ERR_USERNOTINCHANNEL(arg1, arg2);
+		case 442:
+			return head + ERR_NOTONCHANNEL(arg1);
+		case 443:
+			return head + ERR_USERONCHANNEL(arg1, arg2);
+		case 451:
+			return head + ERR_NOTREGISTERED();
+		case 461:
+			return head + ERR_NEEDMOREPARAMS(arg1);
+		case 462:
+			return head + ERR_ALREADYREGISTRED();
+		case 471:
+			return head + ERR_CHANNELISFULL(arg1);
+		case 472:
+			return head + ERR_UNKNOWNMODE(arg1);
+		case 473:
+			return head + ERR_INVITEONLYCHAN(arg1);
+		case 474:
+			return head + ERR_BANNEDFROMCHAN(arg1);
+		case 475:
+			return head + ERR_BADCHANNELKEY(arg1);
+		case 476:
+			return head + ERR_BADCHANMASK(arg1);
+		case 481:
+			return head + ERR_NOPRIVILEGES();
+		case 482:
+			return head + ERR_CHANOPRIVSNEEDED(arg1);
+		case 483:
+			return head + ERR_CANTKILLSERVER();
+		case 491:
+			return head + ERR_NOOPERHOST();
+		case 501:
+			return head + ERR_UMODEUNKNOWNFLAG();
+		case 502:
+			return head + ERR_USERSDONTMATCH();
+		case 691:
+			return head + ERR_ALREADYBAN(arg1, arg2);
+		case 692:
+			return head + ERR_KILLDENY(arg1);
+		default:
+			return std::string("");
+	}
+	throw resp_exceptions(1);
+	return "";
 }
+
 void	resp::set_head_len(const int i)
 {
 	this->head_len = i;
