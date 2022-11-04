@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resp.hpp                                           :+:      :+:    :+:   */
+/*   resp_exception.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 12:11:27 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/05 15:11:38 by tomartin         ###   ########.fr       */
+/*   Created: 2022/11/05 13:43:53 by tomartin          #+#    #+#             */
+/*   Updated: 2022/11/05 13:46:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _RESP_HPP_
-# define _RESP_HPP_
 
-#include <string>
-#include "ft_ircserv.hpp"
-#include "rpl.hpp"
 #include "resp_exceptions.hpp"
 
-class	resp
+resp_exceptions::server_exceptions(const int num)
 {
-	private:
-		int	head_len;
-		std::string generate_send_code(const int &code);
-    
-    public:
-        std::string generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4);
-        void	set_head_len(const int i);
-        int		get_head_len();
-};
-#endif
+	switch(num)
+	{
+		case 1: //when open socket fail
+			this->fail_generate_msg();
+			break;
+	}
+}
+
+const	char* resp_exceptions::what() const throw()
+{
+	return "Custom exception in resp_exception";
+}
+
+void    resp_exception::fail_generate_msg();
+{
+    std::cerr << "Not found code in rpl list" << std::endl;
+   	std::cerr << this->what() << std::endl;
+}

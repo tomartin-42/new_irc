@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resp.hpp                                           :+:      :+:    :+:   */
+/*   resp_exceptions.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 12:11:27 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/05 15:11:38 by tomartin         ###   ########.fr       */
+/*   Created: 2022/11/05 13:41:20 by tomartin          #+#    #+#             */
+/*   Updated: 2022/11/05 13:43:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _RESP_HPP_
-# define _RESP_HPP_
+#ifndef _REP_EXCEPTION_HPP_
+# define _REP_EXCEPTION_HPP_
 
-#include <string>
-#include "ft_ircserv.hpp"
-#include "rpl.hpp"
-#include "resp_exceptions.hpp"
+#include <exception>
+#include <iostream>
+#include <cstdlib>
 
-class	resp
+class resp_exceptions : public std::exception
 {
 	private:
-		int	head_len;
-		std::string generate_send_code(const int &code);
-    
-    public:
-        std::string generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4);
-        void	set_head_len(const int i);
-        int		get_head_len();
+		void    fail_generate_msg();
+
+	public:
+		resp_exceptions(const int num);
+		const char*	what() const throw();
 };
 #endif
