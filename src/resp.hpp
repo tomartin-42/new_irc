@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resp.cpp                                           :+:      :+:    :+:   */
+/*   resp.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/05 15:28:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/05 13:47:27 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 std::string	resp::generate_send_code(const int &code)
 {
-	std::string	true_code(itoa(code));
+	std::string	true_code;
 
+	true_code = itoa(code);
     if(code < 100)
-        true_code.insert(0, 1, '0');
+        true_code.insert(0,'0');
     if(code < 10)
-        true_code.insert(0, 1, '0');
+        true_code.insert(0,'0');
     return true_code;
 }
 
-std::string resp::generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4)
+std::string resp::generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4);
 {
-	this->set_head_len(0);
+	this->set_head_len = 0;
     std::string send_code(generate_send_code(code));
     //Temporal
     std::string user("tommy");
@@ -33,7 +34,7 @@ std::string resp::generate_msg(const int code, std::string arg1, std::string arg
 	std::string msg;
 
 	std::string	head(":" + host + " " + send_code + " " + user + " ");
-	this->set_head_len(head.size() + 1);
+	this->set_head_len = head.size() + 1;
 	switch (code)
 	{
 		case 1:
@@ -118,8 +119,8 @@ std::string resp::generate_msg(const int code, std::string arg1, std::string arg
 			return head + RPL_CHANNELMODEIS(arg1, arg2, arg3);
 		case 329:
 			return head + RPL_CREATIONTIME(arg1, arg2);
-//		case 331:
-//			return head + ERR_NOTOPIC(arg1);
+		case 331:
+			return head + ERR_NOTOPIC(arg1);
 		case 332:
 			return head + RPL_TOPIC(arg1, arg2);
 		case 341:
@@ -158,7 +159,7 @@ std::string resp::generate_msg(const int code, std::string arg1, std::string arg
 			return head + RPL_REHASHING(arg1);
 		case 391:
 			return head + RPL_TIME(arg1, arg2);
-	/*	case 401:
+		case 401:
 			return head + ERR_NOSUCHNICK(arg1);
 		case 402:
 			return head + ERR_NOSUCHSERVER(arg1);
@@ -231,7 +232,7 @@ std::string resp::generate_msg(const int code, std::string arg1, std::string arg
 		case 691:
 			return head + ERR_ALREADYBAN(arg1, arg2);
 		case 692:
-			return head + ERR_KILLDENY(arg1);*/
+			return head + ERR_KILLDENY(arg1);
 		default:
 			return std::string("");
 	}

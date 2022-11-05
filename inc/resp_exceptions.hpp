@@ -6,12 +6,12 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 13:41:20 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/05 13:43:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:33:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _REP_EXCEPTION_HPP_
-# define _REP_EXCEPTION_HPP_
+#ifndef _RESP_EXCEPTION_HPP_
+# define _RESP_EXCEPTION_HPP_
 
 #include <exception>
 #include <iostream>
