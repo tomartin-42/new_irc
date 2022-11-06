@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resp.cpp                                           :+:      :+:    :+:   */
+/*   replies.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/05 15:28:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:53:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "resp.hpp"
+#include "replies.hpp"
 
-std::string	resp::generate_send_code(const int &code)
+std::string	replies::generate_send_code(const int &code)
 {
 	std::string	true_code(itoa(code));
 
@@ -23,14 +23,16 @@ std::string	resp::generate_send_code(const int &code)
     return true_code;
 }
 
-std::string resp::generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4)
+//Generat a str with the numeric reply
+//Set the value header variable you can use if the reply is more
+//big than 512
+std::string replies::generate_msg(const int code, std::string arg1, std::string arg2, std::string arg3, std::string arg4)
 {
 	this->set_head_len(0);
     std::string send_code(generate_send_code(code));
     //Temporal
     std::string user("tommy");
 	std::string host("c1r5s6.42madrid.com");
-	std::string msg;
 
 	std::string	head(":" + host + " " + send_code + " " + user + " ");
 	this->set_head_len(head.size() + 1);
@@ -235,16 +237,16 @@ std::string resp::generate_msg(const int code, std::string arg1, std::string arg
 		default:
 			return std::string("");
 	}
-	throw resp_exceptions(1);
+	throw replies_exceptions(1);
 	return "";
 }
 
-void	resp::set_head_len(const int i)
+void	replies::set_head_len(const int i)
 {
 	this->head_len = i;
 }
 
-int		resp::get_head_len()
+int		replies::get_head_len()
 {
 	return this->head_len;
 }

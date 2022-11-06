@@ -3,29 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   replies.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 22:04:42 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/02 22:12:30 by tomartin         ###   ########.fr       */
+/*   Created: 2022/11/02 12:11:27 by tomartin          #+#    #+#             */
+/*   Updated: 2022/11/06 16:55:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _REPLIES_HPP_
 # define _REPLIES_HPP_
 
-//This is the list of numeric replies difines
+#include <string>
+#include "ft_ircserv.hpp"
+#include "replies_exceptions.hpp"
+#include "rpl.hpp"
 
-//The server sends Replies 001 to 004 to a user upon successful registration
-# define RPL_WELLCOME "001 "
-# define RPL_WELLCOME_STR1 "Welcome to the Internet Relay Network "
+class replies
+{
+        private:
+                int     head_len;
+                std::string generate_send_code(const int &code);
 
-# define RPL_YOURHOST "002 "
-# define RPL_YOURHOST_STR1 "Your host is "
-# define RPL_YOURHOST_STR2 ", running version "
-
-# define RPL_CREATED "003 "
-# define RPL_CREATED_STR1 "This server was created "
-
-# define RPL_MYINFO "004 "
-
-
+    public:
+      std::string generate_msg(const int code, std::string arg1,
+                          std::string arg2, std::string arg3, std::string arg4);
+        void    set_head_len(const int i);
+        int             get_head_len();
+};
+#endif

@@ -6,13 +6,13 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 13:43:53 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/05 15:34:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:55:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "resp_exceptions.hpp"
+#include "replies_exceptions.hpp"
 
-resp_exceptions::server_exceptions(const int num)
+replies_exceptions::server_exceptions(const int num)
 {
 	switch(num)
 	{
@@ -22,12 +22,12 @@ resp_exceptions::server_exceptions(const int num)
 	}
 }
 
-const	char* resp_exceptions::what() const throw()
+const	char* replies_exceptions::what() const throw()
 {
-	return "Custom exception in resp_exception";
+	return "Custom exception in replies_exception";
 }
 
-void    resp_exception::fail_generate_msg();
+void    replies_exception::fail_generate_msg();
 {
     std::cerr << "Not found code in rpl list" << std::endl;
    	std::cerr << this->what() << std::endl;
