@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:01 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/06 18:50:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/06 20:37:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ struct commands
 	void	error(std::string message);
 	void	help(void);
 	void	info(std::string target);
+	void	invite(std::string nick, std::string chanel);
+	void	ison(std::string nicklist);
 	
 };
 #endif
