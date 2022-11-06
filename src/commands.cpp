@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:49 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/06 18:50:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:34:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,60 @@ void	commands::info(std::string target)
                                    server found to match *.fi.
     */
 }
+
+
+void	commands::invite(std::string nick, std::string chanel)
+{
+	//Invites <nickname> to the channel <channel>.[9] <channel>
+	//does not have to exist, but if it does, only members of 
+	//the channel are allowed to invite other clients. If the channel 
+	//mode i is set, only channel operators may invite other clients.
+	
+	/* Numeric Replies:
+
+           ERR_NEEDMOREPARAMS              ERR_NOSUCHNICK
+           ERR_NOTONCHANNEL                ERR_USERONCHANNEL
+           ERR_CHANOPRIVSNEEDED
+           RPL_INVITING                    RPL_AWAY
+
+   Examples:
+
+   :Angel INVITE Wiz #Dust         ; User Angel inviting WiZ to channel
+                                   #Dust
+
+   INVITE Wiz #Twilight_Zone       ; Command to invite WiZ to
+                                   #Twilight_zone
+    */
+}
+
+void	commands::ison(std::string nicklist)
+{
+	//The ISON command was implemented to provide  a  quick  and  efficient
+	//means  to get a response about whether a given nickname was currently
+	//on IRC. ISON only takes one (1) parameter: a space-separated list of
+	//nicks.  For  each  nickname in the list that is present, the server
+	//adds that to its reply string.  Thus the reply string may return
+	//empty (none  of  the given  nicks are present), an exact copy of the
+	//parameter string (all of them present) or as any other subset of the
+	//set of nicks  given  in  the parameter.  The only limit on the number
+	//of nicks that may be checked is that the combined length must not be
+	//too large as to cause the server to chop it off so it fits in 512
+	//characters.
+
+	//ISON is only be processed by the server local to the client sending 
+	//the command and thus not passed onto other servers for further
+	//processing.
+	
+	/*Numeric Replies:
+
+           RPL_ISON                ERR_NEEDMOREPARAMS
+
+   Examples:
+
+   ISON phone trillian WiZ jarlek Avalon Angel Monstah
+                                   ; Sample ISON request for 7 nicks.
+	*/
+}
+
 
 
