@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:49 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/06 19:34:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:33:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,120 @@ void	commands::ison(std::string nicklist)
 	*/
 }
 
+void	commands::join(std::chanels, std::passwords)
+{
+	//The JOIN command is used by client to start listening a specific 
+	//channel.
+	//The conditions which affect this are as follows:
+	//1.  the user must be invited if the channel is invite-only;
+	//2.  the user's nick/username/hostname must not match any active bans;
+	//3.  the correct key (password) must be given if it is set.
+	//
+	//These are discussed in more detail under the MODE command 
+	//(see section 4.2.3 for more details).
+	//Once a user has joined a channel, they receive notice about all
+	//commands their server receives which affect the channel. This
+	//includes MODE, KICK, PART, QUIT and of course PRIVMSG/NOTICE.
+	//
+	//If a JOIN is successful, the user is then sent the channel's topic 
+	//(using RPL_TOPIC) and the list of users who are on the channel 
+	//(using RPL_NAMREPLY), which must include the user joining.
+	
+	/*Numeric Replies:
 
+           ERR_NEEDMOREPARAMS              ERR_BANNEDFROMCHAN
+           ERR_INVITEONLYCHAN              ERR_BADCHANNELKEY
+           ERR_CHANNELISFULL               ERR_BADCHANMASK
+           ERR_NOSUCHCHANNEL               ERR_TOOMANYCHANNELS
+           RPL_TOPIC
+
+   Examples:
+
+   JOIN #foobar                    ; join channel #foobar.
+
+   JOIN &foo fubar                 ; join channel &foo using key "fubar".
+
+   JOIN #foo,&bar fubar            ; join channel #foo using key "fubar"
+                                   and &bar using no key.
+
+   JOIN #foo,#bar fubar,foobar     ; join channel #foo using key "fubar".
+                                   and channel #bar using key "foobar".
+
+   JOIN #foo,#bar                  ; join channels #foo and #bar.
+
+   :WiZ JOIN #Twilight_zone        ; JOIN message from WiZ
+	*/
+}
+
+void	command::kick(std::string chanel, std::string user, std::string msg)
+{
+	//The KICK command can be used to forcibly remove a user from a channel.
+	//Only a channel operator may kick another user out of a  channel.
+	
+	/*Numeric Replies:
+
+           ERR_NEEDMOREPARAMS              ERR_NOSUCHCHANNEL
+           ERR_BADCHANMASK                 ERR_CHANOPRIVSNEEDED
+           ERR_NOTONCHANNEL
+
+   Examples:
+
+KICK &Melbourne Matthew         ; Kick Matthew from &Melbourne
+
+KICK #Finnish John :Speaking English
+                                ; Kick John from #Finnish using
+                                "Speaking English" as the reason
+                                (comment).
+
+:WiZ KICK #Finnish John         ; KICK message from WiZ to remove John
+                                from channel #Finnish
+
+NOTE:
+     It is possible to extend the KICK command parameters to the
+following:
+
+<channel>{,<channel>} <user>{,<user>} [<comment>]
+	*/
+}
+
+void	commands::kill(std::nickname, std::string msg)
+{
+	//The KILL message is used to cause a client-server connection to be 
+	//closed by the server which has the actual connection.  KILL is used 
+	//by servers when they encounter a duplicate entry in the list of valid
+	//nicknames and is used to remove both entries.  It is also available
+	//to operators.
+
+	// NOTE:
+	// It is recommended that only Operators be allowed to kill other users
+	// with KILL message.
+
+	/*Numeric Replies:
+
+           ERR_NOPRIVILEGES                ERR_NEEDMOREPARAMS
+           ERR_NOSUCHNICK                  ERR_CANTKILLSERVER
+	*/
+}
+
+void	commands::list(std::chanels)
+{
+	//The list message is used to list channels and their topics.  If  the
+	//<channel>  parameter  is  used,  only  the  status  of  that  channel
+	//is displayed.  Private  channels  are  listed  (without  their
+	//topics)  as channel "Prv" unless the client generating the query is
+	//actually on that channel.  Likewise, secret channels are not listed
+	//at  all  unless  the client is a member of the channel in question.
+	
+	/*   Numeric Replies:
+
+           ERR_NOSUCHSERVER                RPL_LISTSTART
+           RPL_LIST                        RPL_LISTEND
+
+   Examples:
+
+   LIST                            ; List all channels.
+
+   LIST #twilight_zone,#42         ; List channels #twilight_zone and #42
+   */
+}
 
