@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:49 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/08 12:18:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:06:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -446,7 +446,7 @@ void	commands::nick(std::new_nick)
    */
 }
 
-void	commands::notice(std::string nickname, std::string text)
+void	commands::notice(std::string nickname, std::string msg)
 {
 	/*
 	The NOTICE message is used similarly to PRIVMSG.  The difference
@@ -462,6 +462,583 @@ void	commands::notice(std::string nickname, std::string text)
 
    See PRIVMSG for more details on replies and examples.
 	*/
+}
+
+void	commands::oper(std::string user, std::string password)
+{
+	/*
+	 *  OPER message is used by a normal user to obtain operator privileges.
+   The combination of <user> and <password> are required to gain
+   Operator privileges.
+
+   If the client sending the OPER command supplies the correct password
+   for the given user, the server then informs the rest of the network
+   of the new operator by issuing a "MODE +o" for the clients nickname.
+
+   The OPER message is client-server only.
+
+   Numeric Replies:
+
+           ERR_NEEDMOREPARAMS              RPL_YOUREOPER
+           ERR_NOOPERHOST                  ERR_PASSWDMISMATCH
+
+   Example:
+
+   OPER foo bar                    ; Attempt to register as an operator
+                                   using a username of "foo" and "bar" as
+                                   the password.
+	*/
+}
+
+void	commands::part(std::string chanels)
+{
+	/*
+	    The PART message causes the client sending the message to be removed
+   from the list of active users for all given channels listed in the
+   parameter string.
+
+   Numeric Replies:
+
+           ERR_NEEDMOREPARAMS              ERR_NOSUCHCHANNEL
+           ERR_NOTONCHANNEL
+
+   Examples:
+
+   PART #twilight_zone             ; leave channel "#twilight_zone"
+
+   PART #oz-ops,&group5            ; leave both channels "&group5" and
+                                   "#oz-ops".
+	*/
+}
+
+void	commands::pass(std::string password)
+{
+	/*
+	    The PASS command is used to set a 'connection password'.  The
+   password can and must be set before any attempt to register the
+   connection is made.  Currently this requires that clients send a PASS
+   command before sending the NICK/USER combination and servers *must*
+   send a PASS command before any SERVER command.  The password supplied
+   must match the one contained in the C/N lines (for servers) or I
+   lines (for clients).  It is possible to send multiple PASS commands
+   before registering but only the last one sent is used for
+   verification and it may not be changed once registered.  Numeric
+   Replies:
+
+           ERR_NEEDMOREPARAMS              ERR_ALREADYREGISTRED
+
+   Example:
+
+           PASS secretpasswordhere
+    */
+}
+
+void	commands::ping(std::string user)
+{
+	/*
+	    The PING message is used to test the presence of an active client at
+   the other end of the connection.  A PING message is sent at regular
+   intervals if no other activity detected coming from a connection.  If
+   a connection fails to respond to a PING command within a set amount
+   of time, that connection is closed
+
+      Any client which receives a PING message must respond to <server1>
+   (server which sent the PING message out) as quickly as possible with
+   an appropriate PONG message to indicate it is still there and alive.
+
+    Numeric Replies:
+
+           ERR_NOORIGIN                    ERR_NOSUCHSERVER
+
+   Examples:
+
+   PING tolsun.oulu.fi             ; server sending a PING message to
+                                   another server to indicate it is still
+                                   alive.
+
+   PING WiZ                        ; PING message being sent to nick WiZ
+   */
+}
+
+void	commands::pong(std::string to, std::string from)
+{
+	/*
+	    PONG message is a reply to ping message.  If parameter <daemon2> is
+   given this message must be forwarded to given daemon.  The <daemon>
+   parameter is the name of the daemon who has responded to PING message
+   and generated this message.
+
+   Numeric Replies:
+
+           ERR_NOORIGIN                    ERR_NOSUCHSERVER
+
+   Examples:
+
+   PONG csd.bu.edu tolsun.oulu.fi  ; PONG message from csd.bu.edu to
+   */
+}
+
+void	commands::privmsg(std::string receivers, std::string msg)
+{
+	/*
+	 RIVMSG is used to send private messages between users.  <receiver>
+   is the nickname of the receiver of the message.  <receiver> can also
+   be a list of names or channels separated with commas.
+
+   The <receiver> parameter may also me a host mask  (#mask)  or  server
+   mask  ($mask).   In  both cases the server will only send the PRIVMSG
+   to those who have a server or host matching the mask.  The mask  must
+   have at  least  1  (one)  "."  in it and no wildcards following the
+   last ".".  This requirement exists to prevent people sending messages
+   to  "#*"  or "$*",  which  would  broadcast  to  all  users; from
+   experience, this is abused more than used responsibly and properly.
+   Wildcards are  the  '*' and  '?'   characters.   This  extension  to
+   the PRIVMSG command is only available to Operators.
+
+   Numeric Replies:
+
+           ERR_NORECIPIENT                 ERR_NOTEXTTOSEND
+           ERR_CANNOTSENDTOCHAN            ERR_NOTOPLEVEL
+           ERR_WILDTOPLEVEL                ERR_TOOMANYTARGETS
+           ERR_NOSUCHNICK
+           RPL_AWAY
+
+   Examples:
+
+:Angel PRIVMSG Wiz :Hello are you receiving this message ?
+                                ; Message from Angel to Wiz.
+
+PRIVMSG Angel :yes I'm receiving it !receiving it !'u>(768u+1n) .br ;
+                                Message to Angel.
+
+PRIVMSG jto@tolsun.oulu.fi :Hello !
+                                ; Message to a client on server
+PRIVMSG $*.fi :Server tolsun.oulu.fi rebooting.
+                                ; Message to everyone on a server which
+                                has a name matching *.fi.
+
+PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
+                                ; Message to all users who come from a
+                                host which has a name matching *.edu.
+
+	*/
+}
+
+void	commands::quit(std::string msg)
+{
+	/*
+	A client session is ended with a quit message.  The server must close
+   the connection to a client which sends a QUIT message. If a "Quit
+   Message" is given, this will be sent instead of the default message,
+   the nickname.
+
+   When netsplits (disconnecting of two servers) occur, the quit message
+   is composed of the names of two servers involved, separated by a
+   space.  The first name is that of the server which is still connected
+   and the second name is that of the server that has become
+   disconnected.
+
+   If, for some other reason, a client connection is closed without  the
+   client  issuing  a  QUIT  command  (e.g.  client  dies and EOF occurs
+   on socket), the server is required to fill in the quit  message  with
+   some sort  of  message  reflecting the nature of the event which
+   caused it to happen.
+
+   Numeric Replies:
+
+           None.
+
+   Examples:
+
+   QUIT :Gone to have lunch        ; Preferred message format.
+	*/
+}
+
+void	commands::squery(std::string service, std::string text)
+{
+	/*
+	 The SQUERY command is used similarly to PRIVMSG.  The only difference
+   is that the recipient MUST be a service.  This is the only way for a
+   text message to be delivered to a service.
+
+   See PRIVMSG for more details on replies and example.
+
+   Examples:
+
+   SQUERY irchelp :HELP privmsg
+                                   ; Message to the service with
+                                   nickname irchelp.
+
+   SQUERY dict@irc.fr :fr2en blaireau
+                                   ; Message to the service with name
+                                   dict@irc.fr.
+    */
+}
+
+void	setname(std::string new_name);
+{
+	/*
+	Allows a client to change the "real name" specified when 
+	registering a connection.
+
+	This command is not formally defined by an RFC, but is in use by some 
+	IRC daemons. 
+	Support is indicated in a RPL_ISUPPORT reply (numeric 005) 
+	with the SETNAME keyword
+	*/
+}
+
+void	commands::stats(std::string query)
+{
+	/*
+	he stats message is used to query statistics of certain server.  If
+   <server> parameter is omitted, only the end of stats reply is sent
+   back.  The implementation of this command is highly dependent on the
+   server which replies, although the server must be able to supply
+   information as described by the queries below (or similar).
+
+   A query may be given by any single letter which is only checked by
+   the destination server (if given as the <server> parameter) and is
+   otherwise passed on by intermediate servers, ignored and unaltered.
+   The following queries are those found in the current IRC
+   implementation and provide a large portion of the setup information
+   for that server.  Although these may not be supported in the same way
+   by other versions, all servers should be able to supply a valid reply
+   to a STATS query which is consistent with the reply formats currently
+   used and the purpose of the query.
+
+   The currently supported queries are:
+
+           c - returns a list of servers which the server may connect
+               to or allow connections from;
+           h - returns a list of servers which are either forced to be
+               treated as leaves or allowed to act as hubs;
+           i - returns a list of hosts which the server allows a client
+               to connect from;
+           k - returns a list of banned username/hostname combinations
+               for that server;
+           l - returns a list of the server's connections, showing how
+			   long each connection has been established and the traffic
+               over that connection in bytes and messages for each
+               direction;
+           m - returns a list of commands supported by the server and
+               the usage count for each if the usage count is non zero;
+           o - returns a list of hosts from which normal clients may
+               become operators;
+           y - show Y (Class) lines from server's configuration file;
+           u - returns a string showing how long the server has been up.
+           Numeric Replies:
+
+           ERR_NOSUCHSERVER
+           RPL_STATSCLINE                  RPL_STATSNLINE
+           RPL_STATSILINE                  RPL_STATSKLINE
+           RPL_STATSQLINE                  RPL_STATSLLINE
+           RPL_STATSLINKINFO               RPL_STATSUPTIME
+           RPL_STATSCOMMANDS               RPL_STATSOLINE
+           RPL_STATSHLINE                  RPL_ENDOFSTATS
+
+   Examples:
+
+STATS m                         ; check the command usage for the server
+                                you are connected to
+
+:Wiz STATS c eff.org            ; request by WiZ for C/N line
+                                information from server eff.org
+    */
+}
+
+void	commands::time(void)
+{
+	/*
+	 * The time message is used to query local time from the specified
+   server. If the server parameter is not given, the server handling the
+   command must reply to the query.
+
+   Numeric Replies:
+
+           ERR_NOSUCHSERVER                RPL_TIME
+
+   Examples:
+
+   TIME tolsun.oulu.fi             ; check the time on the server
+                                   "tolson.oulu.fi"
+
+   Angel TIME *.au                 ; user angel checking the time on a
+                                   server matching "*.au"
+
+	*/
+}
+
+void	commands::topic(std::string channel, std::string topic)
+{
+	/*
+	 * The TOPIC message is used to change or view the topic of a channel.
+   The topic for channel <channel> is returned if there is no <topic>
+   given.  If the <topic> parameter is present, the topic for that
+   channel will be changed, if the channel modes permit this action.
+
+   Numeric Replies:
+
+           ERR_NEEDMOREPARAMS              ERR_NOTONCHANNEL
+           RPL_NOTOPIC                     RPL_TOPIC
+           ERR_CHANOPRIVSNEEDED
+    
+   Examples:
+
+   :Wiz TOPIC #test :New topic     ;User Wiz setting the topic.
+
+   TOPIC #test :another topic      ;set the topic on #test to "another
+                                   topic".
+
+   TOPIC #test                     ; check the topic for #test.
+	*/
+}
+
+
+
+void	commands::user(std::string user, std::string mode, std::string unused, 
+		std::string realname);
+{
+	/*
+	 * The USER command is used at the beginning of connection to specify
+   the username, hostname and realname of a new user.
+
+   The <mode> parameter should be a numeric, and can be used to
+   automatically set user modes when registering with the server.  This
+   parameter is a bitmask, with only 2 bits having any signification: if
+   the bit 2 is set, the user mode 'w' will be set and if the bit 3 is
+   set, the user mode 'i' will be set.  (See Section 3.1.5 "User
+   Modes").
+
+   The <realname> may contain space characters.
+
+   Numeric Replies:
+
+           ERR_NEEDMOREPARAMS              ERR_ALREADYREGISTRED
+
+   Example:
+
+   USER guest 0 * :Ronnie Reagan   ; User registering themselves with a
+                                   username of "guest" and real name
+                                   "Ronnie Reagan".
+
+   USER guest 8 * :Ronnie Reagan   ; User registering themselves with a
+                                   username of "guest" and real name
+                                   "Ronnie Reagan", and asking to be set
+                                   invisible.
+	*/
+}
+
+void	commands::userhost(std::string names)
+{
+	/*
+	 *    The USERHOST command takes a list of up to 5 nicknames, each
+   separated by a space character and returns a list of information
+   about each nickname that it found.  The returned list has each reply
+   separated by a space.
+
+   Numeric Replies:
+
+           RPL_USERHOST                    ERR_NEEDMOREPARAMS
+
+   Examples:
+
+   USERHOST Wiz Michael Marty p    ;USERHOST request for information on
+                                   nicks "Wiz", "Michael", "Marty" and "p"
+    */
+}
+
+void	commands::userip(std::string nickname)
+{
+	/*
+	 * Requests the direct IP address of the user with the 
+	 * specified nickname. This command is often used to obtain the IP 
+	 * of an abusive user to more effectively perform a ban. 
+	 * It is unclear what, if any, privileges are required to execute 
+	 * this command on a server.
+
+	   This command is not formally defined by an RFC, but is in use 
+	   by some IRC daemons. Support is indicated in a RPL_ISUPPORT 
+	   reply (numeric 005) with the USERIP keyword.
+	*/
+}
+
+void	commands::users(std::string server);
+{
+	/*
+	 * The USERS command returns a list of users logged into the server in a
+   similar  format  to  who(1),  rusers(1)  and finger(1).  Some people
+   may disable this command on their server for security related
+   reasons.   If disabled, the correct numeric must be returned to
+   indicate this.
+
+   Numeric Replies:
+
+           ERR_NOSUCHSERVER                ERR_FILEERROR
+           RPL_USERSSTART                  RPL_USERS
+           RPL_NOUSERS                     RPL_ENDOFUSERS
+           ERR_USERSDISABLED
+
+   Disabled Reply:
+
+           ERR_USERSDISABLED
+
+   Examples:
+
+USERS eff.org                   ; request a list of users logged in on
+                                server eff.org
+
+:John USERS tolsun.oulu.fi      ; request from John for a list of users
+                                logged in on server tolsun.oulu.fi
+    */
+}
+
+void	commands::vesion(std::string server)
+{
+	/*return server version
+	 *
+	 *   Numeric Replies:
+
+           ERR_NOSUCHSERVER                RPL_VERSION
+
+   Examples:
+
+   :Wiz VERSION *.se               ; message from Wiz to check the version
+                                   of a server matching "*.se"
+
+   VERSION tolsun.oulu.fi          ; check the version of server
+                                   "tolsun.oulu.fi".
+	*/
+}
+
+void	commands::wallops(std::string msg)
+{
+	/*
+	 *    The WALLOPS command is used to send a message to all currently
+   connected users who have set the 'w' user mode for themselves.  (See
+   Section 3.1.5 "User modes").
+   After implementing WALLOPS as a user command it was found that it was
+   often and commonly abused as a means of sending a message to a lot of
+   people.  Due to this, it is RECOMMENDED that the implementation of
+   WALLOPS allows and recognizes only servers as the originators of
+   WALLOPS.
+
+   Numeric Replies:
+
+           ERR_NEEDMOREPARAMS
+
+   Example:
+
+   :csd.bu.edu WALLOPS :Connect '*.uiuc.edu 6667' from Joshua ; WALLOPS
+                                   message from csd.bu.edu announcing a
+                                   CONNECT message it received from
+                                   Joshua and acted upon.
+	*/
+}
+
+void	commands::who(std::string name)
+{
+	/*
+	 *   The WHO message is used by a client to generate a query which returns
+   a list of information which 'matches' the <name> parameter given by
+   the client.  In the absence of the <name> parameter, all visible
+   (users who aren't invisible (user mode +i) and who don't have a
+   common channel with the requesting client) are listed.  The same
+   result can be achieved by using a <name> of "0" or any wildcard which
+
+   will end up matching every entry possible.
+
+   The <name> passed to WHO is matched against users' host, server, real
+   name and nickname if the channel <name> cannot be found.
+
+   If the "o" parameter is passed only operators are returned according
+   to the name mask supplied.
+
+   Numeric Replies:
+
+           ERR_NOSUCHSERVER
+           RPL_WHOREPLY                    RPL_ENDOFWHO
+
+   Examples:
+
+   WHO *.fi                        ; List all users who match against
+                                   "*.fi".
+
+   WHO jto* o                      ; List all users with a match against
+                                   "jto*" if they are an operator.
+	*/
+}
+
+void	commands::whois(std::string server, std::string nicknames)
+{
+	/*
+	 * This message is used to query information about particular user.  The
+   server will answer this message with several numeric messages
+   indicating different statuses of each user which matches the nickmask
+   (if you are entitled to see them).  If no wildcard is present in the
+   <nickmask>, any information about that nick which you are allowed to
+   see is presented.  A comma (',') separated list of nicknames may be
+   given.
+
+   The latter version sends the query to a specific server.  It is
+   useful if you want to know how long the user in question has been
+   idle as only local server (ie. the server the user is directly
+   connected to) knows that information, while everything else is
+   globally known.
+
+   Numeric Replies:
+
+           ERR_NOSUCHSERVER                ERR_NONICKNAMEGIVEN
+           RPL_WHOISUSER                   RPL_WHOISCHANNELS
+           RPL_WHOISCHANNELS               RPL_WHOISSERVER
+           RPL_AWAY                        RPL_WHOISOPERATOR
+           RPL_WHOISIDLE                   ERR_NOSUCHNICK
+           RPL_ENDOFWHOIS
+
+     Examples:
+
+   WHOIS wiz                       ; return available user information
+                                   about nick WiZ
+
+   WHOIS eff.org trillian          ; ask server eff.org for user
+                                   information about trillian
+		*/
+}
+
+void	commands::whowas(std::string nicknames, std::string count, std::string server);
+{
+	/*
+	 * Whowas asks for information about a nickname which no longer exists.
+   This may either be due to a nickname change or the user leaving IRC.
+   In response to this query, the server searches through its nickname
+   history, looking for any nicks which are lexically the same (no wild
+   card matching here).  The history is searched backward, returning the
+   most recent entry first.  If there are multiple entries, up to
+   <count> replies will be returned (or all of them if no <count>
+   parameter is given).  If a non-positive number is passed as being
+   <count>, then a full search is done.
+
+   Wildcards are allowed in the <target> parameter.
+
+   Numeric Replies:
+
+           ERR_NONICKNAMEGIVEN           ERR_WASNOSUCHNICK
+           RPL_WHOWASUSER                RPL_WHOISSERVER
+           RPL_ENDOFWHOWAS
+
+   Examples:
+
+   WHOWAS Wiz                      ; return all information in the nick
+                                   history about nick "WiZ";
+
+   WHOWAS Mermaid 9                ; return at most, the 9 most recent
+                                   entries in the nick history for
+                                   "Mermaid";
+
+   WHOWAS Trillian 1 *.edu         ; return the most recent history for
+                                   "Trillian" from the first server
+                                   found to match "*.edu".
+    */
 }
 
 
