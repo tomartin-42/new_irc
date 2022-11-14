@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/14 12:53:58 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:05:58 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ class user
 		std::string get_name() const {return "USER NAME";}
 		std::string get_nickname() const {return "USER NICKNAME";}
 		std::string get_email() const {return "USER@EMAIL.COM";}
+		std::string get_away_msg() const {return "AWAY MSG ESTOY COMIENDO";}
 };
 #endif
