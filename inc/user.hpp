@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 20:35:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:53:58 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,13 @@ class user
 		void		set_type(const char type);
 		std::time_t get_start_time() const;
         short       send_or_recive() const;
+
+        //-------------------------------------//
+        //-------------------------------------//
+
+		std::string	get_server() const {return "SERVER NAME";}
+		std::string get_name() const {return "USER NAME";}
+		std::string get_nickname() const {return "USER NICKNAME";}
+		std::string get_email() const {return "USER@EMAIL.COM";}
 };
 #endif

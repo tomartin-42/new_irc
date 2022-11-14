@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/03 11:32:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:48:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	msg::add_msg(const char* str)
 
 }
 
+//Add a str into a queue
+//If str have more than one "\x0d\x0a" it's separate in
+//diferent msg
 void	msg::add_msg(const std::string str)
 {
 	this->buff_aux.append(str);

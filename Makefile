@@ -6,7 +6,7 @@
 #    By: tomartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 09:11:45 by tomartin          #+#    #+#              #
-#    Updated: 2022/11/06 16:50:52 by tomartin         ###   ########.fr        #
+#    Updated: 2022/11/14 12:52:08 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_DIR = src/
 
 # Source files and includes
 SRC_FILES = main.cpp com.cpp com_exceptions.cpp server.cpp user.cpp \
-			msg.cpp replies.cpp
+			msg.cpp replies.cpp replies_generator.cpp
 
 # Objs
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))	
