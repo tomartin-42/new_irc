@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   replies_generator.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/12 17:12:18 by tomartin         ###   ########.fr       */
+/*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
+/*   Updated: 2022/11/12 17:09:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "user.hpp"
+#include "replies_generator.hpp"
 
-int main(void)
+std::string	replies_generator::admin_ok(const user& admin)
 {
-	user	a(99, UNKNOW);
-	user	oringin(100, UNKNOW);
-}
+	std::string	answ;
 
+	answ.append(generate_msg(256, admin.get_server(), void, void, void));
+	answ.append(generate_msg(257, admin.get_name(), void, void, void));
+	answ.append(generate_msg(258, admin.get_nickname(), void, void, void));
+	answ.append(generate_msg(259, admin.get_email(), void, void, void));
+	return answ;
+}
 

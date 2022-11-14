@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   replies_generator.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/12 17:12:18 by tomartin         ###   ########.fr       */
+/*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
+/*   Updated: 2022/11/12 17:08:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "user.hpp"
+#ifndef _REPLIES_GENERATOR_HPP_
+# define _REPLIES_GENERATOR_HPP_
 
-int main(void)
+#include "replies.hpp"
+#include <string>
+
+class replies_generator : public replies
 {
-	user	a(99, UNKNOW);
-	user	oringin(100, UNKNOW);
-}
-
-
+	public:
+	std::string	replies_generator::admin_ok(const user& admin);	
