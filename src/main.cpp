@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/14 15:28:20 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:56:47 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int main(void)
 	load.msg_out.add_msg(generator.away_nowaway());
 	load.msg_out.add_msg(generator.info_rpy(serv));
 	load.msg_out.add_msg(generator.invite_ok(serv, a));
+	load.msg_out.add_msg(generator.invite_away(a));
+	load.msg_out.add_msg(generator.ison_ok("ISON LIST"));
+	load.msg_out.add_msg(generator.join_ok(serv));
+	load.msg_out.add_msg(generator.list_ok(serv));
+
 
 	load.msg_out.print_all_msg();
 }

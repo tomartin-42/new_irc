@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/14 15:29:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:56:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ class replies_generator : public replies
 	std::string away_nowaway(void);
 	std::string info_rpy(const aux_server& server);
 	std::string invite_ok(const aux_server& server, const user& user);
-
+	std::string invite_away(const user& user);
+	std::string ison_ok(const std::string ison_list);
+	std::string join_ok(const aux_server& server);
+	std::string list_ok(const aux_server& server);
 };
 
 #endif

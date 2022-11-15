@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/14 15:30:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:59:16 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,30 @@ std::string replies_generator::invite_ok(const aux_server& server,
 {
 	return(generate_msg(341, server.get_chanel_name(), 
 		user.get_name(), "", ""));
+}
+
+std::string replies_generator::invite_away(const user& user)
+{
+	return (generate_msg(301, user.get_nickname(), 
+		user.get_away_msg(), "", ""));
+}
+
+std::string replies_generator::ison_ok(const std::string ison_list)
+{
+	return (generate_msg(303, ison_list, "", "", ""));
+}
+
+std::string replies_generator::join_ok(const aux_server& server)
+{
+	return(generate_msg(332, server.get_chanel_name(), server.get_chanel_topic(),
+		"", ""));
+}
+
+std::string replies_generator::list_ok(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(322, server.get_chanel_name(), 
+		server.get_chanel_topic(), "", ""));
+	answ.append(generate_msg(323, "", "", "", ""));
+	return answ;
 }
