@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/15 18:56:47 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 14:15:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(void)
 
 	replies_generator	generator;
 	aux_server			serv;
+	aux_channel			chan;
 
 	load.msg_out.add_msg(generator.admin_ok(serv, a));
 	load.msg_out.add_msg(generator.away_rpy(a));
@@ -32,6 +33,8 @@ int main(void)
 	load.msg_out.add_msg(generator.ison_ok("ISON LIST"));
 	load.msg_out.add_msg(generator.join_ok(serv));
 	load.msg_out.add_msg(generator.list_ok(serv));
+	load.msg_out.add_msg(generator.mode_us_ok(a));
+	load.msg_out.add_msg(generator.mode_ch_ok(chan));
 
 
 	load.msg_out.print_all_msg();
