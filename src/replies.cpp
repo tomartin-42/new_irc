@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/06 16:53:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:38:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,14 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + RPL_TOPIC(arg1, arg2);
 		case 341:
 			return head + RPL_INVITING(arg1, arg2);
+		case 346:
+			return head + RPL_INVITELIST(arg1, arg2);
+		case 347:
+			return head + RPL_ENDOFINVITELIST(arg1);
+		case 348:
+			return head + RPL_EXCEPTLIST(arg1, arg2);
+		case 349:
+			return head + RPL_ENDOFEXCEPTLIST(arg1);
 		case 351:
 			return head + RPL_VERSION(arg1, arg2, arg3, arg4);
 		case 352:

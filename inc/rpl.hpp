@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2022/06/04 13:35:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:39:58 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,9 @@
 # define RPL_ADMINEMAIL(info) (":" + info + "\r\n")
 # define RPL_CREATIONTIME(channel, c_time) (channel + " " + c_time + "\r\n")
 # define RPL_YOURESERVICE(servicename) (":You are service " + servicename + "\r\n")
+# define RPL_INVITELIST(channel, invitemask) (":" + channel + " " + invitemask + "\r\n")
+# define RPL_ENDOFINVITELIST(channel) (channel + ":End of channel invite list" + "\r\n")
+# define RPL_EXCEPTLIST(channel, excepmask) (":" + channel + " " + excepmask + "\r\n")
+# define RPL_ENDOFEXCEPTLIST(channel) (channel + ":End of channel exception list" + "\r\n")
 
 #endif

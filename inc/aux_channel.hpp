@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 14:12:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:57:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ struct aux_channel
 	std::string get_topic() const {return("CHANEL TOPIC");}
 	std::string get_mode() const {return("+CEFJSTdfjnrtuxy");}
 	std::string get_mod_params() const {return("*4:1800:10:10 3:...");}
+	std::string get_ban_list() const {return("PEPE BANNED BY PEDRO ON ...");}
+	std::string get_excep_list() const {return("exception m:auiiaa36!*@*...");}
+	std::string get_invite_list() const {return("yo que coño se...");}
 };
 
 #endif

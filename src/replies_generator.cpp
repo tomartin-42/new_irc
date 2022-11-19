@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 14:14:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:46:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,3 +92,28 @@ std::string replies_generator::mode_ch_ok(const aux_channel& channel)
 		channel.get_mod_params(), ""));
 }
 
+std::string replies_generator::mode_banlist(const aux_channel& channel)
+{
+	std::string answ;
+	answ.append(generate_msg(367, channel.get_ban_list(), "", "", ""));
+	answ.append(generate_msg(368, channel.get_name(), "", "", ""));
+	return answ;
+}
+
+std::string replies_generator::mode_exceptlist(const aux_channel& channel)
+{
+	std::string answ;
+	answ.append(generate_msg(348, channel.get_name(), channel.get_excep_list(),
+		"", ""));
+	answ.append(generate_msg(349, channel.get_name(), "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::mode_invitelist(const aux_channel& channel)
+{
+	std::string answ;
+	answ.append(generate_msg(346, channel.get_name(), channel.get_invite_list(),
+		"", ""));
+	answ.append(generate_msg(347, channel.get_name(), "", "", ""));
+	return(answ);
+}

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 14:14:25 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:07:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ class replies_generator : public replies
 	std::string list_ok(const aux_server& server);
 	std::string mode_us_ok(const user& user);
 	std::string mode_ch_ok(const aux_channel& chanel);
+	std::string mode_banlist(const aux_channel& channel);
+	std::string mode_exceptlist(const aux_channel& channel);
+	std::string mode_invitelist(const aux_channel& channel);
+	std::string mode_uniqopis(const aux_channel& channel, const user& user);
 };
 
 #endif
