@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 18:43:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/19 18:44:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,5 @@ std::string replies_generator::mode_invitelist(const aux_channel& channel)
 
 std::string replies_generator::mode_uniqopis(const aux_channel& channel, const user& user)
 {
-	return(generate_msg(325, chanel.get_name(), user.get_nickname(), "", ""));
+	return(generate_msg(325, channel.get_name(), user.get_nickname(), "", ""));
 }
