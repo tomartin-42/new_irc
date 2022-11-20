@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 19:17:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:22:19 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ class replies_generator : public replies
 	std::string stats_o(const aux_server& server);
 	std::string stats_u(const aux_server& server);
 	std::string time(const aux_server& server);
+	std::string topic_ok(const aux_channel& channel);
+	std::string topic_no(const aux_channel& channel);
+	std::string userhost_ok(const aux_server& server);
+	std::string userip_ok(const user& user);
 };
 
 #endif

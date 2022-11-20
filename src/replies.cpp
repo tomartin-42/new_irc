@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 16:38:12 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:08:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + RPL_REHASHING(arg1);
 		case 391:
 			return head + RPL_TIME(arg1, arg2);
+		case 392:
+			return head + RPL_USERIP(arg1, arg2);
 	/*	case 401:
 			return head + ERR_NOSUCHNICK(arg1);
 		case 402:

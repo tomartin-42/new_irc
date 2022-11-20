@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 19:15:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:22:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,24 @@ std::string replies_generator::stats_u(const aux_server& server)
 std::string replies_generator::time(const aux_server& server)
 {
 	return(generate_msg(391, server.get_name(), server.get_time(), "", ""));
+}
+
+std::string replies_generator::topic_ok(const aux_channel& channel)
+{
+	return(generate_msg(332, channel.get_name(), channel.get_topic(), "", ""));
+}
+
+std::string replies_generator::topic_no(const aux_channel& channel)
+{
+	return(generate_msg(331, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::userhost_ok(const aux_server& server)
+{
+	return(generate_msg(302, server.get_userhost_rpy(), "", "", ""));
+}
+
+std::string replies_generator::userip_ok(const user& user)
+{
+	return(generate_msg(392, user.get_nickname(), user.get_ip(), "", ""));
 }

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 19:13:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:01:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ struct aux_server
 	std::string get_stats_o() const {return("RETURN STATS O CMD, A LOT OF INFO");}
 	std::string get_stats_u() const {return("Server up 6 days, 12:20:56");}
 	std::string get_time() const {return("Sun Nov 20 2022 19:12:35");}
+	std::string get_userhost_rpy() const {return("tomartin=+tomartin@195.44...");}
 };
 #endif
