@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 18:44:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 19:15:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,65 @@ std::string replies_generator::mode_invitelist(const aux_channel& channel)
 std::string replies_generator::mode_uniqopis(const aux_channel& channel, const user& user)
 {
 	return(generate_msg(325, channel.get_name(), user.get_nickname(), "", ""));
+}
+
+std::string replies_generator::motd_ok(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(375, server.get_name(), "", "", ""));
+	answ.append(generate_msg(372, server.get_motd(), "", "", ""));
+	answ.append(generate_msg(376, "", "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::names_ok(const aux_channel& channel)
+{
+	std::string answ;
+	answ.append(generate_msg(353, channel.get_name(), channel.get_names_list(),
+		"", ""));
+	answ.append(generate_msg(366, channel.get_name(), "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::oper_ok(const aux_server& server)
+{
+	(void)server;
+	return(generate_msg(381, "", "", "", ""));
+}
+
+std::string replies_generator::stats_l(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(211, server.get_stats_l(), "", "", ""));
+	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::stats_m(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(212, server.get_stats_m(), "", "", ""));
+	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::stats_o(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(212, server.get_stats_o(), "", "", ""));
+	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::stats_u(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(242, server.get_stats_u(), "", "", ""));
+	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::time(const aux_server& server)
+{
+	return(generate_msg(391, server.get_name(), server.get_time(), "", ""));
 }

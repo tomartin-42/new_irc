@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 14:15:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 19:16:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ int main(void)
 	load.msg_out.add_msg(generator.list_ok(serv));
 	load.msg_out.add_msg(generator.mode_us_ok(a));
 	load.msg_out.add_msg(generator.mode_ch_ok(chan));
-
+	load.msg_out.add_msg(generator.mode_banlist(chan));
+	load.msg_out.add_msg(generator.mode_exceptlist(chan));
+	load.msg_out.add_msg(generator.mode_invitelist(chan));
+	load.msg_out.add_msg(generator.mode_uniqopis(chan, a));
+	load.msg_out.add_msg(generator.motd_ok(serv));
+	load.msg_out.add_msg(generator.names_ok(chan));
+	load.msg_out.add_msg(generator.oper_ok(serv));
+	load.msg_out.add_msg(generator.stats_l(serv));
+	load.msg_out.add_msg(generator.stats_m(serv));
+	load.msg_out.add_msg(generator.stats_o(serv));
+	load.msg_out.add_msg(generator.stats_u(serv));
+	load.msg_out.add_msg(generator.time(serv));
 
 	load.msg_out.print_all_msg();
 }

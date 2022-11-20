@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 15:57:35 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:13:36 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct aux_channel
 	std::string get_ban_list() const {return("PEPE BANNED BY PEDRO ON ...");}
 	std::string get_excep_list() const {return("exception m:auiiaa36!*@*...");}
 	std::string get_invite_list() const {return("yo que coño se...");}
+	std::string get_names_list() const {return("NAME LIST CMD NAMES");}
 };
 
 #endif
