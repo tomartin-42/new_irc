@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 20:22:39 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:13:32 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,3 +203,30 @@ std::string replies_generator::userip_ok(const user& user)
 {
 	return(generate_msg(392, user.get_nickname(), user.get_ip(), "", ""));
 }
+
+std::string replies_generator::users_ok(const aux_server& server)
+{
+	std::string	answ;
+	answ.append(generate_msg(392, "", "", "", ""));
+	answ.append(generate_msg(393, server.users_rpy(), "", "", ""));
+	answ.append(generate_msg(394, "", "", "", ""));
+	return(answ);
+}
+
+std::string replies_generator::users_empty(void)
+{
+	return(generate_msg(395, "", "", "", ""));
+}
+
+std::string replies_generator::version_ok(const aux_server& server)
+{
+	return(generate_msg(351, server.get_version(), server.get_debug_lvl(),
+		server.get_name(), server.get_comment()));
+}
+
+std::string replies_generator::who_ok(const aux_server& server)
+{
+	std::string answ;
+	answ.append(generate_msg(
+
+

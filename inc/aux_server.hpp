@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 20:01:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:06:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ struct aux_server
 	std::string get_stats_u() const {return("Server up 6 days, 12:20:56");}
 	std::string get_time() const {return("Sun Nov 20 2022 19:12:35");}
 	std::string get_userhost_rpy() const {return("tomartin=+tomartin@195.44...");}
+	std::string users_rpy() const {return("tomartin ttys000  Nov 21 18:39");}
+	std::string get_version() const {return("V 1.0");}
+	std::string get_debug_lvl() const {return("???");}
+	std::string get_comment() const {return("Hola este es el server guay");}
+
 };
 #endif
