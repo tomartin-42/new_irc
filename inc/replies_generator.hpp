@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/21 19:13:35 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:37:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ class replies_generator : public replies
 	std::string users_empty(void);
 	std::string version_ok(const aux_server& server);
 	std::string who_ok(const aux_server& server);
+	// std::string whois_ok() // pending
+	// std::string whowas_user(const aux_server& serv, const aux_user& user);
 };
 
 #endif
