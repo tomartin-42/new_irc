@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/21 18:56:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:16:51 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 		case 393:
 			return head + RPL_USERS(arg1);
 		case 394:	return head + RPL_ENDOFUSERS();
-	/*	case 401:
+		case 401:
 			return head + ERR_NOSUCHNICK(arg1);
 		case 402:
 			return head + ERR_NOSUCHSERVER(arg1);
@@ -181,12 +181,14 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_NOSUCHCHANNEL(arg1);
 		case 404:
 			return head + ERR_CANNOTSENDTOCHAN(arg1);
+		case 405:
+			return head + ERR_TOOMANYCHANNELS(arg1);
 		case 406:
 			return head + ERR_WASNOSUCHNICK(arg1);
 		case 409:
 			return head + ERR_NOORIGIN();
-		case 410:
-			return head + ERR_INVALIDCAP(arg1);
+	//	case 410:
+	//		return head + ERR_INVALIDCAP(arg1);
 		case 411:
 			return head + ERR_NORECIPIENT(arg1);
 		case 412:
@@ -246,7 +248,7 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 		case 691:
 			return head + ERR_ALREADYBAN(arg1, arg2);
 		case 692:
-			return head + ERR_KILLDENY(arg1);*/
+			return head + ERR_KILLDENY(arg1);
 		default:
 			return std::string("");
 	}

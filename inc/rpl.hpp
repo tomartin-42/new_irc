@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/21 18:52:43 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:26:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,25 @@
 # define RPL_ENDOFEXCEPTLIST(channel) (channel + ":End of channel exception list" + "\r\n")
 # define RPL_UNIQOPIS(channel, nickname) (":" + channel + " " + nickname + "\r\n")
 # define RPL_USERIP(nickname, ip) (":" + nickname + " " + ip + "\r\n")
+
+//---------------------------------------------------------------//
+//------------------------ERR_-----------------------------------//
+//---------------------------------------------------------------//
+
+# define ERR_NOSUCHNICK(nick) (nick + ":No such nick/channel" + "\r\n")
+# define ERR_NOSUCHSERVER(server) (server + ":No such server" + "\r\n")
+# define ERR_NOSUCHCHANNEL(channel) (channel + ":No such channel" + "\r\n")
+# define ERR_CANNOTSENDTOCHAN(channel) (channel + ":Cannot send to channel" + "\r\n")
+# define ERR_TOOMANYCHANNELS(channel) (channel + ":You have joined too many channels" + "\r\n")
+# define ERR_WASNOSUCHNICK(nick) (nick + ":There was no such nickname" + "\r\n")
+# define ERR_NOORIGIN() (":No origin specified" + "\r\n")
+# define ERR_NORECIPIENT(command) (":No recipient given " + command + "\r\n")
+# define ERR_NOTEXTTOSEND() (":No text to send" + "\r\n")
+# define ERR_UNKNOWNCOMMAND(command) (command + " :Unknown command" + "\r\n")
+# define ERR_NOMOTD() (":MOTD File is missing" + "\r\n")
+# define ERR_NOADMININFO(server) (server + ":No administrative info available" + "\r\n")
+# define ERR_FILEERROR(file_op, file) (":File error doing " + file_op " on " + file + "\r\n")
+# define ERR_NONICKNAMEGIVEN() (":No nickname given" + "\r\n")
+# define ERR_ERRONEUSNICKNAME(nick) (nick + ":Erroneous nickname" + "\r\n")
 
 #endif
