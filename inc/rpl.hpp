@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/23 19:26:50 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:37:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,41 @@
 # define ERR_NOTEXTTOSEND() (":No text to send" + "\r\n")
 # define ERR_UNKNOWNCOMMAND(command) (command + " :Unknown command" + "\r\n")
 # define ERR_NOMOTD() (":MOTD File is missing" + "\r\n")
-# define ERR_NOADMININFO(server) (server + ":No administrative info available" + "\r\n")
+# define ERR_NOADMININFO(server) (server + " :No administrative info available" + "\r\n")
 # define ERR_FILEERROR(file_op, file) (":File error doing " + file_op " on " + file + "\r\n")
 # define ERR_NONICKNAMEGIVEN() (":No nickname given" + "\r\n")
-# define ERR_ERRONEUSNICKNAME(nick) (nick + ":Erroneous nickname" + "\r\n")
+# define ERR_ERRONEUSNICKNAME(nick) (nick + " :Erroneous nickname" + "\r\n")
+# define ERR_NICKNAMEINUSE(nick) (nick + " :Nickname is already in use" + "\r\n")
+# define ERR_NICKCOLLISION(nick, name, host) (nick + " Nickname collision KILL from " + name + "@" + host + "\r\n")
+# define ERR_UNAVAILRESOURCE(nick_channel) (nick_channel + " :Nick/channel is temporarily unavailable" + "\r\n")
+# define ERR_USERNOTINCHANNEL(nick, channel) (nick + " " + channel + " :They aren't on that channel" + "\r\n")
+# define ERR_NOTONCHANNEL(channel) (channel + ":You're not on that channel" + "\r\n")
+# define ERR_USERONCHANNEL(user, channel) (user + channel ":is already on channel" + "\r\n")
+# define ERR_NOLOGIN(user) (user + ":User not logged in" + "\r\n")
+# define ERR_USERSDISABLED() (":USERS has been disabled" + "\r\n")
+# define ERR_NOTREGISTERED() (":You have not registered" + "\r\n")
+# define ERR_NEEDMOREPARAMS(command) (command + ":Not enough parameters" + "\r\n")
+# define ERR_ALREADYREGISTRED() (":Unauthorized command (already registered)" + "\r\n")
+# define ERR_NOPERMFORHOST() (":Your host isn't among the privileged" + "\r\n")
+# define ERR_PASSWDMISMATCH() (":Password incorrect" + "\r\n")
+# define ERR_YOUREBANNEDCREEP() (":You are banned from this server" + "\r\n")
+# define ERR_YOUWILLBEBANNED() ("\r\n")
+# define ERR_KEYSET(channel) (channel + ":Channel key already set" + "\r\n")
+# define ERR_CHANNELISFULL(channel + ":Cannot join channel (+l)" + "\r\n")
+# define ERR_UNKNOWNMODE(chr, channel) (chr + ":is unknown mode char to me for " + channel + "\r\n")
+# define ERR_INVITEONLYCHAN(channel) (channel + ":Cannot join channel (+i)" + "\r\n")
+# define ERR_ERR_BANNEDFROMCHAN(channel) (channel + ":Cannot join channel (+b)" + "\r\n")
+# define ERR_BADCHANNELKEY(channel) (channel + ":Cannot join channel (+k)" + "\r\n")
+# define ERR_BADCHANMASK(channel) (channel + ":Bad Channel Mask" + "\r\n")
+# define ERR_NOCHANMODES(channel) (channel + ":Channel doesn't support modes" + "\r\n")
+# define ERR_ERR_BANLISTFULL(channel, chr) (channel + " " + chr + ":Channel list is full" + "\r\n")
+# define ERR_NOPRIVILEGES() (":Permission Denied- You're not an IRC operator" + "\r\n")
+# define ERR_CHANOPRIVSNEEDED(channel) (channel + ":You're not channel operator" + "\r\n")
+# define ERR_CANTKILLSERVER() (":You can't kill a server!")
+# define ERR_RESTRICTED() (":Your connection is restricted!" + "\r\n")
+# define ERR_UNIQOPPRIVSNEEDED() (":You're not the original channel operator" + "\r\n")
+# define ERR_NOOPERHOST() (":No O-lines for your host" + "\r\n")
+# define ERR_UMODEUNKNOWNFLAG() (":Unknown MODE flag" + "\r\n")
+# define ERR_USERSDONTMATCH() (":Cannot change mode for other users" + "\r\n")
 
 #endif
