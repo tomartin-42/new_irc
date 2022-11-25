@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/23 18:37:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:46:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,21 @@ class replies_generator : public replies
 	std::string topic_no(const aux_channel& channel);
 	std::string userhost_ok(const aux_server& server);
 	std::string userip_ok(const user& user);
-	std::string users_ok(const aux_server& server);
-	std::string users_empty(void);
+	std::string user_ok(const aux_server& server);
+	std::string user_empty(void);
 	std::string version_ok(const aux_server& server);
 	std::string who_ok(const aux_server& server);
 	// std::string whois_ok() // pending
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
+	//-----------------ERRORS----------------------//
+	//-----------------ERRORS----------------------//
+	//-----------------ERRORS----------------------//
+	//-----------------ERRORS----------------------//
+	std::string admin_fail(const aux_server& server);
+	std::string die_fail(void);
+	std::string info_fail(const aux_server& server);
+	std::string invite_moreparams(const std::string msg);
+	std::string invite_nosuchnick(const aux_channel& channel);
 };
 
 #endif

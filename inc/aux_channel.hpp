@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 20:20:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:57:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct aux_channel
 	std::string get_excep_list() const {return("exception m:auiiaa36!*@*...");}
 	std::string get_invite_list() const {return("yo que coño se...");}
 	std::string get_names_list() const {return("NAME LIST CMD NAMES");}
+	std::string get_nickname_q() const {return("ONE NIKNAME");}
 };
 
 #endif

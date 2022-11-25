@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 19:16:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:46:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ int main(void)
 	load.msg_out.add_msg(generator.stats_o(serv));
 	load.msg_out.add_msg(generator.stats_u(serv));
 	load.msg_out.add_msg(generator.time(serv));
+	load.msg_out.add_msg(generator.topic_ok(chan));
+	load.msg_out.add_msg(generator.topic_no(chan));
+	load.msg_out.add_msg(generator.user_ok(serv));
+	load.msg_out.add_msg(generator.user_empty());
+	load.msg_out.add_msg(generator.version_ok(serv));
+	load.msg_out.add_msg(generator.version_ok(serv));
+	load.msg_out.add_msg(generator.admin_fail(serv));
+	load.msg_out.add_msg(generator.die_fail());
+	load.msg_out.add_msg(generator.info_fail(serv));
+	load.msg_out.add_msg(generator.invite_moreparams("COMANDO"));
+	load.msg_out.add_msg(generator.invite_nosuchnick(chan));
+
+
+
+
 
 	load.msg_out.print_all_msg();
 }

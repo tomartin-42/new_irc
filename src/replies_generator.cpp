@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/23 18:38:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:58:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ std::string replies_generator::userip_ok(const user& user)
 	return(generate_msg(392, user.get_nickname(), user.get_ip(), "", ""));
 }
 
-std::string replies_generator::users_ok(const aux_server& server)
+std::string replies_generator::user_ok(const aux_server& server)
 {
 	std::string	answ;
 	answ.append(generate_msg(392, "", "", "", ""));
@@ -213,7 +213,7 @@ std::string replies_generator::users_ok(const aux_server& server)
 	return(answ);
 }
 
-std::string replies_generator::users_empty(void)
+std::string replies_generator::user_empty(void)
 {
 	return(generate_msg(395, "", "", "", ""));
 }
@@ -223,4 +223,36 @@ std::string replies_generator::version_ok(const aux_server& server)
 	return(generate_msg(351, server.get_version(), server.get_debug_lvl(),
 		server.get_name(), server.get_comment()));
 }
+
+	//-----------------ERRORS----------------------//
+	//-----------------ERRORS----------------------//
+	//-----------------ERRORS----------------------//
+	//-----------------ERRORS----------------------//
+	//
+std::string replies_generator::admin_fail(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::die_fail(void)
+{
+	return(generate_msg(481, "", "", "", ""));
+}
+
+std::string replies_generator::info_fail(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::invite_moreparams(const std::string msg)
+{
+	return(generate_msg(461, msg, "", "", ""));
+}
+
+std::string replies_generator::invite_nosuchnick(const aux_channel& channel)
+{
+	return(generate_msg(401, channel.get_nickname_q(), "", "", ""));
+}
+
+
 

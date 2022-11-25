@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/23 19:16:51 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:25:51 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + RPL_USERIP(arg1, arg2);
 		case 393:
 			return head + RPL_USERS(arg1);
-		case 394:	return head + RPL_ENDOFUSERS();
+		case 394:	
+			return head + RPL_ENDOFUSERS();
 		case 401:
 			return head + ERR_NOSUCHNICK(arg1);
 		case 402:
@@ -223,12 +224,12 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_ALREADYREGISTRED();
 		case 471:
 			return head + ERR_CHANNELISFULL(arg1);
-		case 472:
-			return head + ERR_UNKNOWNMODE(arg1);
+		//case 472:
+		//	return head + ERR_UNKNOWNMODE(arg1);
 		case 473:
 			return head + ERR_INVITEONLYCHAN(arg1);
-		case 474:
-			return head + ERR_BANNEDFROMCHAN(arg1);
+		//case 474:
+		//	return head + ERR_BANNEDFROMCHAN(arg1);
 		case 475:
 			return head + ERR_BADCHANNELKEY(arg1);
 		case 476:
@@ -245,10 +246,10 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_UMODEUNKNOWNFLAG();
 		case 502:
 			return head + ERR_USERSDONTMATCH();
-		case 691:
-			return head + ERR_ALREADYBAN(arg1, arg2);
-		case 692:
-			return head + ERR_KILLDENY(arg1);
+		//case 691:
+		//	return head + ERR_ALREADYBAN(arg1, arg2);
+		//case 692:
+		//	return head + ERR_KILLDENY(arg1);
 		default:
 			return std::string("");
 	}

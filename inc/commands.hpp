@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:01 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/19 18:43:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:38:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ struct commands
 	void	who(std::string name);
 	void	whois(std::string server, std::string nicknames);
 	void	whowas(std::string nicknames, std::string count, std::string server);
-
 };
 #endif
