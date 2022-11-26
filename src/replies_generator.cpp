@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/25 19:58:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/11/26 19:37:19 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,36 @@ std::string replies_generator::invite_moreparams(const std::string msg)
 std::string replies_generator::invite_nosuchnick(const aux_channel& channel)
 {
 	return(generate_msg(401, channel.get_nickname_q(), "", "", ""));
+}
+
+std::string replies_generator::invite_notonchannel(const aux_channel& channel)
+{
+	return(generate_msg(442, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::invite_useronchannel(const user& user, const aux_channel& channel)
+{
+	return(generate_msg(441, user.get_nickname(), channel.get_name(), "", ""));
+}
+
+std::string replies_generator::invite_chanoprivsneeded(const aux_channel& channel)
+{
+	return(generate_msg(483, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::ison_needmoreparams(const std::string msg)
+{
+	return(generate_msg(461, msg, "", "", ""));
+}
+
+std::string replies_generator::join_needmoreparams(const std::string msg)
+{
+	return(generate_msg(461, msg, "", "", ""));
+}
+
+std::string replies_generator::join_bannedfromchan(const aux_channel& channel)
+{
+	return(generate_msg(474, channel.get_name(), "", "", ""));
 }
 
 
