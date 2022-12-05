@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/05 18:35:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:56:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,4 +318,40 @@ std::string replies_generator::kick_needmoreparams(const std::string cmd)
 {
 	return(generate_msg(461, cmd, "", "", ""));
 }
+
+std::string replies_generator::kick_nosuchchannel(const aux_channel& channel)
+{
+	return(generate_msg(403, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::kick_badchanmask(const aux_channel& channel)
+{
+	return(generate_msg(471, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::kick_chanoprivsneeded(const aux_channel& channel)
+{
+	return(generate_msg(482, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::kick_notonchannel(const aux_channel& channel)
+{
+	return(generate_msg(442, channel.get_name(), "", "", ""));
+}	
+
+std::string replies_generator::kill_noprivileges(void)
+{
+	return(generate_msg(481, "", "", "", ""));
+}
+
+std::string replies_generator::kill_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::kill_nosuchnick(const user& user)
+{
+	return(generate_msg(401, channel.get_nickname_q(), "", "", ""));
+}
+	
 

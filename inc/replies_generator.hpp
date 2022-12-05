@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/05 18:34:57 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:55:48 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ class replies_generator : public replies
 	std::string join_nosuchchannel(const aux_channel& channel);
 	std::string join_toomanychannels(const aux_channel& channel);
 	std::string kick_needmoreparams(const std::string cmd);
+	std::string kick_nosuchchannel(const aux_channel& channel);
+	std::string kick_badchanmask(const aux_channel& channel);
+	std::string kick_chanoprivsneeded(const aux_channel& channel);
+	std::string kick_notonchannel(const aux_channel& channel);
+	std::string kill_noprivileges(void);
+	std::string kill_needmoreparams(const std::string cmd);
+	std::string kill_nosuchnick(const user& user);
+
 	
 
 };

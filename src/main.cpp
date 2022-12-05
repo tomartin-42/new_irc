@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/05 18:35:54 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:55:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int main(void)
 {
-	user	load(99, UNKNOW);
-	user	a(100, UNKNOW);
+	user	load(99, UNKNOW); //when load replies
+	user	a(100, UNKNOW); //example user
 
 	replies_generator	generator;
-	aux_server			serv;
-	aux_channel			chan;
+	aux_server			serv; //example server
+	aux_channel			chan; //example chanel
 
 	load.msg_out.add_msg(generator.admin_ok(serv, a));
 	load.msg_out.add_msg(generator.away_rpy(a));
@@ -71,6 +71,14 @@ int main(void)
 	load.msg_out.add_msg(generator.join_nosuchchannel(chan));
 	load.msg_out.add_msg(generator.join_toomanychannels(chan));
 	load.msg_out.add_msg(generator.kick_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.kick_nosuchchannel(chan));
+	load.msg_out.add_msg(generator.kick_badchanmask(chan));
+	load.msg_out.add_msg(generator.kick_chanoprivsneeded(chan));
+	load.msg_out.add_msg(generator.kick_notonchannel(chan));
+	load.msg_out.add_msg(generator.kill_noprivileges());
+	load.msg_out.add_msg(generator.kill_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.kill_nosuchnick(a));
+
 
 
 	load.msg_out.print_all_msg();
