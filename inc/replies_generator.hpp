@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/26 18:41:16 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:34:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,15 @@ class replies_generator : public replies
 	std::string ison_needmoreparams(const std::string msg);
 	std::string join_needmoreparams(const std::string msg);
 	std::string join_bannedfromchan(const aux_channel& channel);
+	std::string join_inviteonlychan(const aux_channel& channel);
+	std::string join_badchannelkey(const aux_channel& channel);
+	std::string join_channelisfull(const aux_channel& channel);
+	std::string join_badchanmask(const aux_channel& channel);
+	std::string join_nosuchchannel(const aux_channel& channel);
+	std::string join_toomanychannels(const aux_channel& channel);
+	std::string kick_needmoreparams(const std::string cmd);
+	
+
 };
 
 #endif

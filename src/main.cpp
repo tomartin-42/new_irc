@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/26 19:38:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:35:54 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@ int main(void)
 	load.msg_out.add_msg(generator.ison_needmoreparams("COMMAND"));
 	load.msg_out.add_msg(generator.join_needmoreparams("COMMAND"));
 	load.msg_out.add_msg(generator.join_bannedfromchan(chan));
-
-
-
-
+	load.msg_out.add_msg(generator.join_inviteonlychan(chan));
+	load.msg_out.add_msg(generator.join_badchannelkey(chan));
+	load.msg_out.add_msg(generator.join_channelisfull(chan));
+	load.msg_out.add_msg(generator.join_badchanmask(chan));
+	load.msg_out.add_msg(generator.join_nosuchchannel(chan));
+	load.msg_out.add_msg(generator.join_toomanychannels(chan));
+	load.msg_out.add_msg(generator.kick_needmoreparams("COMMAND"));
 
 
 	load.msg_out.print_all_msg();
