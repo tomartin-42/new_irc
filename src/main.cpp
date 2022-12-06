@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/05 19:55:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:41:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ int main(void)
 	load.msg_out.add_msg(generator.kill_noprivileges());
 	load.msg_out.add_msg(generator.kill_needmoreparams("COMMAND"));
 	load.msg_out.add_msg(generator.kill_nosuchnick(a));
+	load.msg_out.add_msg(generator.list_nosuchserver(serv));
+	load.msg_out.add_msg(generator.mode_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.mode_chanoprovsneeded(chan));
+	load.msg_out.add_msg(generator.mode_nosuchnick(a));
+	load.msg_out.add_msg(generator.mode_notonchannel(chan));
+	load.msg_out.add_msg(generator.mode_keyset(chan));
+	load.msg_out.add_msg(generator.mode_unknownmode("c", chan));
+	load.msg_out.add_msg(generator.mode_nosuchchannel(chan));
+	load.msg_out.add_msg(generator.mode_usersdontmatch());
+	load.msg_out.add_msg(generator.mode_umodeunknownflag());
+	load.msg_out.add_msg(generator.modt_nomodtd());
+	load.msg_out.add_msg(generator.nick_nonicknamegiven());
+	load.msg_out.add_msg(generator.nick_erroneusnickname(a));
 
 
 

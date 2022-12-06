@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/05 19:55:48 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:40:17 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,19 @@ class replies_generator : public replies
 	std::string kill_noprivileges(void);
 	std::string kill_needmoreparams(const std::string cmd);
 	std::string kill_nosuchnick(const user& user);
+	std::string list_nosuchserver(const aux_server& server);
+	std::string mode_needmoreparams(const std::string cmd);
+	std::string mode_chanoprovsneeded(const aux_channel& channel);
+	std::string mode_nosuchnick(const user& user);
+	std::string mode_notonchannel(const aux_channel& channel);
+	std::string mode_keyset(const aux_channel& channel);
+	std::string mode_unknownmode(const std::string& c, const aux_channel& channel);
+	std::string mode_nosuchchannel(const aux_channel& channel);
+	std::string mode_usersdontmatch(void);
+	std::string mode_umodeunknownflag(void);
+	std::string modt_nomodtd(void);
+	std::string nick_nonicknamegiven(void);
+	std::string nick_erroneusnickname(const user& user);
 
 	
 

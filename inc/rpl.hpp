@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/25 19:24:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:14:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,6 @@
 # define ERR_NOOPERHOST() (":No O-lines for your host\r\n")
 # define ERR_UMODEUNKNOWNFLAG() (":Unknown MODE flag\r\n")
 # define ERR_USERSDONTMATCH() (":Cannot change mode for other users\r\n")
+//# define ERR_UNKNOWNMODE(c, channel) (c + ":is unknown mode char to me for " + channel + "\r\n")
 
 #endif

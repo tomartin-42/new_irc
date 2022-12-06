@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/05 19:56:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:44:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,7 +351,71 @@ std::string replies_generator::kill_needmoreparams(const std::string cmd)
 
 std::string replies_generator::kill_nosuchnick(const user& user)
 {
-	return(generate_msg(401, channel.get_nickname_q(), "", "", ""));
+	return(generate_msg(401, user.get_nickname(), "", "", ""));
 }
 	
+std::string replies_generator::list_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+	
+std::string replies_generator::mode_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::mode_chanoprovsneeded(const aux_channel& channel)
+{
+	return(generate_msg(483, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::mode_nosuchnick(const user& user)
+{
+	return(generate_msg(401, user.get_nickname(), "", "", ""));
+}
+
+std::string replies_generator::mode_notonchannel(const aux_channel& channel)
+{
+	return(generate_msg(442, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::mode_keyset(const aux_channel& channel)
+{
+	return(generate_msg(467, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::mode_unknownmode(const std::string& c, const aux_channel& channel)
+{
+	return(generate_msg(472, c, channel.get_name(), "", ""));
+}
+
+std::string replies_generator::mode_nosuchchannel(const aux_channel& channel)
+{
+	return(generate_msg(403, channel.get_name(), "", "", ""));
+}
+	
+std::string replies_generator::mode_usersdontmatch(void)
+{
+	return(generate_msg(502, "", "", "", ""));
+}
+
+std::string replies_generator::mode_umodeunknownflag(void)
+{
+	return(generate_msg(501, "", "", "", ""));
+}
+
+std::string replies_generator::modt_nomodtd(void)
+{
+	return(generate_msg(422, "", "", "", ""));
+}
+
+std::string replies_generator::nick_nonicknamegiven(void)
+{
+	return(generate_msg(431, "", "", "", ""));
+}
+
+std::string replies_generator::nick_erroneusnickname(const user& user)
+{
+	return(generate_msg(432, user.get_nickname(), "", "", ""));
+}
 
