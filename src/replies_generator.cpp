@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 17:44:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:46:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -419,3 +419,132 @@ std::string replies_generator::nick_erroneusnickname(const user& user)
 	return(generate_msg(432, user.get_nickname(), "", "", ""));
 }
 
+std::string replies_generator::nick_nicknameinuse(const user& user)
+{
+	return(generate_msg(433, user.get_nickname(), "", "", ""));
+}
+
+std::string replies_generator::oper_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::oper_nooperhost(void)
+{
+	return(generate_msg(491, "", "", "", ""));
+}
+
+std::string replies_generator::oper_passwdmismatch(void)
+{
+	return(generate_msg(464, "", "", "", ""));
+}
+
+std::string replies_generator::part_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::part_nosuchchannel(const aux_channel& channel)
+{
+	return(generate_msg(403, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::part_notonchannel(const aux_channel& channel)
+{
+	return(generate_msg(442, channel.get_name(), "", "", ""));
+}	
+
+std::string replies_generator::pass_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::pass_alreadyregistred(void)
+{
+	return(generate_msg(462, "", "", "", ""));
+}
+
+std::string replies_generator::ping_noorigin(void)
+{
+	return(generate_msg(409, "", "", "", ""));
+}
+
+std::string replies_generator::ping_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::pong_noorigin(void)
+{
+	return(generate_msg(409, "", "", "", ""));
+}
+
+std::string replies_generator::pong_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::privmsg_norecipient(const std::string cmd)
+{
+	return(generate_msg(411, cmd, "", "", ""));
+}
+
+std::string replies_generator::privmsg_notexttosend(void)
+{
+	return(generate_msg(411, "", "", "", ""));
+}
+
+std::string replies_generator::privmsg_cannotsendtochan(const aux_channel& channel)
+{
+	return(generate_msg(404, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::privmsg_notoplevel(const std::string mask)
+{
+	return(generate_msg(413, mask, "", "", ""));
+}
+
+std::string replies_generator::privmsg_wildtoplevel(const std::string mask)
+{
+	return(generate_msg(444, mask, "", "", ""));
+}
+
+std::string replies_generator::privmsg_nosuchnick(const user& user)
+{
+	return(generate_msg(401, user.get_name(), "", "", ""));
+}
+
+std::string replies_generator::stats_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::time_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::topic_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::topic_notonchannel(const aux_channel& channel)
+{
+	return(generate_msg(442, channel.get_name(), "", "", ""));
+}	
+
+std::string replies_generator::topic_chanoprivsneeded(const aux_channel& channel)
+{
+	return(generate_msg(482, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::user_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::user_alreadyregistred(void)
+{
+	return(generate_msg(462, "", "", "", ""));
+}

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 17:41:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:46:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,33 @@ int main(void)
 	load.msg_out.add_msg(generator.modt_nomodtd());
 	load.msg_out.add_msg(generator.nick_nonicknamegiven());
 	load.msg_out.add_msg(generator.nick_erroneusnickname(a));
-
+	load.msg_out.add_msg(generator.nick_nicknameinuse(a));
+	load.msg_out.add_msg(generator.oper_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.oper_nooperhost());
+	load.msg_out.add_msg(generator.oper_passwdmismatch());
+	load.msg_out.add_msg(generator.part_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.part_nosuchchannel(chan));
+	load.msg_out.add_msg(generator.part_notonchannel(chan));
+	load.msg_out.add_msg(generator.pass_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.pass_alreadyregistred());
+	load.msg_out.add_msg(generator.ping_noorigin());
+	load.msg_out.add_msg(generator.ping_nosuchserver(serv));
+	load.msg_out.add_msg(generator.pong_noorigin());
+	load.msg_out.add_msg(generator.pong_nosuchserver(serv));
+	load.msg_out.add_msg(generator.privmsg_norecipient("COMMAND"));
+	load.msg_out.add_msg(generator.privmsg_notexttosend());
+	load.msg_out.add_msg(generator.privmsg_cannotsendtochan(chan));
+	load.msg_out.add_msg(generator.privmsg_notoplevel("MASK"));
+	load.msg_out.add_msg(generator.privmsg_wildtoplevel("MASK"));
+	load.msg_out.add_msg(generator.privmsg_nosuchnick(a));
+	load.msg_out.add_msg(generator.stats_nosuchserver(serv));
+	load.msg_out.add_msg(generator.time_nosuchserver(serv));
+	load.msg_out.add_msg(generator.topic_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.topic_notonchannel(chan));
+	load.msg_out.add_msg(generator.topic_chanoprivsneeded(chan));
+	load.msg_out.add_msg(generator.user_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.user_alreadyregistred());
 
 
 	load.msg_out.print_all_msg();
 }
-
-

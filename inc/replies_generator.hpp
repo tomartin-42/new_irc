@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 17:40:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:45:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,37 @@ class replies_generator : public replies
 	std::string modt_nomodtd(void);
 	std::string nick_nonicknamegiven(void);
 	std::string nick_erroneusnickname(const user& user);
+	std::string nick_nicknameinuse(const user& user);
+	std::string oper_needmoreparams(const std::string cmd);
+	std::string oper_nooperhost(void);
+	std::string oper_passwdmismatch(void);
+	std::string part_needmoreparams(const std::string cmd);
+	std::string part_nosuchchannel(const aux_channel& channel);
+	std::string part_notonchannel(const aux_channel& channel);
+	std::string pass_needmoreparams(const std::string cmd);
+	std::string pass_alreadyregistred(void);
+	std::string ping_noorigin(void);
+	std::string ping_nosuchserver(const aux_server& server);
+	std::string pong_noorigin(void);
+	std::string pong_nosuchserver(const aux_server& server);
+	std::string privmsg_norecipient(const std::string cmd);
+	std::string privmsg_notexttosend(void);
+	std::string privmsg_cannotsendtochan(const aux_channel& channel);
+	std::string privmsg_notoplevel(const std::string mask);
+	std::string privmsg_wildtoplevel(const std::string mask);
+	//std::string privmsg_toomanytargets(const std::string mask);
+	std::string privmsg_nosuchnick(const user& user);
+	std::string stats_nosuchserver(const aux_server& server);
+	std::string time_nosuchserver(const aux_server& server);
+	std::string topic_needmoreparams(const std::string cmd);
+	std::string topic_notonchannel(const aux_channel& channel);
+	std::string topic_chanoprivsneeded(const aux_channel& channel);
+	std::string user_needmoreparams(const std::string cmd);
+	std::string user_alreadyregistred(void);
+
+	
+
+
 
 	
 
