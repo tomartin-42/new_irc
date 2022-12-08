@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:04:23 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 19:46:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:15:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,17 @@ int main(void)
 	load.msg_out.add_msg(generator.topic_chanoprivsneeded(chan));
 	load.msg_out.add_msg(generator.user_needmoreparams("COMMAND"));
 	load.msg_out.add_msg(generator.user_alreadyregistred());
-
+	load.msg_out.add_msg(generator.userhost_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.users_nosuchserver(serv));
+	load.msg_out.add_msg(generator.users_fileerror("?", "FILE"));
+	load.msg_out.add_msg(generator.users_usersdisabled());
+	load.msg_out.add_msg(generator.version_nosuchserver(serv));
+	load.msg_out.add_msg(generator.wallops_needmoreparams("COMMAND"));
+	load.msg_out.add_msg(generator.who_nosuchserver(serv));
+	load.msg_out.add_msg(generator.whois_nosuchserver(serv));
+	load.msg_out.add_msg(generator.whois_nonicknamegiven());
+	load.msg_out.add_msg(generator.whowas_nonicknamegiven());
+	load.msg_out.add_msg(generator.whowas_wasnosuchnick(a));
 
 	load.msg_out.print_all_msg();
 }

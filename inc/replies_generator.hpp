@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 19:45:39 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:07:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,18 @@ class replies_generator : public replies
 	std::string topic_chanoprivsneeded(const aux_channel& channel);
 	std::string user_needmoreparams(const std::string cmd);
 	std::string user_alreadyregistred(void);
-
-	
-
-
+	std::string userhost_needmoreparams(const std::string cmd);
+	std::string users_nosuchserver(const aux_server& server);
+	std::string users_fileerror(const std::string f_o, const std::string file);
+	std::string users_usersdisabled(void);
+	std::string version_nosuchserver(const aux_server& server);
+	std::string wallops_needmoreparams(const std::string cmd);
+	std::string who_nosuchserver(const aux_server& server);
+	std::string whois_nosuchserver(const aux_server& server);
+	std::string whois_nonicknamegiven(void);
+	std::string whois_nosuchnick(const user& user);
+	std::string whowas_nonicknamegiven(void);
+	std::string whowas_wasnosuchnick(const user& user);
 
 	
 

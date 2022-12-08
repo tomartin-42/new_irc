@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 19:46:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:16:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -547,4 +547,64 @@ std::string replies_generator::user_needmoreparams(const std::string cmd)
 std::string replies_generator::user_alreadyregistred(void)
 {
 	return(generate_msg(462, "", "", "", ""));
+}
+
+std::string replies_generator::userhost_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::users_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::users_fileerror(const std::string f_o, const std::string file)
+{
+	return(generate_msg(424, f_o, file, "", ""));
+}
+
+std::string replies_generator::users_usersdisabled(void)
+{
+	return(generate_msg(446, "", "", "", ""));
+}
+
+std::string replies_generator::version_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::wallops_needmoreparams(const std::string cmd)
+{
+	return(generate_msg(461, cmd, "", "", ""));
+}
+
+std::string replies_generator::who_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::whois_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::whois_nonicknamegiven(void)
+{
+	return(generate_msg(431, "", "", "", ""));
+}
+
+std::string replies_generator::whois_nosuchnick(const user& user)
+{
+	return(generate_msg(401, user.get_nickname(), "", "", ""));
+}
+
+std::string replies_generator::whowas_nonicknamegiven(void)
+{
+	return(generate_msg(431, "", "", "", ""));
+}
+
+std::string replies_generator::whowas_wasnosuchnick(const user& user)
+{
+	return(generate_msg(406, user.get_nickname(), "", "", ""));
 }
