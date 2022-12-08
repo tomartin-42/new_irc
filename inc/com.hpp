@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/02 10:27:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:25:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,20 @@
 #include "com_exceptions.hpp"
 #include "ft_ircserv.hpp"
 
+struct sock_storage: public sockaddr_storage
+{
+	int			fd;
+	socklen_t	addr_len;
+};
+
 class com
 {
     private:
-        const int				port;
-        struct sockaddr_in		data_socket;
-        int						fd_socket;
-		std::vector<pollfd>		poll_list;
+        const int					port;
+        struct sockaddr_in			data_socket;
+        int							fd_socket;
+		std::vector<pollfd>			poll_list;
+		std::vector<sock_storage>	sock_struct_vector;
 
 		void	open_socket();
         void	set_data_socket(const int port);
