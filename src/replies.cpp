@@ -6,20 +6,20 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/06 17:11:20 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:29:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "replies.hpp"
 
-std::string	replies::generate_send_code(const int &code)
+std::string	replies::generate_send_code(const int& code)
 {
-	std::string	true_code(itoa(code));
+	std::string	true_code;
+	std::stringstream ss;
 
-    if(code < 100)
-        true_code.insert(0, 1, '0');
-    if(code < 10)
-        true_code.insert(0, 1, '0');
+	true_code = std::to_string(code);
+	while(true_code.size() < 3)
+		true_code.insert(0, 1, '0');
     return true_code;
 }
 

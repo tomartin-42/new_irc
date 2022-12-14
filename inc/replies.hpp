@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 12:11:27 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/23 19:01:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:45:36 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define _REPLIES_HPP_
 
 #include <string>
+#include <sstream>
 #include "ft_ircserv.hpp"
 #include "replies_exceptions.hpp"
 #include "rpl.hpp"

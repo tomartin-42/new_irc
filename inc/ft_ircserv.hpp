@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 10:23:47 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:21:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 //--------------Template functions----------------//
 
 template<class T>
-std::string itoa(T a)
+std::string ft_itoa(T a)
 {
 	std::string ss = "";   //create empty string
     while(a)
