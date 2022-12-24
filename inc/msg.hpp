@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 18:01:05 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/03 11:29:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:49:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class msg
 		void			erase_front_msg(const int n_chars);
 		void			direct_push(const std::string str);
 		void			direct_push(const char* str);
-		std::string&	fragmentation_msg_send(std::string& str, int point);
+		std::string		fragmentation_msg_send(std::string str, int point);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/08 16:07:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:46:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,6 @@ class replies_generator : public replies
 	std::string whois_nosuchnick(const user& user);
 	std::string whowas_nonicknamegiven(void);
 	std::string whowas_wasnosuchnick(const user& user);
-
-	
 
 };
 

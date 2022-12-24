@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/14 12:48:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:02:59 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,16 @@ void	msg::direct_push(const char* str)
 
 //Fragmentate the function to send
 //Add reply head
-//Important when the reply is more big than 512
-std::string&	msg::fragmentation_msg_send(std::string& str, int point)
+//Important only use when the reply is more big than 512
+std::string	msg::fragmentation_msg_send(std::string str, int point)
 {
 	std::string	head(str, 0, point);
 	std::string next("\x0d\x0a");
 	size_t		cut = 510;
 
-	while(cut < str.size())
+	while(cut < str.size() && cut != 0)
 	{
+		std::cout << str.size() << " " << cut << std::endl;
 		if(str[cut] == ' ')
 		{
 			str.insert(cut, next + head);
