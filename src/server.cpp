@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/03 10:22:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:41:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,15 @@ void	server::accept_new_connect()
 void    server::orchestation()
 {
 	std::map<int, user>::iterator	usr_it = users.begin();
-	std::map<int, user>::iterator	current_it;
+	std::vector<int>				delete_list;
 
 	while(usr_it != users.end())
     {
 		if (get_revent(usr_it->first) & POLLHUP)
 		{
+			delete_list.push_back(usr_it->first);
 			//Desconectar
-			current_it = usr_it;
-			delete_user(current_it->first);
-			//disconnect_user(current_it->first);
 			++usr_it;
-			//users.erase(current_it);
 			continue;
 		}
     	//TO READ
@@ -80,6 +77,24 @@ void    server::orchestation()
         this->send_msgs(usr_it->first);
         ++usr_it;
     }
+    delete_users_from_list(delete_list);
+}
+
+
+//This function get the list that is generated in the orchestaton function 
+//and contains all sockets that have received a POLLHUP(forcing disconnection) signal
+//iterates through the entire list, deleting and removing the sockets in the list
+void	server::delete_users_from_list(std::vector<int>& list)
+{
+	std::vector<int>::iterator	it_list = list.begin();
+
+	while(it_list != list.end())
+	{
+		disconnect_user(*it_list);
+		users.erase(*it_list);
+		it_list++;
+	}
+	list.clear();
 }
 
 //This function send msgs from msg_out queue in user

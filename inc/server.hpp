@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/03 10:13:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:35:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class server : public com
 
 		void	insert_new_user(const int fd);
 		void	delete_user(const int fd);
+		void	delete_users_from_list(std::vector<int>& list);
 
 	public:
         void    orchestation();

@@ -6,7 +6,7 @@
 #    By: tomartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 09:11:45 by tomartin          #+#    #+#              #
-#    Updated: 2022/11/14 15:13:33 by tomartin         ###   ########.fr        #
+#    Updated: 2023/01/07 14:58:00 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,11 @@ $(NAME): $(OBJ)
 	@echo "$(NAME) ready!".
 
 bonus: all
+
+# debug
+debug: CXXFLAGS += -g
+debug: all
+	lldb $(NAME)
 
 # clean rule
 clean:
