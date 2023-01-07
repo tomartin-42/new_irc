@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/07 15:41:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:02:29 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	server::accept_new_connect()
 //This function scroll through the entire list of users
 //If the user have POLLIN event, it read de msg
 //If the user have msg in msg_q_out, it send msg
+//It the heard of send-recv server
 void    server::orchestation()
 {
 	std::map<int, user>::iterator	usr_it = users.begin();
@@ -92,6 +93,9 @@ void	server::delete_users_from_list(std::vector<int>& list)
 	{
 		disconnect_user(*it_list);
 		users.erase(*it_list);
+		close_connection(*it_list);
+		// To debug
+		std::cout << "Desconectado FD: " << *it_list << std::endl;
 		it_list++;
 	}
 	list.clear();
@@ -99,8 +103,10 @@ void	server::delete_users_from_list(std::vector<int>& list)
 
 //This function send msgs from msg_out queue in user
 //Only send if msg_out queue have any msg
-//If msg can't send all chars, it resize msg and erase
-//the character send suscefull
+//If msg can't send all chars, it resize msg and 
+//erase the msg part will be send suscessfull
+//If whill be send all chars in msg and the socket is
+//set POLLOUT it's set POLLIN because it's restore the connection
 void	server::send_msgs(const int fd)
 {
 	std::map<int, user>::iterator	usr_it = users.find(fd);
@@ -115,6 +121,8 @@ void	server::send_msgs(const int fd)
 			usr_it->second.msg_out.erase_front_msg(send_leng);
 		else
 		    usr_it->second.msg_out.pop_msg();
+			if(get_revent(usr_it->first) & POLLOUT)
+				set_value_poll_list(usr_it->first, POLLIN);
     }
 }
 

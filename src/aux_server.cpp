@@ -6,8 +6,8 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:12:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/14 15:13:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:11:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "aux_server.hpp"
+#include "../inc/aux_server.hpp"

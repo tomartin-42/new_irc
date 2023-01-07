@@ -6,11 +6,11 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:17:37 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/03 20:47:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:12:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "com_exceptions.hpp"
+#include "../inc/com_exceptions.hpp"
 
 com_exceptions::com_exceptions(const int num)
 {

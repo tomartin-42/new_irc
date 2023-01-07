@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/08 18:25:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:00:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ class com
 
 		void	open_socket();
         void	set_data_socket(const int port);
-    	void	close_connection(const int fd);
     	void	insert_in_poll_list(const int fd);
     	void	delete_in_poll_list(const int fd);
 
@@ -61,6 +60,7 @@ class com
 		std::string	recv_msg(const int fd);
 		short		get_revent(const int fd) const;
 		short		get_event(const int fd) const;
+    	void		close_connection(const int fd);
 
 		void	print_all_pollfd();
 	};

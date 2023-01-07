@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/07 15:35:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/07 16:14:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ class server : public com
 		void	delete_users_from_list(std::vector<int>& list);
 
 	public:
+		server(int port);
         void    orchestation();
         void    recv_msgs(const int fd);
 		void	send_msgs(const int fd);
-		server(int port);
 		void	accept_new_connect();
         void	read_or_write_all_users();
    //     void	send_msg_from_user(const int fd);
