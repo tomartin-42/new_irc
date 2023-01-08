@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/08 15:13:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:34:32 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class server : public com
 		void	send_msgs(const int fd);
 		void	accept_new_connect();
         void	read_or_write_all_users();
+		void	recv_msg_from_user(const int fd);
    //     void	send_msg_from_user(const int fd);
 };
 #endif

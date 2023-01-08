@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/08 15:13:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:42:10 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void    server::orchestation()
 		{
 			delete_list.push_back(usr_it->first);
 			//Desconectar
-			++usr_it;º
+			++usr_it;
 			continue;
 		}
     	//TO READ
@@ -150,10 +150,10 @@ void	server::send_msg_from_user(const int fd)
 		set_value_poll_list(fd, POLLOUT);
 }
 */
-/*void	server::recv_msg_from_user(const int fd)
+void	server::recv_msg_from_user(const int fd)
 {
 	std::string	msg;
 
 	msg = recv_msg(fd);
-	this->users.find(fd)->second.msg_int.add_msg(msg);
-}*/
+	this->users.find(fd)->second.msg_in.add_msg(msg);
+}
