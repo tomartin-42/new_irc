@@ -6,11 +6,11 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/07 19:02:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:13:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.hpp"
+#include "../inc/server.hpp"
 #include <iostream>
 
 server::server(int port) : com(port)
@@ -57,7 +57,7 @@ void	server::accept_new_connect()
 //This function scroll through the entire list of users
 //If the user have POLLIN event, it read de msg
 //If the user have msg in msg_q_out, it send msg
-//It the heard of send-recv server
+//It's the heard of send-recv server
 void    server::orchestation()
 {
 	std::map<int, user>::iterator	usr_it = users.begin();
@@ -69,7 +69,7 @@ void    server::orchestation()
 		{
 			delete_list.push_back(usr_it->first);
 			//Desconectar
-			++usr_it;
+			++usr_it;º
 			continue;
 		}
     	//TO READ

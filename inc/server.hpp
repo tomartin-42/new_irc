@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/07 16:14:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:13:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 class server : public com
 {
 	private:
-		std::map<int, user>	users;
 
 		void	insert_new_user(const int fd);
 		void	delete_user(const int fd);
 		void	delete_users_from_list(std::vector<int>& list);
 
 	public:
+		std::map<int, user>	users;
+
 		server(int port);
         void    orchestation();
         void    recv_msgs(const int fd);

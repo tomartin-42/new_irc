@@ -6,11 +6,11 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/26 15:51:52 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:48:43 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msg.hpp"
+#include "../inc/msg.hpp"
 
 bool	msg::check_if_empty() const
 {

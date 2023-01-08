@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/20 20:21:17 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:12:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <ctime>
 #include <poll.h>
 #include "ft_ircserv.hpp" 
-#include "msg.hpp"
+#include "../inc/msg.hpp"
 
 class user
 {
@@ -31,8 +31,8 @@ class user
 								//if is login ok, do nothing
 
 	public:
-		msg			msg_in;
-		msg			msg_out;
+		msg			msg_in; //To recive (client ----> server(msg_in))
+		msg			msg_out;//To send (server(msg_out) ----> client)
 
 		user(int fd, char type);
 		void		set_nick(const std::string name);
