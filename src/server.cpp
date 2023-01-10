@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/08 16:42:10 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:06:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,3 +157,4 @@ void	server::recv_msg_from_user(const int fd)
 	msg = recv_msg(fd);
 	this->users.find(fd)->second.msg_in.add_msg(msg);
 }
+
