@@ -6,19 +6,27 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:00:12 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/08 16:50:09 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/28 20:13:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/com.hpp"
 #include "../inc/server.hpp"
 #include "../inc/replies.hpp"
+#include <signal.h>
+
+void signal_handler(int sig) {
+    std::cout << "Recibida señal " << sig << std::endl;
+	server::close_port(4242);
+}
 
 int	main(void)
 {
+	int	port = 4242;
     try 
     {
-        server	my_server(4242);
+        server	my_server(port);
+		signal(SIGINT, signal_handler);
 
 	    while(42)
 	    {

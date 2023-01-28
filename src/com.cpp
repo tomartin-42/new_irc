@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/07 19:10:27 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/28 20:05:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,18 @@ short    com::get_event(const int fd) const
 	}
 	return -1;
 }
+
+//Return port value
+int	com::get_port()
+{
+	return this->port;
+}
+
+void	com::close_port(const int port)
+{
+	close(port);
+}
+
 //-------------TO DEBUG--------------------//
 
 //Print all pollfd list with values

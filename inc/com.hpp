@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/07 19:00:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/01/28 20:05:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ class com
 		short		get_revent(const int fd) const;
 		short		get_event(const int fd) const;
     	void		close_connection(const int fd);
+    	int			get_port();
+    	static void	close_port(const int port);
+
 
 		void	print_all_pollfd();
 	};
