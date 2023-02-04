@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:33:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 19:53:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 20:17:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ void	log::open_to_append()
 	}
 }
 
+std::string		log::put_brackets(const std::string& str)
+{
+	std::string	aux("[]");
+	aux.insert(1, str);
+	return aux;
+}
+
+
 void	log::put_msg(const std::string& to, const std::string& at, const std::string& msg)
 {
 	time_t				now = time_control::get_time();
@@ -58,7 +66,7 @@ void	log::put_msg(const std::string& to, const std::string& at, const std::strin
 	str_now.erase(str_now.size() - 6);
 	str_now.erase(0, 11);
 	this->open_to_append();
-	str << "[" << to << "]" << " >> " << "[" << at << "]" << "[" << str_now << "]" << " -- " << msg;
+	str << this->put_brackets(to) << " >> " << this->put_brackets(at) << this->put_brackets(str_now) << " -- " << msg;
 	output = str.str();
 	try
 	{

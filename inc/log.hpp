@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:07:13 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 19:30:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 20:17:38 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class log
 		std::fstream	log_file;
 
 		void			open_to_append();
+		std::string		put_brackets(const std::string& str);
 	
 	public:
 		log(const std::string path);
