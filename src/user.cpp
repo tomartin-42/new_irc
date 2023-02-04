@@ -6,11 +6,11 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/17 10:23:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 12:50:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "user.hpp"
+#include "../inc/user.hpp"
 
 user::user(int fd, char type) : _fd(fd), type(type)
 {
