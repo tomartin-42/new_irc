@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:07:13 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 17:43:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:30:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@
 class log
 {
 	private:
+		std::string		log_path;
 		std::fstream	log_file;
 
 		void			open_to_append();
 	
 	public:
-		log();
+		log(const std::string path);
 		~log();
 		void	put_msg(const std::string& to, const std::string& at, const std::string& msg);
 };

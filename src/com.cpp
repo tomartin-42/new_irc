@@ -6,14 +6,14 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 17:55:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:39:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/com.hpp"
 #include <iostream>
 
-com::com(const int port) : port(port)
+com::com(const int port) : port(port), my_log("int_out.log")
 {
 	//Prereserve poll_list 
 	//+2 is for socket and conexion over the limit
