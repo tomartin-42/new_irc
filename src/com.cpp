@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/28 20:05:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:55:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,10 +210,12 @@ int	com::send_msg(const int fd, const std::string msg)
     if(send_leng < static_cast<int>(msg.size()))
 	{
     	this->set_value_poll_list(fd, POLLOUT);
+		my_log.put_msg("SERVER", std::to_string(fd), msg); //Ojo cambiar lo que realmente ha enviado
         return send_leng;
 	}
 	else
 		this->set_value_poll_list(fd, POLLIN);
+	my_log.put_msg("SERVER", std::to_string(fd), msg);
     return send_leng;
 }
 
@@ -228,7 +230,9 @@ std::string com::recv_msg(const int fd)
 //		this->disconnect_user(fd, "COM ERROR");
     buff[aux] = '\0';
     if(aux > 0)
+		my_log.put_msg(std::to_string(fd), "SERVER", std::string(buff));
         return std::string(buff);
+	my_log.put_msg(std::to_string(fd), "SERVER", "None");
     return std::string("");
 }
 

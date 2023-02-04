@@ -6,11 +6,11 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/24 14:46:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:04:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "replies_generator.hpp"
+#include "../inc/replies_generator.hpp"
 
 std::string	replies_generator::admin_ok(const aux_server& server, const user& admin)
 {
