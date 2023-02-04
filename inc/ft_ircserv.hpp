@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 19:54:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/04 20:33:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@
 #define	TIME_PING 30
 #define TIME_DONT_LOGIN	10
 #define TIME_LAST_MSG 200
+
+
+//---------------Log leve-------------------------//
+
+#define LOG_ENABLE 1
+//LOG_ENABLE 0 = disconect logs 
 
 //--------------Template functions----------------//
 
