@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:00:12 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/28 20:13:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/05 20:28:22 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(void)
     }
     catch (const com_exceptions &e) 
     {
-        exit(1);
+        exit(e.get_err_code());
     }
 }
