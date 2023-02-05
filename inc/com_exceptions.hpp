@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:09:37 by tomartin          #+#    #+#             */
-/*   Updated: 2022/10/11 11:40:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/05 20:21:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@
 class com_exceptions : public std::exception
 {
 	private:
-
-		void	open_socket_fail();
-		void	fcntl_fail();
-		void	bind_fail();
-		void	listen_fail();
-		void	poll_fail();
-
+		std::string	type;
+		std::string	msg;
+		int			err_code;
+		
 	public:
-		com_exceptions(const int num);
-		const char*	what() const throw();
-
+		com_exceptions(const std::string& msg, int num);
+		void	print_error();
 };
 #endif

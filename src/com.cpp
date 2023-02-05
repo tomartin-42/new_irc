@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 20:23:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/05 20:19:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ void	com::open_socket()
 
     this->fd_socket = socket(AF_INET, SOCK_STREAM, 0);
     if(this->fd_socket == -1)
-    	throw com_exceptions(1);
+    	throw com_exceptions("Error Open Socket", 1);
 
     setsockopt(this->fd_socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &enable, sizeof(enable));    
 	
 	bind_control = bind(this->fd_socket, (const sockaddr*)&(this->data_socket), sizeof(data_socket));
 	if (bind_control == -1)
-		throw com_exceptions(3);
+		throw com_exceptions("Error bind", 3);
 
 	fcntl_control = fcntl(this->fd_socket, F_SETFL, O_NONBLOCK);
 	if (fcntl_control == -1)
-		throw com_exceptions(2);
+		throw com_exceptions("Error fcntl", 2);
 	poll_list.push_back((pollfd){this->fd_socket, POLLIN, 0});
 }
 
@@ -68,7 +68,7 @@ void com::socket_lisent()
 
 	listen_control = listen(this->fd_socket, MAX_CONNECTIONS);
 	if (listen_control == -1)
-		throw com_exceptions(4);
+		throw com_exceptions("Error listen", 4);
 }
 
 //Accept new connection in socket an put on nonblock
@@ -118,7 +118,7 @@ int    com::preparation_com()
 
     answ = poll(&this->poll_list[0], this->poll_list.size(), 1000);
     if(answ == -1)
-    	throw com_exceptions(5);
+    	throw com_exceptions("Error Poll list", 5);
     return answ;
 }
 

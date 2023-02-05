@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:33:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 20:28:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/05 19:41:16 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ std::string		log::put_brackets(const std::string& str)
 
 void	log::put_msg(const std::string& to, const std::string& at, const std::string& msg)
 {
-	if (LOG_LEVEL != 0)
+	if (LOG_ENABLE != 0)
 	{
 		time_t				now = time_control::get_time();
 		std::string			str_now = ctime(&now);
