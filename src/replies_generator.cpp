@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 16:04:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:02:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ std::string replies_generator::join_ok(const aux_server& server)
 std::string replies_generator::list_ok(const aux_server& server)
 {
 	std::string answ;
-	answ.append(generate_msg(322, server.get_chanel_name(), 
+answ.append(generate_msg(322, server.get_chanel_name(), 
 		server.get_chanel_topic(), "", ""));
 	answ.append(generate_msg(323, "", "", "", ""));
 	return answ;
@@ -607,4 +607,15 @@ std::string replies_generator::whowas_nonicknamegiven(void)
 std::string replies_generator::whowas_wasnosuchnick(const user& user)
 {
 	return(generate_msg(406, user.get_nickname(), "", "", ""));
+}
+
+//user_lisr is the list when load the reply
+//reply is the msg to load mmsg_out to send in the future
+void replies_generator::load_reply_to_users(std::queue<user> &user_list, std::string reply)
+{
+	while(!user_list.empty())
+	{
+		user_list.front().msg_out.add_msg(reply);
+		user_list.pop();
+	}
 }

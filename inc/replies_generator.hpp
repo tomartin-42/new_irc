@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2022/12/24 14:46:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:01:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "aux_server.hpp"
 #include "aux_channel.hpp"
 #include <string>
+#include <queue>
 
 class replies_generator : public replies
 {
@@ -137,6 +138,9 @@ class replies_generator : public replies
 	std::string whois_nosuchnick(const user& user);
 	std::string whowas_nonicknamegiven(void);
 	std::string whowas_wasnosuchnick(const user& user);
+	
+	public:
+	void load_reply_to_users(std::queue<user> &user_list, std::string reply);
 
 };
 
