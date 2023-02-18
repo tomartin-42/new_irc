@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 14:14:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:17:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 #define YES 0
 #define NO 1
 
-
 //----------------Send o Recv-------------------//
 
 #define SEND 0
@@ -38,17 +37,17 @@
 #define OPERATOR 'O'
 #define EXPULSE 'E'
 
-
 //----------------Kick--------------------------//
 
 #define OK 0
 #define KICK 1
 
 //--------------Time values config-----------------//
-
+//--Time in seconds?-------------------------------//
 #define	TIME_PING 30
 #define TIME_DONT_LOGIN	10
 #define TIME_LAST_MSG 200
+#define TIME_POLLOUT 300
 
 //---------------Log leve-------------------------//
 
@@ -84,9 +83,5 @@ class my_ptr
         T& operator * () const { return *_ptr; }
         T* operator -> () const { return _ptr; }
 };
-
-
-
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 18:43:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:57:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ class orchestator : public com
 		void		accept_new_connect();
         void		read_or_write_all_users();
 		void		recv_msg_from_user(const int fd);
-		std::string get_msg_of_the_day();
    //   void	send_msg_from_user(const int fd);
 };
 #endif

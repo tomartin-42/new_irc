@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:42:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 14:24:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:08:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class time_control
 		time_t	t_ping;
 		time_t	t_last_msg;
 		time_t	t_not_login;
+		time_t	t_set_pollout;
 		bool	kick;
 	
 	public:
