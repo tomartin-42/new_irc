@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:00:12 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/05 20:28:22 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 16:11:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,17 @@ void signal_handler(int sig) {
 int	main(void)
 {
 	int	port = 4242;
+
     try 
     {
         server	my_server(port);
 		signal(SIGINT, signal_handler);
-
 	    while(42)
 	    {
 		    my_server.preparation_com();
 		    my_server.accept_new_connect();
 		    my_server.orchestation();
 		    //my_server.read_or_write_all_users();
-
 	    }
 	    return(0);
     }

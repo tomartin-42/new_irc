@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 15:56:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:27:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ time_control::time_control(): t_ping(LONG_MAX), kick(OK)
 	time_control::get_time(&this->t_last_msg);
 	//Control the time not login user
 	time_control::get_time(&this->t_not_login);
+	time_control::get_time(&this->t_ping);
 }
 
 time_t	time_control::get_t_ping() { return this->t_ping; }
@@ -63,6 +64,11 @@ void	time_control::get_time(time_t* var)
 	std::time(var);
 }
 
+void	time_control::launch_t_ping()
+{
+	this->t_ping = time_control::get_time();
+}
+
 void	time_control::reset_ping_time()
 {
 	this->t_ping = LONG_MAX;
@@ -75,8 +81,10 @@ void	time_control::check_if_kick()
 {
 	time_t	now = time_control::get_time();	
 
-	if ((now - this->t_ping) > TIME_PING)
+	if((now - this->t_ping) > TIME_PING)
 		this->kick = KICK;
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
+	if((now - this->t_last_msg) > TIME_LAST_MSG)
+		;//-------------- send_ping ----------------//
 }

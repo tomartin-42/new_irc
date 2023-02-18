@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/10 19:06:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:20:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	server::accept_new_connect()
 		return;
 	}
 }
-
 
 //This function scroll through the entire list of users
 //If the user have POLLIN event, it read de msg

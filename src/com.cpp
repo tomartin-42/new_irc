@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/05 20:19:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:16:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int	com::get_fd_socket() const
 }
 
 //Insert element in poll_list
-//Remember the pollfd from socket are inside the poll_list
+//Remember the pollfd from socket is inside the poll_list
 void	com::insert_in_poll_list(const int fd)
 {
 	this->poll_list.push_back((pollfd){fd, 0, 0});

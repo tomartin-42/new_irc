@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:42:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 15:54:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:24:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class time_control
 		time_control();
 		time_t				get_t_ping();
 		void				set_t_ping(const time_t time);
+		void				launch_t_ping();
 		void				reset_ping_time();
 		time_t				get_t_last_msg();
 		void				set_t_last_msg(const time_t time);
