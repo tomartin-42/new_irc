@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.hpp                                         :+:      :+:    :+:   */
+/*   orchestator.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/10 19:09:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:43:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define _SERVER_HPP_
 
 #include <map>
-#include "server_exceptions.hpp"
+#include "orchestator_exceptions.hpp"
 #include "com.hpp"
 #include "user.hpp"
 
-class server : public com
+class orchestator : public com
 {
 	private:
 
@@ -30,7 +30,7 @@ class server : public com
 	public:
 		std::map<int, user>	users;
 
-		server(int port);
+		orchestator(int port);
         void		orchestation();
         void		recv_msgs(const int fd);
 		void		send_msgs(const int fd);

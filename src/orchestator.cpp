@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.cpp                                         :+:      :+:    :+:   */
+/*   orchestator.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/12 17:20:55 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:43:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/server.hpp"
+#include "../inc/orchestator.hpp"
 #include <iostream>
 
-server::server(int port) : com(port)
+orchestator::orchestator(int port) : com(port)
 {
 	int	fd = get_fd_socket();
 
@@ -22,18 +22,18 @@ server::server(int port) : com(port)
 	set_value_poll_list(fd, POLLIN);
 }
 
-void	server::insert_new_user(const int fd)
+void	orchestator::insert_new_user(const int fd)
 {
 	users.insert(std::make_pair(fd, user(fd, UNKNOW)));
 }
 
-void	server::delete_user(const int fd)
+void	orchestator::delete_user(const int fd)
 {
 	this->users.erase(fd);
 	disconnect_user(fd);	
 }
 
-void	server::accept_new_connect()
+void	orchestator::accept_new_connect()
 {
 	int	fd;
 
@@ -56,8 +56,8 @@ void	server::accept_new_connect()
 //This function scroll through the entire list of users
 //If the user have POLLIN event, it read de msg
 //If the user have msg in msg_q_out, it send msg
-//It's the heard of send-recv server
-void    server::orchestation()
+//It's the heard of send-recv orchestator
+void    orchestator::orchestation()
 {
 	std::map<int, user>::iterator	usr_it = users.begin();
 	std::vector<int>				delete_list;
@@ -84,7 +84,7 @@ void    server::orchestation()
 //This function get the list that is generated in the orchestaton function 
 //and contains all sockets that have received a POLLHUP(forcing disconnection) signal
 //iterates through the entire list, deleting and removing the sockets in the list
-void	server::delete_users_from_list(std::vector<int>& list)
+void	orchestator::delete_users_from_list(std::vector<int>& list)
 {
 	std::vector<int>::iterator	it_list = list.begin();
 
@@ -106,7 +106,7 @@ void	server::delete_users_from_list(std::vector<int>& list)
 //erase the msg part will be send suscessfull
 //If whill be send all chars in msg and the socket is
 //set POLLOUT it's set POLLIN because it's restore the connection
-void	server::send_msgs(const int fd)
+void	orchestator::send_msgs(const int fd)
 {
 	std::map<int, user>::iterator	usr_it = users.find(fd);
     int                             send_leng;
@@ -126,7 +126,7 @@ void	server::send_msgs(const int fd)
 }
 
 //This function read and load msg in one user
-void    server::recv_msgs(const int fd)
+void    orchestator::recv_msgs(const int fd)
 {
     std::map<int, user>::iterator	usr_it = users.find(fd);
 
@@ -137,7 +137,7 @@ void    server::recv_msgs(const int fd)
 /*
 //This funciton sen a msg from user
 //If the msg dont sent complety put the fd in POLLOUT
-void	server::send_msg_from_user(const int fd)
+void	orchestator::send_msg_from_user(const int fd)
 {
 	std::string						msg;
     std::map<int, user>::iterator   usr = users.find(fd);
@@ -149,7 +149,7 @@ void	server::send_msg_from_user(const int fd)
 		set_value_poll_list(fd, POLLOUT);
 }
 */
-void	server::recv_msg_from_user(const int fd)
+void	orchestator::recv_msg_from_user(const int fd)
 {
 	std::string	msg;
 
