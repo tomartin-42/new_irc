@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/22 19:40:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 16:12:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <string>
 #include <ctime>
 #include <poll.h>
-
 #include "ft_ircserv.hpp" 
 #include "../inc/msg.hpp"
 #include "../inc/time_control.hpp"
@@ -28,6 +27,14 @@ class user
         int				_fd;
 		std::string		nick;
 		char			type;
+		std::time_t		start_time;	//This time stamp use to don't allow 
+									//the connetion open and don't login
+									//into the serve. Check for each 10s 
+									//if is login ok, do nothing
+
+	public:
+		msg			msg_in; //To recive (client ----> server(msg_in))
+		msg			msg_out;//To send (server(msg_out) ----> client)
 
 		user(int fd, char type);
 		void		set_nick(const std::string name);
