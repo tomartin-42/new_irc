@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 19:39:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:06:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ std::string	user::get_host_name() const
 {
 	char	host[255];
 
-	getnameinfo((struct sockaddr *)&this->sock, sizeof(this->sock), host, sizeof(host), NULL, 0, 0);
+	getnameinfo((struct sockaddr *)&(this->sock), sizeof(this->sock), host, sizeof(host), NULL, 0, 0);
 	return std::string(host);
 }
 
