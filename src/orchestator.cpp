@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 19:31:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 21:49:52 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	orchestator::delete_user(const int fd)
 //Accept new incomming comunication
 void	orchestator::accept_new_connect()
 {
-	int				fd;
+	int				fd = -1;
 	sock_info	client;
 
 	client = accept_connection_in_socket();

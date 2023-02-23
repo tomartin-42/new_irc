@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 19:00:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 21:58:38 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,10 @@ void com::socket_lisent()
 sock_info	com::accept_connection_in_socket()
 {
 	sock_info				client;
-	int						new_fd = -1;
+	int						new_fd;
 	char					host[100];
 
+	client.fd = -1;
 	if(this->poll_list[0].revents & POLLIN)
 	{
 		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client), 

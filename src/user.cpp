@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 20:06:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:13:41 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 user::user(int fd, sock_info sock, char type) : _fd(fd), sock(sock), type(type)
 {
 	(void)_fd;
+	std::cout << "NEW USER FD == " << _fd << std::endl;
+	std::cout << "NEW USER HOSTNAME == " << this->get_host_name() << std::endl;
 	//set times
 }
 
