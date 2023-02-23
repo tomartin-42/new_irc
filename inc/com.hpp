@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/11 16:17:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:06:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,18 @@
 #include <poll.h>
 #include <unistd.h>
 #include <poll.h>
+#include <netdb.h>
 #include "com_exceptions.hpp"
 #include "ft_ircserv.hpp"
 #include "log.hpp"
 
+/*
 struct sock_storage: public sockaddr_storage
 {
 	int			fd;
 	socklen_t	addr_len;
 };
+*/
 
 class com
 {
@@ -40,7 +43,7 @@ class com
         struct sockaddr_in			data_socket;
         int							fd_socket;
 		std::vector<pollfd>			poll_list;
-		std::vector<sock_storage>	sock_struct_vector;
+		std::vector<sock_info>		sock_struct_vector;
 
 		void	open_socket();
         void	set_data_socket(const int port);

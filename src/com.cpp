@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/11 16:16:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:07:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void com::socket_lisent()
 //Return the new connect fd
 int	com::accept_connection_in_socket()
 {
-	struct sock_storage		client;
+	sock_info				client;
 	int						new_fd = -1;
+	char					host[1000];
 
 	if(this->poll_list[0].revents & POLLIN)
 	{
@@ -87,6 +88,8 @@ int	com::accept_connection_in_socket()
 		this->sock_struct_vector.push_back(client);
 		fcntl(new_fd, F_SETFL, O_NONBLOCK);
 		this->poll_list.push_back((pollfd){new_fd, POLLIN, 0});
+		getnameinfo((struct sockaddr *)&client, sizeof(client), host, sizeof(host), NULL, 0, 0);
+		std::cout << "HOSTNAME " << std::string(host) << std::endl;
 	}
 	return new_fd;
 }

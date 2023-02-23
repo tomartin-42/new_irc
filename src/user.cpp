@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 12:50:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:39:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 user::user(int fd, char type) : _fd(fd), type(type)
 {
-	this->start_time = std::time(0);
 	(void)_fd;
+	//set times
 }
 
 void	user::set_nick(const std::string name)

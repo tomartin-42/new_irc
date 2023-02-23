@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 19:17:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:06:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define _FT_IRCSERV_HPP
 
 #include <string>
+#include <sys/socket.h>
 
 #define	HOST_NAME	"irc.teamA.com"
 #define	VERSION		"1.0"
@@ -83,5 +84,14 @@ class my_ptr
         T& operator * () const { return *_ptr; }
         T* operator -> () const { return _ptr; }
 };
+
+//----struct_socket_info--------------------------//
+struct sock_storage: public sockaddr_storage
+{
+	int			fd;
+	socklen_t	addr_len;
+};
+
+typedef struct sock_storage sock_info;
 
 #endif
