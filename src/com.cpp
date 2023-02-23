@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/22 19:07:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:00:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ void com::socket_lisent()
 //Accept new connection in socket an put on nonblock
 //Add to poll_list vector
 //Return the new connect fd
-int	com::accept_connection_in_socket()
+sock_info	com::accept_connection_in_socket()
 {
 	sock_info				client;
 	int						new_fd = -1;
-	char					host[1000];
+	char					host[100];
 
 	if(this->poll_list[0].revents & POLLIN)
 	{
@@ -91,7 +91,7 @@ int	com::accept_connection_in_socket()
 		getnameinfo((struct sockaddr *)&client, sizeof(client), host, sizeof(host), NULL, 0, 0);
 		std::cout << "HOSTNAME " << std::string(host) << std::endl;
 	}
-	return new_fd;
+	return client;
 }
 /*--------------=======================----------------------
 //Accept new connection in socket an put on nonblock

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 18:43:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:31:41 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ orchestator::orchestator(int port) : com(port)
 	set_value_poll_list(fd, POLLIN);
 }
 
-void	orchestator::insert_new_user(const int fd)
+void	orchestator::insert_new_user(int fd, sock_info client, char type)
 {
-	users.insert(std::make_pair(fd, user(fd, UNKNOW)));
+	users.insert(std::make_pair(fd, user(fd, client, type)));
 }
 
 void	orchestator::delete_user(const int fd)
@@ -33,14 +33,17 @@ void	orchestator::delete_user(const int fd)
 	disconnect_user(fd);	
 }
 
+//Accept new incomming comunication
 void	orchestator::accept_new_connect()
 {
-	int	fd;
+	int				fd;
+	sock_info	client;
 
-	fd = accept_connection_in_socket();
+	client = accept_connection_in_socket();
+	fd = client.fd;
 	if(fd != -1)
 	{
-		insert_new_user(fd);
+		insert_new_user(client.fd, client, UNKNOW);
 		std::cout << "CONEXION IN FD " << fd << std::endl;
 		send_msg(fd, "HOLA\n");
 	}

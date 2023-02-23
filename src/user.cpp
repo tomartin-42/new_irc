@@ -6,13 +6,13 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/22 18:39:07 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:39:21 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/user.hpp"
 
-user::user(int fd, char type) : _fd(fd), type(type)
+user::user(int fd, sock_info sock, char type) : _fd(fd), sock(sock), type(type)
 {
 	(void)_fd;
 	//set times
@@ -41,3 +41,13 @@ short   user::send_or_recive() const
         return POLLIN;
     return POLLOUT;
 }
+
+std::string	user::get_host_name() const
+{
+	char	host[255];
+
+	getnameinfo((struct sockaddr *)&this->sock, sizeof(this->sock), host, sizeof(host), NULL, 0, 0);
+	return std::string(host);
+}
+
+
