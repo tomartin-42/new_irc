@@ -1,12 +1,12 @@
 # **************************************************************************** #
-                                                                              #
+#                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tomartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 09:11:45 by tomartin          #+#    #+#              #
-#    Updated: 2023/02/23 21:33:39 by tommy            ###   ########.fr        #
+#    Updated: 2023/02/18 18:39:51 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ft_ircserv
 
 # Compiling and flags
 #CXX = clang++ --std=c++98
-CXX = g++ #-std=c++98
+CXX = g++ -std=c++98
 CXXFLAGS = -Wall -Wextra -Werror -Iinc -MD -O3 -g3 -fsanitize=address
 LDFLAGS = -fsanitize=address
 

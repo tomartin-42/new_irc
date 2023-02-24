@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 19:00:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:57:50 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ class com
     	com(const int);
 		~com();	
     	void		socket_lisent();
-    	sock_info	accept_connection_in_socket();
+    	int			accept_connection_in_socket();
         int			preparation_com();
     	void		disconnect_user(const int fd, std::string reason);
     	void		disconnect_user(const int fd);
@@ -68,6 +68,7 @@ class com
     	void		close_connection(const int fd);
     	int			get_port();
     	static void	close_port(const int port);
+		std::string	get_host_name() const;
 
 		void	print_all_pollfd();
 	};

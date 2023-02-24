@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 21:58:38 by tommy            ###   ########.fr       */
+/*   Updated: 2023/02/24 20:16:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,33 @@ void com::socket_lisent()
 //Accept new connection in socket an put on nonblock
 //Add to poll_list vector
 //Return the new connect fd
-sock_info	com::accept_connection_in_socket()
+int	com::accept_connection_in_socket()
 {
 	sock_info				client;
-	int						new_fd;
-	char					host[100];
+	int						new_fd = -1;
+	char					host[255];
+	int						tmp;
 
-	client.fd = -1;
+	bzero(host, 255);
+	client.sock_storage.ss_family = AF_INET;
 	if(this->poll_list[0].revents & POLLIN)
 	{
-		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client), 
+		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client.sock_storage), 
 				&client.addr_len);
-		client.fd = new_fd;
+		//client.fd = new_fd;
 		this->sock_struct_vector.push_back(client);
 		fcntl(new_fd, F_SETFL, O_NONBLOCK);
 		this->poll_list.push_back((pollfd){new_fd, POLLIN, 0});
-		getnameinfo((struct sockaddr *)&client, sizeof(client), host, sizeof(host), NULL, 0, 0);
-		std::cout << "HOSTNAME " << std::string(host) << std::endl;
+		tmp = getnameinfo((struct sockaddr *)&client.sock_storage, sizeof(struct sock_storage), host, sizeof(host), NULL, 0, 0);
+		
+		std::cout << "HOSTNAMEPOLL " << std::string(host) << std::endl;
+		std::cout << "TMP " << tmp << std::endl;
+		if(tmp != 0)
+		{
+			perror(gai_strerror(tmp));
+		}
 	}
-	return client;
+	return new_fd;
 }
 /*--------------=======================----------------------
 //Accept new connection in socket an put on nonblock
@@ -275,6 +283,15 @@ int	com::get_port()
 void	com::close_port(const int port)
 {
 	close(port);
+}
+
+std::string	com::get_host_name() const
+{
+	char		host[255];
+	sock_info	tmp_sock = *(sock_struct_vector.end() - 1);
+
+	getnameinfo((struct sockaddr *)&tmp_sock.sock_storage, sizeof(tmp_sock), host, sizeof(host), NULL, 0, 0);
+	return std::string(host);
 }
 
 //-------------TO DEBUG--------------------//

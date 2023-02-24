@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/22 19:06:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:57:22 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ class my_ptr
 };
 
 //----struct_socket_info--------------------------//
-struct sock_storage: public sockaddr_storage
+struct sock_storage
 {
 	int			fd;
 	socklen_t	addr_len;
+	sockaddr_storage sock_storage;
 };
 
 typedef struct sock_storage sock_info;

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 19:43:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:04:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 #include <string>
 #include <ctime>
-#include <ctime>
 #include <poll.h>
-#include <netdb.h>
-#include <limits.h>
 #include "ft_ircserv.hpp" 
 #include "../inc/msg.hpp"
 #include "../inc/time_control.hpp"
@@ -29,8 +26,8 @@ class user
 		time_control	user_times;
         int				_fd;
 		std::string		nick;
-		sock_info		sock;
 		char			type;
+		std::string		host_name;
 		std::time_t		start_time;	//This time stamp use to don't allow 
 									//the connetion open and don't login
 									//into the serve. Check for each 10s 
@@ -40,12 +37,13 @@ class user
 		msg			msg_in; //To recive (client ----> server(msg_in))
 		msg			msg_out;//To send (server(msg_out) ----> client)
 
-		user(int fd, sock_info client, char type);
+		user(int fd, char type, std::string host_name);
 		void		set_nick(const std::string name);
 		void		set_type(const char type);
 		std::time_t get_start_time() const;
         short       send_or_recive() const;
-		std::string	get_host_name() const;
+		std::string get_host_name() const;
+		int			get_fd() const;
 
         //-------------------------------------//
         //-------------------------------------//

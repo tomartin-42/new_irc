@@ -6,17 +6,16 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 22:13:41 by tommy            ###   ########.fr       */
+/*   Updated: 2023/02/24 19:05:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/user.hpp"
 
-user::user(int fd, sock_info sock, char type) : _fd(fd), sock(sock), type(type)
+user::user(int fd, char type, std::string host_name) : _fd(fd), type(type), host_name(host_name)
 {
-	(void)_fd;
-	std::cout << "NEW USER FD == " << _fd << std::endl;
-	std::cout << "NEW USER HOSTNAME == " << this->get_host_name() << std::endl;
+	std::cout << "HOSTNAME-> " << get_host_name() << std::endl;
+	std::cout << "FD-> " << get_fd() << std::endl;
 	//set times
 }
 
@@ -44,12 +43,12 @@ short   user::send_or_recive() const
     return POLLOUT;
 }
 
-std::string	user::get_host_name() const
+std::string user::get_host_name() const
 {
-	char	host[255];
-
-	getnameinfo((struct sockaddr *)&(this->sock), sizeof(this->sock), host, sizeof(host), NULL, 0, 0);
-	return std::string(host);
+	return this->host_name;
 }
 
-
+int	user::get_fd() const
+{
+	return this->_fd;
+}

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/23 20:04:57 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:57:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 # define _SERVER_HPP_
 
 #include <map>
-#include <netdb.h>
 #include "orchestator_exceptions.hpp"
 #include "com.hpp"
 #include "user.hpp"
-#include "ft_ircserv.hpp"
 
 class orchestator : public com
 {
 	private:
 
 		std::string a;
-		void		insert_new_user(const int fd, sock_info client, char type);
+		void		insert_new_user(const int fd);
 		void		delete_user(const int fd);
 		void		delete_users_from_list(std::vector<int>& list);
 
