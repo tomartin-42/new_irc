@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/24 20:16:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:03:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,53 +74,23 @@ void com::socket_lisent()
 //Accept new connection in socket an put on nonblock
 //Add to poll_list vector
 //Return the new connect fd
-int	com::accept_connection_in_socket()
+int com::accept_connection_in_socket()
 {
-	sock_info				client;
-	int						new_fd = -1;
-	char					host[255];
-	int						tmp;
+        sock_info client;
+        int new_fd = -1;
 
-	bzero(host, 255);
-	client.sock_storage.ss_family = AF_INET;
-	if(this->poll_list[0].revents & POLLIN)
-	{
-		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client.sock_storage), 
-				&client.addr_len);
-		//client.fd = new_fd;
-		this->sock_struct_vector.push_back(client);
-		fcntl(new_fd, F_SETFL, O_NONBLOCK);
-		this->poll_list.push_back((pollfd){new_fd, POLLIN, 0});
-		tmp = getnameinfo((struct sockaddr *)&client.sock_storage, sizeof(struct sock_storage), host, sizeof(host), NULL, 0, 0);
-		
-		std::cout << "HOSTNAMEPOLL " << std::string(host) << std::endl;
-		std::cout << "TMP " << tmp << std::endl;
-		if(tmp != 0)
-		{
-			perror(gai_strerror(tmp));
-		}
-	}
-	return new_fd;
+        client.sock_storage.ss_family = AF_INET;
+        if (this->poll_list[0].revents & POLLIN)
+        {
+                new_fd = accept(this->fd_socket, (struct sockaddr *)&(client.sock_storage),
+                                &client.addr_len);
+                client.fd = new_fd;
+                this->sock_struct_vector.push_back(client);
+                fcntl(new_fd, F_SETFL, O_NONBLOCK);
+                this->poll_list.push_back((pollfd){new_fd, POLLIN, 0});
+        }
+        return new_fd;
 }
-/*--------------=======================----------------------
-//Accept new connection in socket an put on nonblock
-//Add to poll_list vector
-//Return the new connect fd
-int	com::accept_connection_in_socket()
-{
-	struct sockaddr_storage	client;
-	socklen_t				addr_len = sizeof(sockaddr_storage);
-	int						new_fd = -1;
-
-	if(this->poll_list[0].revents & POLLIN)
-	{
-		new_fd = accept(this->fd_socket, (struct sockaddr *)&(client), &addr_len);
-		fcntl(new_fd, F_SETFL, O_NONBLOCK);
-		this->poll_list.push_back((pollfd){new_fd, POLLIN, 0});
-	}
-	return new_fd;
-}
--------------------=======================----------------*/
 
 //This function set all pollfd.revent to 0 and execut poll()
 //If poll fail throw a com_exception
@@ -287,10 +257,16 @@ void	com::close_port(const int port)
 
 std::string	com::get_host_name() const
 {
-	char		host[255];
+    char	host[NI_MAXHOST];
+    int		tmp;
+
 	sock_info	tmp_sock = *(sock_struct_vector.end() - 1);
 
-	getnameinfo((struct sockaddr *)&tmp_sock.sock_storage, sizeof(tmp_sock), host, sizeof(host), NULL, 0, 0);
+    tmp = getnameinfo((struct sockaddr *)&(tmp_sock.sock_storage), sizeof(struct sockaddr_in), host, sizeof(host), NULL, 0, NI_NAMEREQD);
+    if(tmp != 0)
+	{
+		tmp = getnameinfo((struct sockaddr *)&(tmp_sock.sock_storage), sizeof(struct sockaddr_in), host, sizeof(host), NULL, 0, NI_NUMERICHOST);
+	}
 	return std::string(host);
 }
 
