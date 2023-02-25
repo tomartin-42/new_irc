@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/04 16:04:51 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:54:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 std::string	replies::generate_send_code(const int& code)
 {
-	std::string	true_code;
-	std::stringstream ss;
+	std::string			true_code;
+	std::stringstream	ss;
 
 	true_code = std::to_string(code);
 	while(true_code.size() < 3)
@@ -30,7 +30,7 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 {
 	this->set_head_len(0);
     std::string send_code(generate_send_code(code));
-    //Temporal
+    //Temporal---------------------------------------//
     std::string user("tommy");
 	std::string host("c1r5s6.42madrid.com");
 

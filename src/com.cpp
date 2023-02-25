@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 17:18:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:42:48 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int com::accept_connection_in_socket()
     {
             new_fd = accept(this->fd_socket, (struct sockaddr *)&(client),
                             &client.addr_len);
+            if(new_fd == -1)
+				throw com_exceptions("Error accept", 6);
             client.fd = new_fd;
             this->sock_struct_vector.push_back(client);
             fcntl(new_fd, F_SETFL, O_NONBLOCK);
@@ -265,7 +267,6 @@ std::string	com::get_host_name() const
 	sock_info	tmp_sock = *(sock_struct_vector.end() - 1);
 
     tmp = getnameinfo((struct sockaddr *)&(tmp_sock), sizeof(struct sockaddr_in), host, sizeof(host), NULL, 0, NI_NAMEREQD);
-	std::cout << "TMP " << tmp << std::endl;
     if(tmp != 0)
 	{
 		tmp = getnameinfo((struct sockaddr *)&(tmp_sock), sizeof(struct sockaddr_in), host, sizeof(host), NULL, 0, NI_NUMERICHOST);

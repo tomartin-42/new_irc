@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 19:16:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:48:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	time_control::get_time(time_t* var) { std::time(var); }
 void	time_control::launch_t_ping()
 {
 	this->t_ping = time_control::get_time();
+}
+
+void	time_control::launch_t_last_msg()
+{
+	this->t_last_msg = time_control::get_time();
 }
 
 void	time_control::reset_ping_time() { this->t_ping = LONG_MAX; }
