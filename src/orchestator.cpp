@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 17:45:41 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:06:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ orchestator::orchestator(int port) : com(port)
 void	orchestator::insert_new_user(const int fd)
 {
 	std::string	host_name = get_host_name();
-
 	users.insert(std::make_pair(fd, user(fd, UNKNOW, host_name)));
 }
 
