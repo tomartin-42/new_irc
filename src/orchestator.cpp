@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/24 19:12:01 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:06:01 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	orchestator::delete_user(const int fd)
 	disconnect_user(fd);	
 }
 
+//Accept new connection if the server is full
+//kick out the new connexion
 void	orchestator::accept_new_connect()
 {
 	int			fd;
