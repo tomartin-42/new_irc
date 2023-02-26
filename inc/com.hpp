@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 15:18:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:01:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ class com
     	void		close_connection(const int fd);
     	int			get_port();
     	static void	close_port(const int port);
+    	int			get_ip() const;
 		std::string	get_host_name() const;
 
 		void	print_all_pollfd();

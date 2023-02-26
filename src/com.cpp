@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 19:21:51 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:20:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,11 +259,45 @@ void	com::close_port(const int port)
 	close(port);
 }
 
+int		com::get_ip() const
+{
+	sock_info			tmp_sock = *(sock_struct_vector.end() - 1);
+	struct sockaddr_in	client_addr;
+	int					get_ip;	
+
+    socklen_t addr_len = sizeof(client_addr);
+    get_ip = getsockname(tmp_sock.fd, (struct sockaddr *)&client_addr, &addr_len);
+    if (get_ip == -1)
+		throw com_exceptions("Error getsockname", 7);
+	return get_ip;
+}
+
+
+std::string	com::get_host_name() const
+{
+	sock_info	tmp_sock = *(sock_struct_vector.end() - 1);
+    struct		sockaddr_in client_addr;
+    socklen_t	addr_len = sizeof(client_addr);
+    char		host_buffer[NI_MAXHOST];
+    int			getsockname_result = getsockname(tmp_sock.fd, (struct sockaddr *)&client_addr, &addr_len);
+
+    if (getsockname_result == -1)
+        throw com_exceptions("Error getsockname", 7);
+    int getnameinfo_result = getnameinfo((struct sockaddr *)&client_addr, sizeof(client_addr),
+                                         host_buffer, sizeof(host_buffer),
+                                         NULL, 0, 0);
+    if (getnameinfo_result != 0)
+        throw com_exceptions("Error getnameinfo", 8);
+
+    return std::string(host_buffer);
+}
+
+
+/*
 std::string	com::get_host_name() const
 {
     char	host[NI_MAXHOST];
     int		tmp;
-
 	sock_info	tmp_sock = *(sock_struct_vector.end() - 1);
 
     tmp = getnameinfo((struct sockaddr *)&(tmp_sock), sizeof(struct sockaddr_in), host, sizeof(host), NULL, 0, NI_NAMEREQD);
@@ -273,7 +307,7 @@ std::string	com::get_host_name() const
 	}
 	return std::string(host);
 }
-
+*/
 //-------------TO DEBUG--------------------//
 //Print all pollfd list with values
 void	com::print_all_pollfd()
