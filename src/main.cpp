@@ -6,11 +6,12 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:00:12 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/18 18:48:21 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:46:30 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/com.hpp"
+#include "../inc/ft_ircserv.hpp"
 #include "../inc/orchestator.hpp"
 #include "../inc/replies.hpp"
 #include <signal.h>
@@ -20,8 +21,9 @@ void signal_handler(int sig) {
 	orchestator::close_port(4242);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+	parse_arg(argc, argv);
 	int	port = 4242;
 
     try 

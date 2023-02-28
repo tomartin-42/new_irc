@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 16:27:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:26:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ class my_ptr
         T* operator -> () const { return _ptr; }
 };
 
+//----Other_functions----------------------------//
+
+std::string	parse_arg(int argc, char **argv);
+
+
 //----struct_socket_info--------------------------//
 struct sock_storage: public sockaddr_storage
 {
@@ -93,5 +98,8 @@ struct sock_storage: public sockaddr_storage
 };
 
 typedef struct sock_storage sock_info;
+
+
+
 
 #endif
