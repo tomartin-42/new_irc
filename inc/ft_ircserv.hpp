@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/28 19:26:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:41:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ class my_ptr
 
 //----Other_functions----------------------------//
 
-std::string	parse_arg(int argc, char **argv);
-
+std::pair<int, std::string>	parse_arg(int argc, char **argv);
 
 //----struct_socket_info--------------------------//
 struct sock_storage: public sockaddr_storage
