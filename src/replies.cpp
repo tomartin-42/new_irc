@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 17:54:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:22:27 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ std::string	replies::generate_send_code(const int& code)
 	std::string			true_code;
 	std::stringstream	ss;
 
-	true_code = std::to_string(code);
+	true_code = ft_itoa(code);
 	while(true_code.size() < 3)
 		true_code.insert(0, 1, '0');
     return true_code;

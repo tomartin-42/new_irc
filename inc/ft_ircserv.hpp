@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/02 19:41:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:16:27 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,5 @@ struct sock_storage: public sockaddr_storage
 };
 
 typedef struct sock_storage sock_info;
-
-
-
 
 #endif
