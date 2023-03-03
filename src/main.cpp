@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:00:12 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/28 19:46:30 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:05:19 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ void signal_handler(int sig) {
 
 int	main(int argc, char **argv)
 {
-	parse_arg(argc, argv);
-	int	port = 4242;
-
+	std::pair<int, std::string> args = parse_arg(argc, argv);
     try 
     {
-        orchestator	my_server(port);
+        orchestator	my_server(args.first);
 		signal(SIGINT, signal_handler);
 	    while(42)
 	    {
