@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:26:54 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/02 20:05:49 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:01:02 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,31 @@
 #include <iostream>
 #include <iostream>
 #include <cctype>
+#include <cstdlib>
 
-void	check_first_arg(std::vector<std::string>& args)
+bool	check_first_arg_digit(std::vector<std::string>& args)
 {
 	std::string	std_arg(*(args.begin() + 1));
 	for(int i = 0 ; std_arg[i] ; i++)
 		if(!std::isdigit(std_arg[i]))
 		{
 			std::cout << "CAN CONECT WITH OTHER SERVER O SERVER ADDRES INCORRECT" << std::endl;
+			args.clear();
 			exit(1);
 		}
+	return(true);
+}
+
+int		get_arg_port(std::vector<std::string>& args)
+{
+		int port = std::atoi(args[1].c_str());
+		if(port < 1 || port > 65535)
+		{
+			std::cout << "INCORRECT PORT" << std::endl;
+			args.clear();
+			exit(1);
+		}
+		return(port);
 }
 
 //Get values to init ft_ircserv
@@ -36,23 +51,38 @@ std::pair<int, std::string>	parse_arg(int argc, char **argv)
 	std::vector<std::string>	args;
 	std::pair<int, std::string>	setings(4242,"");
 
+	for(int i = 0; i < argc; i++)
+		args.push_back(std::string(argv[i]));
 	if(argc == 1)
 	{
-		std::cout << "ft_ircserv Port:4242 Pass:OFF" << std::endl;
+		std::cout << "ft_ircserv start in Port:4242 Pass:OFF" << std::endl;
+		args.clear();
 		return(setings);
 	}
-	if(argc < 3)
+	if(argc == 2)
 	{
-		std::cout << "ARGUMENTS ERROR!!!" << std::endl; 
-		exit(1);
+		check_first_arg_digit(args);
+		setings.first = get_arg_port(args);	
+		std::cout << "ft_ircserv start in Port:" << setings.first; 
+		std::cout << " Pass:OFF" << std::endl;
+	}
+	if(argc == 3)
+	{
+		check_first_arg_digit(args);
+		setings.first = get_arg_port(args);	
+		setings.second = args[2];
+		std::cout << "ft_ircserv start in Port:" << setings.first; 
+		if(setings.second == "")
+			std::cout << " Pass:OFF" << std::endl;
+		else
+			std::cout << " Pass:" << setings.second << std::endl;
 	}
 	if(argc > 4)
 	{
 		std::cout << "ARGUMENTS ERROR!!!" << std::endl; 
+		args.clear();
 		exit(1);
 	}
-	for(int i = 0; i < argc; i++)
-		args.push_back(std::string(argv[i]));
-	check_first_arg(args);
+	args.clear();
 	return(setings);
 }

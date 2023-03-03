@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 17:48:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:43:57 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	time_control::check_if_kick()
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
 	if((now - this->t_last_msg) > TIME_LAST_MSG)
-		;//-------------- send_ping ----------------//
+	{};//-------------- send_ping ----------------//
 	if((now - this->t_set_pollout) > TIME_LAST_MSG)
-		;//-------------- send_ping ----------------//
+	{};//-------------- send_ping ----------------//
 }
