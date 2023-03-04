@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 13:12:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:28:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,6 @@ int		com::get_ip() const
 	return get_ip;
 }
 
-
 std::string	com::get_host_name() const
 {
 	sock_info	tmp_sock = *(sock_struct_vector.end() - 1);
@@ -292,6 +291,14 @@ std::string	com::get_host_name() const
     return std::string(host_buffer);
 }
 
+std::string	com::get_server_host_name() const
+{
+	char host_buffer[NI_MAXHOST];
+	gethostname(host_buffer, NI_MAXHOST);
+	std::string	host_name(host_buffer);
+
+	return(host_name);
+}
 
 /*
 std::string	com::get_host_name() const

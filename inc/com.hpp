@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/26 16:01:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:58:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ class com
 		std::vector<pollfd>			poll_list;
 		std::vector<sock_info>		sock_struct_vector;
 
-		void	open_socket();
-        void	set_data_socket(const int port);
-    	void	insert_in_poll_list(const int fd);
-    	void	delete_in_poll_list(const int fd);
+		void		open_socket();
+        void		set_data_socket(const int port);
+    	void		insert_in_poll_list(const int fd);
+    	void		delete_in_poll_list(const int fd);
 
     public:
     	com(const int);
@@ -71,6 +71,7 @@ class com
     	int			get_port();
     	static void	close_port(const int port);
     	int			get_ip() const;
+		std::string	get_server_host_name() const;
 		std::string	get_host_name() const;
 
 		void	print_all_pollfd();
