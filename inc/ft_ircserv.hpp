@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/03 20:16:27 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/04 14:45:42 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@
 #define TIME_DONT_LOGIN	10
 #define TIME_LAST_MSG 200
 #define TIME_POLLOUT 300
+
+
+//----------msg leng values-----------------------//
+
+#define LENG_MAX 5120
+#define MSG_MAX 20
 
 //---------------Log leve-------------------------//
 

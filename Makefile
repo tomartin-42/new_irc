@@ -6,7 +6,7 @@
 #    By: tomartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 09:11:45 by tomartin          #+#    #+#              #
-#    Updated: 2023/03/03 20:24:44 by tommy            ###   ########.fr        #
+#    Updated: 2023/03/04 13:08:44 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ft_ircserv
 
 # Compiling and flags
 #CXX = clang++ --std=c++98
-CXX = g++ #-std=c++98
+CXX = g++ -std=c++98
 CXXFLAGS = -Wall -Wextra -Werror -Iinc -MD -O3 -g3 -fsanitize=address
 LDFLAGS = -fsanitize=address
 

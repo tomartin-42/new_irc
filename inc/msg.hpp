@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 18:01:05 by tomartin          #+#    #+#             */
-/*   Updated: 2023/01/08 14:46:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:48:24 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ class msg
 		void			direct_push(const std::string str);
 		void			direct_push(const char* str);
 		std::string		fragmentation_msg_send(std::string str, int point);
-		//std::istream&	operator>>(const std::string str, msg queue);
 };
 
 #endif

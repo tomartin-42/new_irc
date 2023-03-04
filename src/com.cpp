@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/03 20:21:22 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/04 13:12:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int    com::preparation_com()
 
 //Rutine to disconnect one user. Close connection and 
 //remove form poll_list
-//Send a msg send a message with the reason for the disconnection
+//Send a message with the reason for the disconnection
 void	com::disconnect_user(const int fd, std::string reason)
 {
 	this->set_value_poll_list(fd, POLLRDBAND);
