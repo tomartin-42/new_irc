@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 13:16:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:10:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,3 +161,13 @@ void	orchestator::recv_msg_from_user(const int fd)
 	this->users.find(fd)->second.msg_in.add_msg(msg);
 }
 
+void	orchestator::check_status()
+{
+	//this function check all statatus of users, msg, etc
+	//if one exced the values in ft_ircserv.hpp
+	//whill be kicked
+	
+	//1º check times values user.time_control.check_if_kick();
+	//2º check msg lengs user.recv_msg_q.check_status_queue();
+	//...
+}

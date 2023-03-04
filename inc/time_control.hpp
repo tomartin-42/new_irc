@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:42:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/25 17:49:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:16:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class time_control
 		time_t				get_t_not_login();
 		void				set_t_not_login(const time_t time);
 		void				reset_t_not_login();
+		void				reset_t_ping();
 		void				set_kick(const bool value);
 		bool				get_kick();
 		static time_t		get_time();

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/03 19:43:57 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/04 15:15:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	time_control::set_t_not_login(const time_t time)
 }
 
 void	time_control::reset_t_not_login() { this->t_not_login = LONG_MAX; }
+
+void	time_control::reset_t_ping() { this->t_ping = LONG_MAX; }
 
 void	time_control::set_kick(const bool value) { this->kick = value; }
 

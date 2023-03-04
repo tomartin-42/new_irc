@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 14:47:52 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:09:52 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,20 @@ std::string	msg::fragmentation_msg_send(std::string str, int point)
 		cut--;
 	}
 	return str;
+}
+
+//Check status queue
+//Use to prevention overflow in queues
+bool			msg::check_status_queue()
+{
+	bool	status = OK;
+	
+	if(this->msg_front_len() > LENG_MAX)
+		status = KICK;
+	if(this->msg_q_size() > MSG_MAX)
+		status = KICK;
+
+	return(status);
 }
 
 //From debug

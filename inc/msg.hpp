@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 18:01:05 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 14:48:24 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:08:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <queue>
 #include <string>
 #include <iostream>
+#include "../inc/ft_ircserv.hpp"
 
 class msg
 {
@@ -40,6 +41,7 @@ class msg
 		void			direct_push(const std::string str);
 		void			direct_push(const char* str);
 		std::string		fragmentation_msg_send(std::string str, int point);
+		bool			check_status_queue();
 };
 
 #endif
