@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:01 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 15:01:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:37:37 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 struct commands
 {
 	void	ping(user& user, std::string host_name);
+	void	pong(user& user, std::string host_name);
 };
 #endif

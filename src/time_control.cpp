@@ -6,21 +6,17 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 18:55:26 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:40:00 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/time_control.hpp"
 #include <iostream>
 
-time_control::time_control(): t_ping(LONG_MAX), kick(OK)
+time_control::time_control(): kick(OK), s_ping(false)
 { 
 	std::time_t now = time_control::get_time();
-	//When connect start the time to last msg
 	this->t_last_msg = now;
-	std::cout << "LAST MSG " << this->t_last_msg << std::endl;
-	//Control the time not login user
-	this->t_ping = now ;
 	this->t_set_pollout = now;
 }
 
@@ -62,6 +58,7 @@ void	time_control::reset_t_not_login()
 void	time_control::reset_t_ping() 
 { 
 	this->t_ping = LONG_MAX; 
+	this->set_s_ping(false);
 }
 
 void	time_control::set_kick(const bool value) 
@@ -110,23 +107,26 @@ void	time_control::check_if_kick()
 		this->kick = KICK;
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
-	std::cout << "LAST MSG " << this->t_last_msg << std::endl;
 }
 
 bool	time_control::launch_send_ping() const
 {
 	time_t	now = time_control::get_time();	
-	bool	answ = true;
+	bool	answ = false;
 
-	std::cout <<  this << std::endl;
-	std::cout <<  &t_last_msg << std::endl;
-	std::cout << "NOW " << now << std::endl;
-	std::cout << "TPING MSG " << t_ping << std::endl;
-	std::cout << "TPOLL MSG " << this->t_set_pollout << std::endl;
-	std::cout << "LAST MSG " << this->t_last_msg << std::endl;
-//	if((now - this->t_last_msg) > TIME_LAST_MSG)
-//		answ = true;
-//	if((now - this->t_set_pollout) > TIME_LAST_MSG)
-//		answ = true;
+	if((now - this->t_last_msg) > TIME_LAST_MSG)
+		answ = true;
+	if((now - this->t_set_pollout) > TIME_LAST_MSG)
+		answ = true;
 	return(answ);
+}
+
+void	time_control::set_s_ping(bool value)
+{
+	this->s_ping = value;
+}
+
+bool	time_control::get_s_ping() const
+{
+	return(this->s_ping);
 }

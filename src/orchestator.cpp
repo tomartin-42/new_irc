@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 18:43:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:34:17 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,13 @@ void	orchestator::check_status()
 	{
 		std::map<int, user>::iterator	it = this->users.begin();
 		for(;it != this->users.end(); it++)
+		{
 			it->second.user_times.check_if_kick();
-			if(it->second.user_times.launch_send_ping())
+			if(it->second.user_times.launch_send_ping() &&
+			   it->second.user_times.get_s_ping() == false)
+			{
 				ping(it->second, this->name);
+			}
+		}
 	}
 }

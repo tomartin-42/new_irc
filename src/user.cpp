@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 18:51:35 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:35:25 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	user::set_type(const char type)
 {
 	this->type = type;
 }
-
-//std::time_t	user::get_start_time() const
-//{
-//	return this->start_time;
-//}
 
 short   user::send_or_recive() const
 {
