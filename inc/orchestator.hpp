@@ -6,22 +6,23 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 14:51:20 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:10:47 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _SERVER_HPP_
-# define _SERVER_HPP_
+#ifndef _ORCHESTATOR_HPP_
+# define _ORCHESTATOR_HPP_
 
 #include <map>
 #include "orchestator_exceptions.hpp"
 #include "com.hpp"
 #include "user.hpp"
+#include "../inc/commands.hpp"
 
-class orchestator : public com
+class orchestator : public com, public commands
 {
 	private:
-		std::string a;
+		std::string name;
 		void		insert_new_user(const int fd);
 		void		delete_user(const int fd);
 		void		delete_users_from_list(std::vector<int>& list);

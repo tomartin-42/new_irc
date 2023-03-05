@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/24 19:04:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:51:49 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,24 @@
 class user
 {
 	private:
-		time_control	user_times;
         int				_fd;
 		std::string		nick;
 		char			type;
 		std::string		host_name;
-		std::time_t		start_time;	//This time stamp use to don't allow 
+//		std::time_t		start_time;	//This time stamp use to don't allow 
 									//the connetion open and don't login
 									//into the serve. Check for each 10s 
 									//if is login ok, do nothing
 
 	public:
+		time_control	user_times;
 		msg			msg_in; //To recive (client ----> server(msg_in))
 		msg			msg_out;//To send (server(msg_out) ----> client)
 
 		user(int fd, char type, std::string host_name);
 		void		set_nick(const std::string name);
 		void		set_type(const char type);
-		std::time_t get_start_time() const;
+//		std::time_t get_start_time() const;
         short       send_or_recive() const;
 		std::string get_host_name() const;
 		int			get_fd() const;

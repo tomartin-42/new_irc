@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 15:09:52 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:49:54 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ void	msg::erase_front_msg(const int n_chars)
 //Only use when the str is ok and dont need parse
 void	msg::direct_push(const std::string str)
 {
-	this->msg_q.push(str);
+	std::cout << str << std::endl;
+//	this->msg_q.push(str);
 }
 
 //This function add str to msg_g

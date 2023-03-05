@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 15:10:13 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:43:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 orchestator::orchestator(int port) : com(port)
 {
 	int	fd = get_fd_socket();
-
 	socket_lisent();
 	//users.insert(std::pair<int, user>(fd, user(fd, SOCKET)));
 	set_value_poll_list(fd, POLLIN);
+	this->name = get_server_host_name();
 }
 
 void	orchestator::insert_new_user(const int fd)
@@ -170,4 +170,12 @@ void	orchestator::check_status()
 	//1º check times values user.time_control.check_if_kick();
 	//2º check msg lengs user.recv_msg_q.check_status_queue();
 	//...
+	if(this->users.empty() != true)
+	{
+		std::map<int, user>::iterator	it = this->users.begin();
+		for(;it != this->users.end(); it++)
+			it->second.user_times.check_if_kick();
+			if(it->second.user_times.launch_send_ping())
+				ping(it->second, this->name);
+	}
 }

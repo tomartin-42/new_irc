@@ -6,7 +6,7 @@
 #    By: tomartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 09:11:45 by tomartin          #+#    #+#              #
-#    Updated: 2023/03/04 13:08:44 by tomartin         ###   ########.fr        #
+#    Updated: 2023/03/05 18:57:47 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ft_ircserv
 
 # Compiling and flags
 #CXX = clang++ --std=c++98
-CXX = g++ -std=c++98
+CXX = g++ #-std=c++98
 CXXFLAGS = -Wall -Wextra -Werror -Iinc -MD -O3 -g3 -fsanitize=address
 LDFLAGS = -fsanitize=address
 
@@ -26,7 +26,7 @@ SRC_DIR = src/
 # Source files and includes
 SRC_FILES = main.cpp com.cpp com_exceptions.cpp orchestator.cpp user.cpp \
 			msg.cpp replies.cpp replies_generator.cpp aux_server.cpp \
-			time_control.cpp log.cpp others.cpp
+			time_control.cpp log.cpp others.cpp commands.cpp
 
 # Objs
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))	

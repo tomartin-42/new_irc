@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:42:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 15:16:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:48:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,31 @@
 class time_control
 {
 	private:
-		time_t	t_ping;
-		time_t	t_last_msg;
-		time_t	t_not_login;
-		time_t	t_set_pollout;
-		bool	kick;
+		std::time_t	t_ping;
+		std::time_t	t_not_login;
+		std::time_t	t_set_pollout;
+		std::time_t	t_last_msg;
+		bool		kick;
 	
 	public:
 		time_control();
-		time_t				get_t_ping();
-		void				set_t_ping(const time_t time);
+		std::time_t			get_t_ping() const;
+		void				set_t_ping(const std::time_t time);
 		void				launch_t_ping();
 		void				launch_t_last_msg();
 		void				reset_ping_time();
-		time_t				get_t_last_msg();
+		std::time_t			get_t_last_msg();
 		void				set_t_last_msg(const time_t time);
-		time_t				get_t_not_login();
+		std::time_t			get_t_not_login();
 		void				set_t_not_login(const time_t time);
 		void				reset_t_not_login();
 		void				reset_t_ping();
 		void				set_kick(const bool value);
 		bool				get_kick();
-		static time_t		get_time();
-		static void			get_time(time_t* var);
+		static std::time_t	get_time();
+		static void			get_time(std::time_t* var);
 		void				check_if_kick();
+		bool				launch_send_ping() const;
 };
 
 #endif
