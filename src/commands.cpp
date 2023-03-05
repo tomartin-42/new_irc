@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 19:39:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:41:59 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	commands::ping(user& user, std::string host_name)
 	user.user_times.set_s_ping(true);
 }
 
-void	commands::pong(user& user, std::string host_name)
+void	commands::pong(user& user)
 {
 	user.user_times.reset_t_ping();
 }
