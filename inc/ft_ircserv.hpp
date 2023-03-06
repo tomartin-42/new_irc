@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:13:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 19:24:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:45:04 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/socket.h>
 
 #define	HOST_NAME	"irc.teamA.com"
-#define	VERSION		"1.0"
+#define	VERSION		"IRC Server 2.0"
 #define	MAX_CONNECTIONS	10
 #define	DEFAULT_PORT	4242
 
