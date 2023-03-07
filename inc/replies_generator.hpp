@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/11 15:01:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:53:18 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ class replies_generator : public replies
 	std::string join_badchannelkey(const aux_channel& channel);
 	std::string join_channelisfull(const aux_channel& channel);
 	std::string join_badchanmask(const aux_channel& channel);
-	std::string join_nosuchchannel(const aux_channel& channel);
+	std::string join_nosuchchannel(const std::string str);
 	std::string join_toomanychannels(const aux_channel& channel);
 	std::string kick_needmoreparams(const std::string cmd);
-	std::string kick_nosuchchannel(const aux_channel& channel);
+	std::string kick_nosuchchannel(const std::string str);
 	std::string kick_badchanmask(const aux_channel& channel);
 	std::string kick_chanoprivsneeded(const aux_channel& channel);
 	std::string kick_notonchannel(const aux_channel& channel);
@@ -93,7 +93,7 @@ class replies_generator : public replies
 	std::string mode_notonchannel(const aux_channel& channel);
 	std::string mode_keyset(const aux_channel& channel);
 	std::string mode_unknownmode(const std::string& c, const aux_channel& channel);
-	std::string mode_nosuchchannel(const aux_channel& channel);
+	std::string mode_nosuchchannel(const std::string str);
 	std::string mode_usersdontmatch(void);
 	std::string mode_umodeunknownflag(void);
 	std::string modt_nomodtd(void);
@@ -104,7 +104,7 @@ class replies_generator : public replies
 	std::string oper_nooperhost(void);
 	std::string oper_passwdmismatch(void);
 	std::string part_needmoreparams(const std::string cmd);
-	std::string part_nosuchchannel(const aux_channel& channel);
+	std::string part_nosuchchannel(const std::string str);
 	std::string part_notonchannel(const aux_channel& channel);
 	std::string pass_needmoreparams(const std::string cmd);
 	std::string pass_alreadyregistred(void);

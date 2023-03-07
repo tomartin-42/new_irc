@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/11 16:02:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:54:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,9 +304,9 @@ std::string replies_generator::join_badchanmask(const aux_channel& channel)
 	return(generate_msg(471, channel.get_name(), "", "", ""));
 }
 
-std::string replies_generator::join_nosuchchannel(const aux_channel& channel)
+std::string replies_generator::join_nosuchchannel(const std::string str)
 {
-	return(generate_msg(403, channel.get_name(), "", "", ""));
+	return(generate_msg(403, str, "", "", ""));
 }
 
 std::string replies_generator::join_toomanychannels(const aux_channel& channel)
@@ -319,9 +319,9 @@ std::string replies_generator::kick_needmoreparams(const std::string cmd)
 	return(generate_msg(461, cmd, "", "", ""));
 }
 
-std::string replies_generator::kick_nosuchchannel(const aux_channel& channel)
+std::string replies_generator::kick_nosuchchannel(const std::string str)
 {
-	return(generate_msg(403, channel.get_name(), "", "", ""));
+	return(generate_msg(403, str, "", "", ""));
 }
 
 std::string replies_generator::kick_badchanmask(const aux_channel& channel)
@@ -389,9 +389,9 @@ std::string replies_generator::mode_unknownmode(const std::string& c, const aux_
 	return(generate_msg(472, c, channel.get_name(), "", ""));
 }
 
-std::string replies_generator::mode_nosuchchannel(const aux_channel& channel)
+std::string replies_generator::mode_nosuchchannel(const std::string str)
 {
-	return(generate_msg(403, channel.get_name(), "", "", ""));
+	return(generate_msg(403, str, "", "", ""));
 }
 	
 std::string replies_generator::mode_usersdontmatch(void)
@@ -444,9 +444,9 @@ std::string replies_generator::part_needmoreparams(const std::string cmd)
 	return(generate_msg(461, cmd, "", "", ""));
 }
 
-std::string replies_generator::part_nosuchchannel(const aux_channel& channel)
+std::string replies_generator::part_nosuchchannel(const std::string str)
 {
-	return(generate_msg(403, channel.get_name(), "", "", ""));
+	return(generate_msg(403, str, "", "", ""));
 }
 
 std::string replies_generator::part_notonchannel(const aux_channel& channel)
