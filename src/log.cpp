@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:33:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/02/05 19:41:16 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:34:33 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 log::log(const std::string path): log_path(path)
 {
 	try{
-		this->log_file.open(log_path, std::ios::out | std::ios::trunc);
+		this->log_file.open(log_path.c_str(), std::ios::out | std::ios::trunc);
 		this->log_file.close();
 	}
 	catch(const std::exception &e)
@@ -40,7 +40,7 @@ void	log::open_to_append()
 {
 	try
 	{
-		this->log_file.open(log_path, std::ios::out | std::ios::app);
+		this->log_file.open(log_path.c_str(), std::ios::out | std::ios::app);
 	}
 	catch(const std::exception &e)
 	{
