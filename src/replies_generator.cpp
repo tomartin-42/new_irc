@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 13:36:02 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 20:20:37 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ std::string replies_generator::join_ok(const aux_server& server)
 
 std::string replies_generator::list_ok(const aux_server& server)
 {
-	std::string answ;
-answ.append(generate_msg(322, server.get_chanel_name(), 
+	return(generate_msg(322, server.get_chanel_name(), 
 		server.get_chanel_topic(), "", ""));
-	answ.append(generate_msg(323, "", "", "", ""));
-	return answ;
+}
+
+std::string replies_generator::list_ok_end(const aux_server& server)
+{
+	return(generate_msg(323, "", "", "", ""));
 }
 
 std::string replies_generator::mode_us_ok(const user& user)
@@ -134,11 +136,22 @@ std::string replies_generator::motd_ok(const aux_server& server)
 
 std::string replies_generator::names_ok(const aux_channel& channel)
 {
-	std::string answ;
-	answ.append(generate_msg(353, channel.get_name(), channel.get_names_list(),
-		"", ""));
-	answ.append(generate_msg(366, channel.get_name(), "", "", ""));
-	return(answ);
+	return(generate_msg(353, channel.get_name(), channel.get_names_list(), "", ""));
+}
+
+std::string replies_generator::names_ok_end(const aux_channel& channel)
+{
+	return(generate_msg(366, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::names_nosuchserver(const aux_server& server)
+{
+	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::names_toomanymatches()
+{
+	return(generate_msg(503, "", "", "", ""));
 }
 
 std::string replies_generator::oper_ok(const aux_server& server)
@@ -152,7 +165,7 @@ std::string replies_generator::stats_l(const aux_server& server)
 	std::string answ;
 	answ.append(generate_msg(211, server.get_stats_l(), "", "", ""));
 	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
-	return(answ);
+	return(answ);TOOMANYMATCHES 
 }
 
 std::string replies_generator::stats_m(const aux_server& server)
@@ -362,6 +375,11 @@ std::string replies_generator::kill_nosuchnick(const user& user)
 std::string replies_generator::list_nosuchserver(const aux_server& server)
 {
 	return(generate_msg(402, server.get_name(), "", "", ""));
+}
+
+std::string replies_generator::list_toomanymatches()
+{
+	return(generate_msg(503, "", "", "", ""));
 }
 	
 std::string replies_generator::mode_needmoreparams(const std::string cmd)

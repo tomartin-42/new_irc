@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 15:23:34 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 20:06:30 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_UMODEUNKNOWNFLAG();
 		case 502:
 			return head + ERR_USERSDONTMATCH();
+		case 503:
+			return head + ERR_TOOMANYMATCHES();
 		//case 691:
 		//	return head + ERR_ALREADYBAN(arg1, arg2);
 		//case 692:
