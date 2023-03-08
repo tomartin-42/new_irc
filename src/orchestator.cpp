@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 15:02:32 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:12:46 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void    orchestator::orchestation()
 
 	while(usr_it != users.end())
     {
-		if (get_revent(usr_it->first) & POLLHUP)
+		if (get_revent(usr_it->first) & (POLLIN | POLLHUP))
 		{
 			std::cout << "POLLHUB RECV\n";
 			this->kill_list.push(std::make_pair(usr_it->first, std::string("POLLHUP")));
