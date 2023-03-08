@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:17:58 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 19:35:25 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/08 22:39:01 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	user::set_type(const char type)
 {
 	this->type = type;
 }
-
+/*
 short   user::send_or_recive() const
 {
 	if(this->type == EXPULSE)
@@ -37,7 +37,7 @@ short   user::send_or_recive() const
         return POLLIN;
     return POLLOUT;
 }
-
+*/
 std::string user::get_host_name() const
 {
 	return this->host_name;

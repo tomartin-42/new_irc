@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 19:40:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/08 22:39:08 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class user
 		user(int fd, char type, std::string host_name);
 		void		set_nick(const std::string name);
 		void		set_type(const char type);
-        short       send_or_recive() const;
+   //     short       send_or_recive() const;
 		std::string get_host_name() const;
 		int			get_fd() const;
 
