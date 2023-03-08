@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 11:57:46 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:02:32 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,14 @@ void	orchestator::accept_new_connect()
 void    orchestator::orchestation()
 {
 	std::map<int, user>::iterator	usr_it = users.begin();
+	//std::vector<int>				delete_list;
 
 	while(usr_it != users.end())
     {
 		if (get_revent(usr_it->first) & POLLHUP)
 		{
-			std::cout << "POLLHUB\n";
-			this->kill_list.push(std::make_pair(usr_it->first, std::string("")));
+			std::cout << "POLLHUB RECV\n";
+			this->kill_list.push(std::make_pair(usr_it->first, std::string("POLLHUP")));
 			//Desconectar
 			++usr_it;
 			continue;
@@ -80,24 +81,24 @@ void    orchestator::orchestation()
         this->send_msgs(usr_it->first);
         ++usr_it;
     }
-   // delete_users_from_list(this->kill_list);
+    //delete_users_from_list(delete_list);
 }
 
 
 //This function get the list that is generated in the orchestaton function 
 //and contains all sockets that have received a POLLHUP(forcing disconnection) signal
 //iterates through the entire list, deleting and removing the sockets in the list
-void	orchestator::delete_users_from_list(std::queue<std::pair<int, std::string> >& list)
+void	orchestator::delete_users_from_list()
 {
-	while(!list.empty())
+	while(!(this->kill_list.empty()))
 	{
-		std::pair<int, std::string>	del_user = list.front();
-		disconnect_user(del_user.first);
-		users.erase(del_user.first);
-		close_connection(del_user.first);
+		std::pair<int, std::string> 	user_kill = this->kill_list.front();
+		disconnect_user(user_kill.first);
+		users.erase(user_kill.first);
+		close_connection(user_kill.first);
 		// To debug
-		std::cout << "Desconectado FD: " << del_user.second << del_user.first << std::endl;
-		list.pop();
+		std::cout << "Desconectado FD: " << user_kill.second << " FD" << user_kill.first<< std::endl;
+		this->kill_list.pop();
 	}
 }
 
@@ -183,20 +184,13 @@ void	orchestator::check_status()
 	}
 }
 
-void	orchestator::kick_users()
-{
-	//this function load the user whill be kick in the kick list
-		std::map<int, user>::iterator	it = this->users.begin();
-		for(;it != this->users.end(); it++)
-		{
-			std::cout << "********" << std::endl;
-			if(it->second.user_times.get_kick() == KICK)
-				//add user to kick_list
-				this->kill_list.push(std::make_pair(it->second.get_fd(), std::string("")));
-		}
-}
-
 void	orchestator::clean_up()
 {
-	this->delete_users_from_list(this->kill_list);
+	std::map<int, user>::iterator	it = this->users.begin();
+	for(;it != this->users.end(); it++)
+	{
+		if(it->second.user_times.get_kick() == KICK)
+			this->kill_list.push(std::make_pair(it->first, std::string("EN KICK")));
+	}
+	this->delete_users_from_list();
 }

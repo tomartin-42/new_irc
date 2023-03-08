@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 13:00:12 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 11:54:08 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:46:35 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 		    my_server.orchestation();
 		    my_server.check_status();
 		    my_server.clean_up();
-		    //my_server.read_or_write_all_users();
 	    }
 	    return(0);
     }

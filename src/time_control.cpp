@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 19:40:00 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:57:09 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ time_control::time_control(): kick(OK), s_ping(false)
 	std::time_t now = time_control::get_time();
 	this->t_last_msg = now;
 	this->t_set_pollout = now;
+	this->t_no_ping = LONG_MAX;
 }
 
 time_t	time_control::get_t_ping() const
