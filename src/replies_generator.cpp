@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 20:20:37 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 20:45:40 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ std::string replies_generator::list_ok(const aux_server& server)
 		server.get_chanel_topic(), "", ""));
 }
 
-std::string replies_generator::list_ok_end(const aux_server& server)
+std::string replies_generator::list_ok_end(void)
 {
 	return(generate_msg(323, "", "", "", ""));
 }
@@ -165,7 +165,7 @@ std::string replies_generator::stats_l(const aux_server& server)
 	std::string answ;
 	answ.append(generate_msg(211, server.get_stats_l(), "", "", ""));
 	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
-	return(answ);TOOMANYMATCHES 
+	return(answ);
 }
 
 std::string replies_generator::stats_m(const aux_server& server)
@@ -344,7 +344,7 @@ std::string replies_generator::kick_nosuchchannel(const std::string str)
 
 std::string replies_generator::kick_badchanmask(const aux_channel& channel)
 {
-	return(generate_msg(471, channel.get_name(), "", "", ""));
+	return(generate_msg(476, channel.get_name(), "", "", ""));
 }
 
 std::string replies_generator::kick_chanoprivsneeded(const aux_channel& channel)
@@ -427,7 +427,7 @@ std::string replies_generator::mode_umodeunknownflag(void)
 	return(generate_msg(501, "", "", "", ""));
 }
 
-std::string replies_generator::modt_nomodtd(void)
+std::string replies_generator::motd_nomotd(void)
 {
 	return(generate_msg(422, "", "", "", ""));
 }

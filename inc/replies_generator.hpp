@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 20:20:48 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 20:46:03 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ class replies_generator : public replies
 	std::string kill_needmoreparams(const std::string cmd);
 	std::string kill_nosuchnick(const user& user);
 	std::string list_ok(const aux_server& server);
-	std::string list_ok_end(const aux_server& server);
+	std::string list_ok_end(void);
 	std::string list_nosuchserver(const aux_server& server);
 	std::string list_toomanymatches(void);
 	std::string mode_needmoreparams(const std::string cmd);
@@ -101,7 +101,7 @@ class replies_generator : public replies
 	std::string mode_nosuchchannel(const std::string str);
 	std::string mode_usersdontmatch(void);
 	std::string mode_umodeunknownflag(void);
-	std::string modt_nomodtd(void);
+	std::string motd_nomotd(void);
 	std::string nick_nonicknamegiven(void);
 	std::string nick_erroneusnickname(const user& user);
 	std::string nick_nicknameinuse(const user& user);
