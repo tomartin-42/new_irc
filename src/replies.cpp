@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/07 20:02:31 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:34:49 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_BADCHANNELKEY(arg1);
 		case 476:
 			return head + ERR_BADCHANMASK(arg1);
+		case 477:
+			return head + ERR_NOCHANMODES(arg1);
 		case 481:
 			return head + ERR_NOPRIVILEGES();
 		case 482:

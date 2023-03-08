@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/07 19:53:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:28:39 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ class replies_generator : public replies
 	std::string stats_nosuchserver(const aux_server& server);
 	std::string time_nosuchserver(const aux_server& server);
 	std::string topic_needmoreparams(const std::string cmd);
+	std::string topic_nochanmodes(const aux_channel& channel);
 	std::string topic_notonchannel(const aux_channel& channel);
 	std::string topic_chanoprivsneeded(const aux_channel& channel);
 	std::string user_needmoreparams(const std::string cmd);

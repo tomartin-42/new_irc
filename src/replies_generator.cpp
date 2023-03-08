@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/07 19:54:53 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:36:02 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,11 @@ std::string replies_generator::time(const aux_server& server)
 std::string replies_generator::topic_ok(const aux_channel& channel)
 {
 	return(generate_msg(332, channel.get_name(), channel.get_topic(), "", ""));
+}
+
+std::string replies_generator::topic_nochanmodes(const aux_channel& channel)
+{
+	return(generate_msg(477, channel.get_mode(), "", "", ""));
 }
 
 std::string replies_generator::topic_no(const aux_channel& channel)
