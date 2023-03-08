@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.cpp                                       :+:      :+:    :+:   */
+/*   internal_commands.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/06 22:38:50 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 11:07:07 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/commands.hpp"
+#include "../inc/internal_commands.hpp"
 
-void	commands::ping(user& user, std::string host_name)
+//This command will send when it necesary check the clinet's conexion
+//for example when the client pass a lot of time without send a msg
+//...
+void	internal_ping(user& user, std::string host_name)
 {
 	user.msg_out.direct_push(std::string(":" + host_name + " PING" + "\x0d\x0a"));
 	user.user_times.launch_t_ping();
 	user.user_times.set_s_ping(true);
 }
 
-void	commands::pong(user& user)
+//This command is the reply when the server received a ping msg
+void	internal_pong(user& user)
 {
 	user.user_times.reset_t_ping();
 }
 
-void	commands::time(user& user, std::string host_name)
+/*
+void	time(user& user, std::string host_name)
 {
 	std::time_t	t = time_control::get_time();
 	tm	*st = localtime(&t);
@@ -36,3 +41,4 @@ void	commands::time(user& user, std::string host_name)
 		<< std::setw(2) << ft_itoa(st->tm_mday) << "\x0d\x0a"; 
 	user.msg_out.direct_push(std::string(":" + host_name + " " + ms.str()));
 }
+*/
