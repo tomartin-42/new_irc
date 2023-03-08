@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 13:34:49 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:23:34 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + RPL_CHANNELMODEIS(arg1, arg2, arg3);
 		case 329:
 			return head + RPL_CREATIONTIME(arg1, arg2);
-//		case 331:
-//			return head + ERR_NOTOPIC(arg1);
+		case 331:
+			return head + RPL_NOTOPIC(arg1);
 		case 332:
 			return head + RPL_TOPIC(arg1, arg2);
 		case 341:
