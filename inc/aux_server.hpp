@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2022/11/21 19:06:42 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:07:42 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct aux_server
 	std::string get_version() const {return("V 1.0");}
 	std::string get_debug_lvl() const {return("???");}
 	std::string get_comment() const {return("Hola este es el server guay");}
+	std::string get_channel_list() const {return("Channel1, channel2");}
 
 };
 #endif
