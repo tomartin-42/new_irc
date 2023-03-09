@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 15:12:46 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/09 22:42:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ void	orchestator::clean_up()
 	std::map<int, user>::iterator	it = this->users.begin();
 	for(;it != this->users.end(); it++)
 	{
+		std::cout << it->second.user_times.get_kick() << std::endl;
 		if(it->second.user_times.get_kick() == KICK)
 			this->kill_list.push(std::make_pair(it->first, std::string("EN KICK")));
 	}

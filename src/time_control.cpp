@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 14:57:09 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/09 22:47:02 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ time_control::time_control(): kick(OK), s_ping(false)
 	this->t_last_msg = now;
 	this->t_set_pollout = now;
 	this->t_no_ping = LONG_MAX;
+	std::cout << "KICKVALUE= " << this->kick << std::endl;
 }
 
 time_t	time_control::get_t_ping() const
@@ -104,10 +105,12 @@ void	time_control::check_if_kick()
 {
 	time_t	now = time_control::get_time();	
 
+	std::cout << "KICKVALUESET0= " << this->kick << std::endl;
 	if((now - this->t_ping) > TIME_PING)
 		this->kick = KICK;
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
+	std::cout << "KICKVALUESET= " << this->kick << std::endl;
 }
 
 bool	time_control::launch_send_ping() const
