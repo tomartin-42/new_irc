@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:42:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 14:54:53 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/10 11:20:13 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class time_control
 {
 	private:
 		std::time_t	t_ping;
-		std::time_t	t_no_ping;
 		std::time_t	t_not_login;
 		std::time_t	t_set_pollout;
 		std::time_t	t_last_msg;
@@ -49,6 +48,7 @@ class time_control
 		bool				launch_send_ping() const;
 		void				set_s_ping(bool value);
 		bool				get_s_ping() const;
+		void				print_times();
 };
 
 #endif

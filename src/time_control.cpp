@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/09 22:47:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:21:44 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 time_control::time_control(): kick(OK), s_ping(false)
 { 
 	std::time_t now = time_control::get_time();
-	this->t_last_msg = now;
-	this->t_set_pollout = now;
-	this->t_no_ping = LONG_MAX;
-	std::cout << "KICKVALUE= " << this->kick << std::endl;
+	this->t_last_msg = now; //time when last msg send
+	this->t_set_pollout = LONG_MAX; //time to set to pollout
+	this->t_ping = LONG_MAX; //time when send last ping
 }
 
 time_t	time_control::get_t_ping() const
@@ -105,12 +104,17 @@ void	time_control::check_if_kick()
 {
 	time_t	now = time_control::get_time();	
 
-	std::cout << "KICKVALUESET0= " << this->kick << std::endl;
+	this->print_times();
 	if((now - this->t_ping) > TIME_PING)
 		this->kick = KICK;
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
-	std::cout << "KICKVALUESET= " << this->kick << std::endl;
+	this->print_times();
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	
 }
 
 bool	time_control::launch_send_ping() const
@@ -134,3 +138,18 @@ bool	time_control::get_s_ping() const
 {
 	return(this->s_ping);
 }
+
+//__________________DEBUG___________________//
+
+void	time_control::print_times()
+{
+	std::cout << "TIME T_PING: " << this->t_ping << std::endl;
+	std::cout << "TIME T_NOT_LOGIN: " << this->t_not_login << std::endl;
+	std::cout << "TIME T_SET_POLLOUT: " << this->t_set_pollout << std::endl;
+	std::cout << "TIME T_LAST_MSG: " << this->t_last_msg << std::endl;
+	std::cout << "KICK FLAG: " << this->kick << std::endl;
+	std::cout << "SEND PING: " << this->s_ping << std::endl;
+}
+
+
+
