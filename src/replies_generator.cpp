@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/09 21:39:08 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/10 19:20:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,14 +284,14 @@ std::string replies_generator::invite_chanoprivsneeded(const aux_channel& channe
 	return(generate_msg(483, channel.get_name(), "", "", ""));
 }
 
-std::string replies_generator::ison_needmoreparams(const std::string msg)
+std::string replies_generator::ison_needmoreparams()
 {
-	return(generate_msg(461, msg, "", "", ""));
+	return(generate_msg(461, "ISON", "", "", ""));
 }
 
-std::string replies_generator::join_needmoreparams(const std::string msg)
+std::string replies_generator::join_needmoreparams()
 {
-	return(generate_msg(461, msg, "", "", ""));
+	return(generate_msg(461, "JOIN", "", "", ""));
 }
 
 std::string replies_generator::join_bannedfromchan(const aux_channel& channel)
@@ -329,9 +329,9 @@ std::string replies_generator::join_toomanychannels(const aux_channel& channel)
 	return(generate_msg(405, channel.get_name(), "", "", ""));
 }
 
-std::string replies_generator::kick_needmoreparams(const std::string cmd)
+std::string replies_generator::kick_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "KICK", "", "", ""));
 }
 
 std::string replies_generator::kick_nosuchchannel(const std::string str)
@@ -354,14 +354,19 @@ std::string replies_generator::kick_notonchannel(const aux_channel& channel)
 	return(generate_msg(442, channel.get_name(), "", "", ""));
 }	
 
+std::string replies_generator::kick_usernotinchannel(const user& user, aux_channel& channel)
+{
+	return(generate_msg(441, user.get_nickname(), channel.get_name(), "", ""));
+}
+
 std::string replies_generator::kill_noprivileges(void)
 {
 	return(generate_msg(481, "", "", "", ""));
 }
 
-std::string replies_generator::kill_needmoreparams(const std::string cmd)
+std::string replies_generator::kill_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "KILL", "", "", ""));
 }
 
 std::string replies_generator::kill_nosuchnick(const user& user)
@@ -379,9 +384,9 @@ std::string replies_generator::list_toomanymatches()
 	return(generate_msg(503, "", "", "", ""));
 }
 	
-std::string replies_generator::mode_needmoreparams(const std::string cmd)
+std::string replies_generator::mode_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "MODE", "", "", ""));
 }
 
 std::string replies_generator::mode_chanoprovsneeded(const aux_channel& channel)
@@ -444,9 +449,9 @@ std::string replies_generator::nick_nicknameinuse(const user& user)
 	return(generate_msg(433, user.get_nickname(), "", "", ""));
 }
 
-std::string replies_generator::oper_needmoreparams(const std::string cmd)
+std::string replies_generator::oper_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "OPER", "", "", ""));
 }
 
 std::string replies_generator::oper_nooperhost(void)
@@ -459,9 +464,9 @@ std::string replies_generator::oper_passwdmismatch(void)
 	return(generate_msg(464, "", "", "", ""));
 }
 
-std::string replies_generator::part_needmoreparams(const std::string cmd)
+std::string replies_generator::part_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "PART", "", "", ""));
 }
 
 std::string replies_generator::part_nosuchchannel(const std::string str)
@@ -474,9 +479,9 @@ std::string replies_generator::part_notonchannel(const aux_channel& channel)
 	return(generate_msg(442, channel.get_name(), "", "", ""));
 }	
 
-std::string replies_generator::pass_needmoreparams(const std::string cmd)
+std::string replies_generator::pass_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "PASS", "", "", ""));
 }
 
 std::string replies_generator::pass_alreadyregistred(void)
@@ -544,9 +549,9 @@ std::string replies_generator::time_nosuchserver(const aux_server& server)
 	return(generate_msg(402, server.get_name(), "", "", ""));
 }
 
-std::string replies_generator::topic_needmoreparams(const std::string cmd)
+std::string replies_generator::topic_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "TOPIC", "", "", ""));
 }
 
 std::string replies_generator::topic_notonchannel(const aux_channel& channel)
@@ -559,9 +564,9 @@ std::string replies_generator::topic_chanoprivsneeded(const aux_channel& channel
 	return(generate_msg(482, channel.get_name(), "", "", ""));
 }
 
-std::string replies_generator::user_needmoreparams(const std::string cmd)
+std::string replies_generator::user_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "USER", "", "", ""));
 }
 
 std::string replies_generator::user_alreadyregistred(void)
@@ -569,9 +574,9 @@ std::string replies_generator::user_alreadyregistred(void)
 	return(generate_msg(462, "", "", "", ""));
 }
 
-std::string replies_generator::userhost_needmoreparams(const std::string cmd)
+std::string replies_generator::userhost_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "USERHOST", "", "", ""));
 }
 
 std::string replies_generator::users_nosuchserver(const aux_server& server)
@@ -594,9 +599,9 @@ std::string replies_generator::version_nosuchserver(const aux_server& server)
 	return(generate_msg(402, server.get_name(), "", "", ""));
 }
 
-std::string replies_generator::wallops_needmoreparams(const std::string cmd)
+std::string replies_generator::wallops_needmoreparams()
 {
-	return(generate_msg(461, cmd, "", "", ""));
+	return(generate_msg(461, "WALLOPS", "", "", ""));
 }
 
 std::string replies_generator::who_nosuchserver(const aux_server& server)

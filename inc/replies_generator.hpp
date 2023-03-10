@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/09 21:39:36 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/10 19:21:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ class replies_generator : public replies
 	std::string invite_notonchannel(const aux_channel& channel);
 	std::string invite_useronchannel(const user& user, const aux_channel& channel);
 	std::string invite_chanoprivsneeded(const aux_channel& channel);
-	std::string ison_needmoreparams(const std::string msg);
-	std::string join_needmoreparams(const std::string msg);
+	std::string ison_needmoreparams(void);
+	std::string join_needmoreparams(void);
 	std::string join_bannedfromchan(const aux_channel& channel);
 	std::string join_inviteonlychan(const aux_channel& channel);
 	std::string join_badchannelkey(const std::string msg);
@@ -81,17 +81,18 @@ class replies_generator : public replies
 	std::string join_badchanmask(const aux_channel& channel);
 	std::string join_nosuchchannel(const std::string str);
 	std::string join_toomanychannels(const aux_channel& channel);
-	std::string kick_needmoreparams(const std::string cmd);
+	std::string kick_needmoreparams(void);
 	std::string kick_nosuchchannel(const std::string str);
 	std::string kick_badchanmask(const aux_channel& channel);
 	std::string kick_chanoprivsneeded(const aux_channel& channel);
 	std::string kick_notonchannel(const aux_channel& channel);
+	std::string kick_usernotinchannel(const user& user, aux_channel& channel);
 	std::string kill_noprivileges(void);
-	std::string kill_needmoreparams(const std::string cmd);
+	std::string kill_needmoreparams(void);
 	std::string kill_nosuchnick(const user& user);
 	std::string list_nosuchserver(const aux_server& server);
 	std::string list_toomanymatches(void);
-	std::string mode_needmoreparams(const std::string cmd);
+	std::string mode_needmoreparams(void);
 	std::string mode_chanoprovsneeded(const aux_channel& channel);
 	std::string mode_nosuchnick(const user& user);
 	std::string mode_notonchannel(const aux_channel& channel);
@@ -104,13 +105,13 @@ class replies_generator : public replies
 	std::string nick_nonicknamegiven(void);
 	std::string nick_erroneusnickname(const user& user);
 	std::string nick_nicknameinuse(const user& user);
-	std::string oper_needmoreparams(const std::string cmd);
+	std::string oper_needmoreparams(void);
 	std::string oper_nooperhost(void);
 	std::string oper_passwdmismatch(void);
-	std::string part_needmoreparams(const std::string cmd);
+	std::string part_needmoreparams(void);
 	std::string part_nosuchchannel(const std::string str);
 	std::string part_notonchannel(const aux_channel& channel);
-	std::string pass_needmoreparams(const std::string cmd);
+	std::string pass_needmoreparams(void);
 	std::string pass_alreadyregistred(void);
 	std::string ping_noorigin(void);
 	std::string ping_nosuchserver(const aux_server& server);
@@ -125,18 +126,18 @@ class replies_generator : public replies
 	std::string privmsg_nosuchnick(const user& user);
 	std::string stats_nosuchserver(const aux_server& server);
 	std::string time_nosuchserver(const aux_server& server);
-	std::string topic_needmoreparams(const std::string cmd);
+	std::string topic_needmoreparams(void);
 	std::string topic_nochanmodes(const aux_channel& channel);
 	std::string topic_notonchannel(const aux_channel& channel);
 	std::string topic_chanoprivsneeded(const aux_channel& channel);
-	std::string user_needmoreparams(const std::string cmd);
+	std::string user_needmoreparams(void);
 	std::string user_alreadyregistred(void);
-	std::string userhost_needmoreparams(const std::string cmd);
+	std::string userhost_needmoreparams(void);
 	std::string users_nosuchserver(const aux_server& server);
 	std::string users_fileerror(const std::string f_o, const std::string file);
 	std::string users_usersdisabled(void);
 	std::string version_nosuchserver(const aux_server& server);
-	std::string wallops_needmoreparams(const std::string cmd);
+	std::string wallops_needmoreparams(void);
 	std::string who_nosuchserver(const aux_server& server);
 	std::string whois_nosuchserver(const aux_server& server);
 	std::string whois_nonicknamegiven(void);
