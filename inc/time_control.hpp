@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:42:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/10 11:20:13 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/10 18:16:45 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class time_control
 		void				launch_t_last_msg();
 		void				reset_ping_time();
 		std::time_t			get_t_last_msg();
-		void				set_t_last_msg(const time_t time);
+		void				reset_t_last_msg();
 		std::time_t			get_t_not_login();
 		void				set_t_not_login(const time_t time);
 		void				reset_t_not_login();

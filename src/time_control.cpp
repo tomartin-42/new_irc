@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/10 11:21:44 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/10 18:33:57 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ time_t	time_control::get_t_last_msg()
 	return this->t_last_msg;
 }
 
-void	time_control::set_t_last_msg(const time_t time)
+//when received a msg form user get the time now to
+//countdown to sen the ping
+void	time_control::reset_t_last_msg()
 {
-	this->t_last_msg = time;	
+	this->t_last_msg = time_control::get_time();	
 }
 
 time_t	time_control::get_t_not_login() 
@@ -110,11 +112,6 @@ void	time_control::check_if_kick()
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
 	this->print_times();
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << std::endl;
-	
 }
 
 bool	time_control::launch_send_ping() const
