@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 11:29:45 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 11:42:15 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,12 @@ std::string replies_generator::join_channelisfull(const aux_channel& channel)
 std::string replies_generator::join_badchanmask(const aux_channel& channel)
 {
 	return(generate_msg(471, channel.get_name(), "", "", ""));
+}
+
+std::string join_toomanytargets(const aux_channel& channel)
+{
+	(void)channel;
+	return(std::string("CODE 407"));
 }
 
 std::string replies_generator::join_nosuchchannel(const std::string str)

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 11:23:54 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 11:37:43 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ class replies_generator : public replies
 	std::string version_ok(const aux_server& server);
 	std::string who_ok(const user& user);
 	std::string list_ok(const aux_server& server);
-	// std::string whois_ok() // pending
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
@@ -81,6 +80,7 @@ class replies_generator : public replies
 	std::string join_badchanmask(const aux_channel& channel);
 	std::string join_nosuchchannel(const std::string str);
 	std::string join_toomanychannels(const aux_channel& channel);
+	std::string join_toomanytargets(const aux_channel& channel);
 	std::string kick_needmoreparams(void);
 	std::string kick_nosuchchannel(const std::string str);
 	std::string kick_badchanmask(const aux_channel& channel);
