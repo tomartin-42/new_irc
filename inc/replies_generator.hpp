@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 11:37:43 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 15:38:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ class replies_generator : public replies
 	std::string mode_uniqopis(const aux_channel& channel, const user& user);
 	std::string motd_ok(const aux_server& server);
 	std::string names_ok(const aux_channel& channel);
-	std::string names_ok_end(const aux_channel& channel);
-	std::string names_nosuchserver(const aux_server& server);
-	std::string names_toomanymatches(void);
 	std::string oper_ok(void);
 	std::string stats_l(const aux_server& server);
 	std::string stats_m(const aux_server& server);
@@ -58,14 +55,17 @@ class replies_generator : public replies
 	std::string version_ok(const aux_server& server);
 	std::string who_ok(const user& user);
 	std::string list_ok(const aux_server& server);
+	std::string whois_user(const user& user);
+	std::string whois_channels(const user& user, const aux_channel& channel);
+	std::string whois_away(const user& user);
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
-	std::string admin_fail(const aux_server& server);
+	std::string admin_nosuchserver(const aux_server& server);
 	std::string die_fail(void);
-	std::string info_fail(const aux_server& server);
+	std::string info_nosuchserver(const aux_server& server);
 	std::string invite_moreparams(const std::string msg);
 	std::string invite_nosuchnick(const user& user);
 	std::string invite_notonchannel(const aux_channel& channel);
@@ -80,7 +80,8 @@ class replies_generator : public replies
 	std::string join_badchanmask(const aux_channel& channel);
 	std::string join_nosuchchannel(const std::string str);
 	std::string join_toomanychannels(const aux_channel& channel);
-	std::string join_toomanytargets(const aux_channel& channel);
+	std::string join_toomanytargets(const std::string target);
+	std::string join_unavailresource(const aux_channel& channel);
 	std::string kick_needmoreparams(void);
 	std::string kick_nosuchchannel(const std::string str);
 	std::string kick_badchanmask(const aux_channel& channel);
@@ -92,6 +93,8 @@ class replies_generator : public replies
 	std::string kill_nosuchnick(const user& user);
 	std::string list_nosuchserver(const aux_server& server);
 	std::string list_toomanymatches(void);
+	std::string names_nosuchserver(const aux_server& server);
+	std::string names_toomanymatches(void);
 	std::string mode_needmoreparams(void);
 	std::string mode_chanoprovsneeded(const aux_channel& channel);
 	std::string mode_nosuchnick(const user& user);

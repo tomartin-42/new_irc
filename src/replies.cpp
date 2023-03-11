@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 20:42:07 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 15:11:03 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_TOOMANYCHANNELS(arg1);
 		case 406:
 			return head + ERR_WASNOSUCHNICK(arg1);
+		case 407:
+			return head + ERR_TOOMANYTARGETS(arg1);
 		case 409:
 			return head + ERR_NOORIGIN();
 	//	case 410:
@@ -210,6 +212,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_NICKNAMEINUSE(arg1);
 		case 436:
 			return head + ERR_NICKCOLLISION(arg1, arg2, arg3);
+		case 437:
+			return head + ERR_UNAVAILRESOURCE(arg1);
 		case 441:
 			return head + ERR_USERNOTINCHANNEL(arg1, arg2);
 		case 442:

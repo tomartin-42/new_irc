@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 20:07:08 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 14:58:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@
 # define ERR_UMODEUNKNOWNFLAG() (":Unknown MODE flag\r\n")
 # define ERR_USERSDONTMATCH() (":Cannot change mode for other users\r\n")
 # define ERR_TOOMANYMATCHES() (":Too many matchas\r\n")
+# define ERR_TOOMANYTARGETS(target) (target + ":Duplicate recipients. No message delivered\r\n")
 //# define ERR_UNKNOWNMODE(c, channel) (c + ":is unknown mode char to me for " + channel + "\r\n")
 
 #endif

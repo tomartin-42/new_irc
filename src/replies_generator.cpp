@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 11:42:15 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 15:38:46 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,10 @@ std::string replies_generator::motd_ok(const aux_server& server)
 
 std::string replies_generator::names_ok(const aux_channel& channel)
 {
-	return(generate_msg(353, channel.get_name(), channel.get_names_list(), "", ""));
-}
-
-std::string replies_generator::names_ok_end(const aux_channel& channel)
-{
-	return(generate_msg(366, channel.get_name(), "", "", ""));
+	std::string answ;
+	answ.append(generate_msg(353, channel.get_name(), channel.get_names_list(), "", ""));
+	answ.append(generate_msg(366, channel.get_name(), "", "", ""));
+	return(answ);
 }
 
 std::string replies_generator::names_nosuchserver(const aux_server& server)
@@ -248,12 +246,29 @@ std::string replies_generator::version_ok(const aux_server& server)
 		server.get_name(), server.get_comment()));
 }
 
+std::string replies_generator::whois_user(const user& user)
+{
+	return(generate_msg(311, user.get_nickname(), user.get_name(),
+				user.get_host_name(), user.get_realname()));
+}
+
+std::string replies_generator::whois_channels(const user& user, const aux_channel& channel)
+{
+	return(generate_msg(319, user.get_nickname(), channel.get_name(), "", ""));
+}
+
+std::string replies_generator::whois_away(const user& user)
+{
+	return (generate_msg(301, user.get_nickname(), 
+		user.get_away_msg(), "", ""));
+}
+	
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//
-std::string replies_generator::admin_fail(const aux_server& server)
+std::string replies_generator::admin_nosuchserver(const aux_server& server)
 {
 	return(generate_msg(402, server.get_name(), "", "", ""));
 }
@@ -263,7 +278,7 @@ std::string replies_generator::die_fail(void)
 	return(generate_msg(481, "", "", "", ""));
 }
 
-std::string replies_generator::info_fail(const aux_server& server)
+std::string replies_generator::info_nosuchserver(const aux_server& server)
 {
 	return(generate_msg(402, server.get_name(), "", "", ""));
 }
@@ -328,12 +343,6 @@ std::string replies_generator::join_badchanmask(const aux_channel& channel)
 	return(generate_msg(471, channel.get_name(), "", "", ""));
 }
 
-std::string join_toomanytargets(const aux_channel& channel)
-{
-	(void)channel;
-	return(std::string("CODE 407"));
-}
-
 std::string replies_generator::join_nosuchchannel(const std::string str)
 {
 	return(generate_msg(403, str, "", "", ""));
@@ -342,6 +351,16 @@ std::string replies_generator::join_nosuchchannel(const std::string str)
 std::string replies_generator::join_toomanychannels(const aux_channel& channel)
 {
 	return(generate_msg(405, channel.get_name(), "", "", ""));
+}
+
+std::string replies_generator::join_toomanytargets(const std::string target)
+{
+	return(generate_msg(407, target, "", "", ""));
+}
+
+std::string replies_generator::join_unavailresource(const aux_channel& channel)
+{
+	return(generate_msg(437, channel.get_name(), "", "", ""));
 }
 
 std::string replies_generator::kick_needmoreparams()

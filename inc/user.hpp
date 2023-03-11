@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:14:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 22:39:08 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 15:30:55 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ class user
 		std::string get_away_msg() const {return "AWAY MSG ESTOY COMIENDO";}
 		std::string get_modies() const {return "+Twx";}
 		std::string get_ip() const {return "192.168.10.1";}
+		std::string get_realname() const {return "PEPITO";}
 };
 #endif
