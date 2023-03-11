@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 14:58:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:17:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define RPL_UNAWAY() (":You are no longer marked as being away\r\n")
 # define RPL_NOWAWAY() (":You have been marked as being away\r\n")
 # define RPL_WHOISUSER(nick, user, host, realname) (nick + " " + user + " " + host + " * :" + realname + "\r\n")
-//# define RPL_WHOISSERVER(pseudo, server) (pseudo + " " + server + " :<info serveur>\r\n")
+# define RPL_WHOISSERVER(pseudo, server, info) (pseudo + " " + server + " :" + info + "\r\n")
 # define RPL_WHOISOPERATOR(pseudo) (pseudo + " :is an IRC operator\r\n")
 # define RPL_WHOISIDLE(pseudo, idle, signon) (pseudo + " " + idle + " " + signon + " :seconds idle, signon time\r\n")
 # define RPL_WHOREPLY(arg) (arg + "\r\n")

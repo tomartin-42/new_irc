@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 15:11:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:17:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + RPL_NOWAWAY();
 		case 311:
 			return head + RPL_WHOISUSER(arg1, arg2, arg3, arg4);
+		case 312:
+			return head + RPL_WHOISSERVER(arg1, arg2, arg3);
 		case 313:
 			return head + RPL_WHOISOPERATOR(arg1);
 		case 314:

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 15:38:33 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:18:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ class replies_generator : public replies
 	std::string whois_user(const user& user);
 	std::string whois_channels(const user& user, const aux_channel& channel);
 	std::string whois_away(const user& user);
+	std::string whois_idle(const user& user);
+	std::string whois_server(const user& user, aux_server& server);
+	std::string whois_operator(const user& user);
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//

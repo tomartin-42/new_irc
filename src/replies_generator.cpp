@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 15:38:46 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:19:53 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,10 +259,25 @@ std::string replies_generator::whois_channels(const user& user, const aux_channe
 
 std::string replies_generator::whois_away(const user& user)
 {
-	return (generate_msg(301, user.get_nickname(), 
+	return(generate_msg(301, user.get_nickname(), 
 		user.get_away_msg(), "", ""));
 }
 	
+std::string replies_generator::whois_idle(const user& user)
+{
+	return(generate_msg(317, user.get_pseudo(), user.get_idle(), user.get_signon(), ""));
+}
+
+std::string replies_generator::whois_server(const user& user, aux_server& server)
+{
+	return(generate_msg(312, user.get_nickname(), server.get_name(), server.get_info(), ""));
+}
+
+std::string replies_generator::whois_operator(const user& user)
+{
+	return(generate_msg(313, user.get_nickname(), "", "", ""));
+}
+
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
