@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 17:18:34 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:00:22 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class replies_generator : public replies
 	std::string mode_exceptlist(const aux_channel& channel);
 	std::string mode_invitelist(const aux_channel& channel);
 	std::string mode_uniqopis(const aux_channel& channel, const user& user);
+	std::string mode_channelmodeis(const aux_channel& channel);
 	std::string motd_ok(const aux_server& server);
 	std::string names_ok(const aux_channel& channel);
 	std::string oper_ok(void);
@@ -101,8 +102,10 @@ class replies_generator : public replies
 	std::string mode_needmoreparams(void);
 	std::string mode_chanoprovsneeded(const aux_channel& channel);
 	std::string mode_nosuchnick(const user& user);
+	std::string mode_usernotinchannel(const user& user, const aux_channel& channel);
 	std::string mode_notonchannel(const aux_channel& channel);
 	std::string mode_keyset(const aux_channel& channel);
+	std::string mode_nochanmodes(const aux_channel& channel);
 	std::string mode_unknownmode(const std::string& c, const aux_channel& channel);
 	std::string mode_nosuchchannel(const std::string str);
 	std::string mode_usersdontmatch(void);
@@ -128,6 +131,7 @@ class replies_generator : public replies
 	std::string privmsg_cannotsendtochan(const aux_channel& channel);
 	std::string privmsg_notoplevel(const std::string mask);
 	std::string privmsg_wildtoplevel(const std::string mask);
+	std::string privmsg_toomanytargets(const std::string target);
 	//std::string privmsg_toomanytargets(const std::string mask);
 	std::string privmsg_nosuchnick(const user& user);
 	std::string stats_nosuchserver(const aux_server& server);

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:52:41 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/09 21:04:10 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/11 17:43:08 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct aux_channel
 	std::string get_names_list() const {return("NAME LIST CMD NAMES");}
 	std::string get_nickname_q() const {return("ONE NIKNAME");}
 	std::string get_channel_topic() const {return("ONE TOPIC");}
+	std::string get_params() const {return("NPI");}
 };
 
 #endif

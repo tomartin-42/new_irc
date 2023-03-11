@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 17:17:20 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:55:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,8 +192,6 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_TOOMANYTARGETS(arg1);
 		case 409:
 			return head + ERR_NOORIGIN();
-	//	case 410:
-	//		return head + ERR_INVALIDCAP(arg1);
 		case 411:
 			return head + ERR_NORECIPIENT(arg1);
 		case 412:
@@ -236,8 +234,6 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_UNKNOWNMODE(arg1, arg2);
 		case 473:
 			return head + ERR_INVITEONLYCHAN(arg1);
-		//case 474:
-		//	return head + ERR_BANNEDFROMCHAN(arg1);
 		case 475:
 			return head + ERR_BADCHANNELKEY(arg1);
 		case 476:
@@ -258,10 +254,6 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 			return head + ERR_USERSDONTMATCH();
 		case 503:
 			return head + ERR_TOOMANYMATCHES();
-		//case 691:
-		//	return head + ERR_ALREADYBAN(arg1, arg2);
-		//case 692:
-		//	return head + ERR_KILLDENY(arg1);
 		default:
 			return std::string("");
 	}
