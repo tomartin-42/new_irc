@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/10 19:20:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 11:29:45 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,15 @@ std::string replies_generator::stats_m(const aux_server& server)
 	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
 	return(answ);
 }
+
+std::string replies_generator::who_ok(const user& user)
+{
+	std::string answ;
+	answ.append(generate_msg(352, "LO QUE SEA", "", "", ""));
+	answ.append(generate_msg(315, user.get_name(), "", "", ""));
+	return(answ);
+}
+
 
 std::string replies_generator::stats_o(const aux_server& server)
 {
