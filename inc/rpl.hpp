@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 17:17:28 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:47:32 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define RPL_ENDOFMOTD() (":End of MOTD command\r\n")
 # define RPL_YOUREOPER() (":You are now an IRC operator\r\n")
 # define RPL_REHASHING(config_file) (config_file + " :Rehashing\r\n")
-# define RPL_TIME(server, time_serveur) (server + " :" + time_serveur + "\r\n")
+# define RPL_TIME(server, time_server) (server + " :" + time_server + "\r\n")
 # define RPL_USERSSTART() (":UserID Terminal HosHost\r\n")
 # define RPL_USERS(users_rpy) (":" + users_rpy + "\r\n")
 # define RPL_ENDOFUSERS() (":End of users\r\n")
