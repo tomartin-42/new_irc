@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 18:02:04 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:27:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,9 +201,9 @@ std::string replies_generator::stats_u(const aux_server& server)
 	return(answ);
 }
 
-std::string replies_generator::time(const aux_server& server)
+std::string replies_generator::time_ok(const aux_server& server, const std::string hour)
 {
-	return(generate_msg(391, server.get_name(), server.get_time(), "", ""));
+	return(generate_msg(391, server.get_name(), hour, "", ""));
 }
 
 std::string replies_generator::topic_ok(const aux_channel& channel)

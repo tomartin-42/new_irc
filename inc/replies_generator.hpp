@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 18:00:22 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:27:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class replies_generator : public replies
 	std::string stats_m(const aux_server& server);
 	std::string stats_o(const aux_server& server);
 	std::string stats_u(const aux_server& server);
-	std::string time(const aux_server& server);
+	std::string time_ok(const aux_server& server, const std::string hour);
 	std::string topic_ok(const aux_channel& channel);
 	std::string topic_no(const aux_channel& channel);
 	std::string userhost_ok(const aux_server& server);
@@ -62,6 +62,7 @@ class replies_generator : public replies
 	std::string whois_idle(const user& user);
 	std::string whois_server(const user& user, aux_server& server);
 	std::string whois_operator(const user& user);
+	std::string ping_nooring(void);
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
