@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   internal_commands.hpp                              :+:      :+:    :+:   */
+/*   tommy_commands.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 18:05:01 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/12 17:03:14 by tomartin         ###   ########.fr       */
+/*   Created: 2023/03/12 17:35:13 by tomartin          #+#    #+#             */
+/*   Updated: 2023/03/12 19:02:34 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _INTERNAL_COMMANDS_HPP_
-# define _INTERNAL_COMMANDS_HPP_
-
-#include <string>
-#include <iomanip>
-#include <sstream>
+#include "replies_generator.hpp"
 #include "user.hpp"
-#include "replies.hpp"
+#include "aux_server.hpp"
 
-void	internal_ping(user& user, std::string host_name);
-//void	internal_pong(user& user);
-//void	time(user& user, std::string host_name);
 
-#endif
+void	command_ping(user& user, replies_generator& replies, aux_server& server);
+void	command_pong(user& user, replies_generator& replies, aux_server& server);
+

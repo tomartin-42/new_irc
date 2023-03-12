@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:05:49 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 11:07:07 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/12 19:04:43 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	internal_ping(user& user, std::string host_name)
 	user.user_times.set_s_ping(true);
 }
 
+/*
 //This command is the reply when the server received a ping msg
 void	internal_pong(user& user)
 {
-	user.user_times.reset_t_ping();
+user.user_times.reset_t_ping();
 }
 
-/*
 void	time(user& user, std::string host_name)
 {
 	std::time_t	t = time_control::get_time();
