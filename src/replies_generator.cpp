@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/13 21:22:45 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/13 21:24:51 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -718,3 +718,4 @@ void replies_generator::load_reply_to_users(std::queue<user> &user_list, std::st
 		user_list.pop();
 	}
 }
+
