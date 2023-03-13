@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/12 19:27:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:21:50 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ class replies_generator : public replies
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
-	std::string admin_nosuchserver(const aux_server& server);
+	std::string admin_nosuchserver(const std::string& server_name);
 	std::string die_fail(void);
-	std::string info_nosuchserver(const aux_server& server);
+	std::string info_nosuchserver(const std::string& server_name);
 	std::string invite_moreparams(const std::string msg);
 	std::string invite_nosuchnick(const user& user);
 	std::string invite_notonchannel(const aux_channel& channel);
@@ -96,9 +96,9 @@ class replies_generator : public replies
 	std::string kill_noprivileges(void);
 	std::string kill_needmoreparams(void);
 	std::string kill_nosuchnick(const user& user);
-	std::string list_nosuchserver(const aux_server& server);
+	std::string list_nosuchserver(const std::string& server_name);
 	std::string list_toomanymatches(void);
-	std::string names_nosuchserver(const aux_server& server);
+	std::string names_nosuchserver(const std::string& server_name);
 	std::string names_toomanymatches(void);
 	std::string mode_needmoreparams(void);
 	std::string mode_chanoprovsneeded(const aux_channel& channel);
@@ -124,9 +124,9 @@ class replies_generator : public replies
 	std::string pass_needmoreparams(void);
 	std::string pass_alreadyregistred(void);
 	std::string ping_noorigin(void);
-	std::string ping_nosuchserver(const aux_server& server);
+	std::string ping_nosuchserver(const std::string& server_name);
 	std::string pong_noorigin(void);
-	std::string pong_nosuchserver(const aux_server& server);
+	std::string pong_nosuchserver(const std::string& server_name);
 	std::string privmsg_norecipient(const std::string cmd);
 	std::string privmsg_notexttosend(void);
 	std::string privmsg_cannotsendtochan(const aux_channel& channel);
@@ -135,8 +135,8 @@ class replies_generator : public replies
 	std::string privmsg_toomanytargets(const std::string target);
 	//std::string privmsg_toomanytargets(const std::string mask);
 	std::string privmsg_nosuchnick(const user& user);
-	std::string stats_nosuchserver(const aux_server& server);
-	std::string time_nosuchserver(const aux_server& server);
+	std::string stats_nosuchserver(const std::string& server_name);
+	std::string time_nosuchserver(const std::string& server_name);
 	std::string topic_needmoreparams(void);
 	std::string topic_nochanmodes(const aux_channel& channel);
 	std::string topic_notonchannel(const aux_channel& channel);
@@ -144,13 +144,13 @@ class replies_generator : public replies
 	std::string user_needmoreparams(void);
 	std::string user_alreadyregistred(void);
 	std::string userhost_needmoreparams(void);
-	std::string users_nosuchserver(const aux_server& server);
+	std::string users_nosuchserver(const std::string& server_name);
 	std::string users_fileerror(const std::string f_o, const std::string file);
 	std::string users_usersdisabled(void);
-	std::string version_nosuchserver(const aux_server& server);
+	std::string version_nosuchserver(const std::string& server_name);
 	std::string wallops_needmoreparams(void);
-	std::string who_nosuchserver(const aux_server& server);
-	std::string whois_nosuchserver(const aux_server& server);
+	std::string who_nosuchserver(const std::string& server_name);
+	std::string whois_nosuchserver(const std::string& server_name);
 	std::string whois_nonicknamegiven(void);
 	std::string whois_nosuchnick(const user& user);
 	std::string whowas_nonicknamegiven(void);

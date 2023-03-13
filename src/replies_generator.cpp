@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/12 19:27:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:22:45 by tommy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,9 @@ std::string replies_generator::names_ok(const aux_channel& channel)
 	return(answ);
 }
 
-std::string replies_generator::names_nosuchserver(const aux_server& server)
+std::string replies_generator::names_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::names_toomanymatches()
@@ -283,9 +283,9 @@ std::string replies_generator::whois_operator(const user& user)
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//
-std::string replies_generator::admin_nosuchserver(const aux_server& server)
+std::string replies_generator::admin_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::die_fail(void)
@@ -293,9 +293,9 @@ std::string replies_generator::die_fail(void)
 	return(generate_msg(481, "", "", "", ""));
 }
 
-std::string replies_generator::info_nosuchserver(const aux_server& server)
+std::string replies_generator::info_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::invite_moreparams(const std::string msg)
@@ -423,9 +423,9 @@ std::string replies_generator::kill_nosuchnick(const user& user)
 	return(generate_msg(401, user.get_nickname(), "", "", ""));
 }
 	
-std::string replies_generator::list_nosuchserver(const aux_server& server)
+std::string replies_generator::list_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::list_toomanymatches()
@@ -558,9 +558,9 @@ std::string replies_generator::ping_noorigin(void)
 	return(generate_msg(409, "", "", "", ""));
 }
 
-std::string replies_generator::ping_nosuchserver(const aux_server& server)
+std::string replies_generator::ping_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::pong_noorigin(void)
@@ -568,9 +568,9 @@ std::string replies_generator::pong_noorigin(void)
 	return(generate_msg(409, "", "", "", ""));
 }
 
-std::string replies_generator::pong_nosuchserver(const aux_server& server)
+std::string replies_generator::pong_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::privmsg_norecipient(const std::string cmd)
@@ -608,14 +608,14 @@ std::string replies_generator::privmsg_toomanytargets(const std::string target)
 	return(generate_msg(407, target, "", "", ""));
 }
 
-std::string replies_generator::stats_nosuchserver(const aux_server& server)
+std::string replies_generator::stats_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::time_nosuchserver(const aux_server& server)
+std::string replies_generator::time_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::topic_needmoreparams()
@@ -653,9 +653,9 @@ std::string replies_generator::userhost_needmoreparams()
 	return(generate_msg(461, "USERHOST", "", "", ""));
 }
 
-std::string replies_generator::users_nosuchserver(const aux_server& server)
+std::string replies_generator::users_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::users_fileerror(const std::string f_o, const std::string file)
@@ -668,9 +668,9 @@ std::string replies_generator::users_usersdisabled(void)
 	return(generate_msg(446, "", "", "", ""));
 }
 
-std::string replies_generator::version_nosuchserver(const aux_server& server)
+std::string replies_generator::version_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::wallops_needmoreparams()
@@ -678,14 +678,14 @@ std::string replies_generator::wallops_needmoreparams()
 	return(generate_msg(461, "WALLOPS", "", "", ""));
 }
 
-std::string replies_generator::who_nosuchserver(const aux_server& server)
+std::string replies_generator::who_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::whois_nosuchserver(const aux_server& server)
+std::string replies_generator::whois_nosuchserver(const std::string& server_name)
 {
-	return(generate_msg(402, server.get_name(), "", "", ""));
+	return(generate_msg(402, server_name, "", "", ""));
 }
 
 std::string replies_generator::whois_nonicknamegiven(void)
