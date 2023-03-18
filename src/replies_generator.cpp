@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 12:01:38 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:13:56 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,49 +81,53 @@ std::string replies_generator::mode_banlist(const string& channel_ban_list, cons
 	return answ;
 }
 
-std::string replies_generator::mode_exceptlist(const aux_channel& channel)
+std::string replies_generator::mode_exceptlist(const string& channel_excep_list, const string& channel_name)
 {
 	std::string answ;
-	answ.append(generate_msg(348, channel.get_name(), channel.get_excep_list(),
-		"", ""));
-	answ.append(generate_msg(349, channel.get_name(), "", "", ""));
+	answ.append(generate_msg(348, channel_name, channel_excep_list,	"", ""));
+	answ.append(generate_msg(349, channel_name, "", "", ""));
 	return(answ);
 }
 
-std::string replies_generator::mode_invitelist(const aux_channel& channel)
+std::string replies_generator::mode_invitelist(const string& channel_invite_list, const string& channel_name)
 {
 	std::string answ;
-	answ.append(generate_msg(346, channel.get_name(), channel.get_invite_list(),
-		"", ""));
-	answ.append(generate_msg(347, channel.get_name(), "", "", ""));
+	answ.append(generate_msg(346, channel_name, channel_invite_list,	"", ""));
+	answ.append(generate_msg(347, channel_name, "", "", ""));
 	return(answ);
 }
 
-std::string replies_generator::mode_uniqopis(const aux_channel& channel, const user& user)
+std::string replies_generator::mode_uniqopis(const string& channel_name, const string& user_nick)
 {
-	return(generate_msg(325, channel.get_name(), user.get_nickname(), "", ""));
+	return(generate_msg(325, channel_name, user_nick, "", ""));
 }
 
-std::string replies_generator::mode_channelmodeis(const aux_channel& channel)
+std::string replies_generator::mode_channelmodeis(const string& channel_name, 
+		const string& channel_mode, const string& channel_params)
 {
-	return(generate_msg(324, channel.get_name(), channel.get_mode(), channel.get_params(), ""));
+	return(generate_msg(324, channel_name, channel_mode, channel_params, ""));
 }
 
-std::string replies_generator::motd_ok(const aux_server& server)
+std::string replies_generator::motd_ok(const string& server_name, const string& server_motd)
 {
 	std::string answ;
-	answ.append(generate_msg(375, server.get_name(), "", "", ""));
-	answ.append(generate_msg(372, server.get_motd(), "", "", ""));
+	answ.append(generate_msg(375, server_name, "", "", ""));
+	answ.append(generate_msg(372, server_motd, "", "", ""));
 	answ.append(generate_msg(376, "", "", "", ""));
 	return(answ);
 }
 
-std::string replies_generator::names_ok(const aux_channel& channel)
+std::string replies_generator::names_ok(const string& channel_name, const string& channel_names_list)
 {
 	std::string answ;
-	answ.append(generate_msg(353, channel.get_name(), channel.get_names_list(), "", ""));
-	answ.append(generate_msg(366, channel.get_name(), "", "", ""));
+	answ.append(generate_msg(353, channel_name, channel_names_list, "", ""));
+	answ.append(generate_msg(366, channel_name, "", "", ""));
 	return(answ);
+}
+
+std::string replies_generator::oper_ok()
+{
+	return(generate_msg(381, "", "", "", ""));
 }
 
 std::string replies_generator::names_nosuchserver(const std::string& server_name)
@@ -134,11 +138,6 @@ std::string replies_generator::names_nosuchserver(const std::string& server_name
 std::string replies_generator::names_toomanymatches()
 {
 	return(generate_msg(503, "", "", "", ""));
-}
-
-std::string replies_generator::oper_ok()
-{
-	return(generate_msg(381, "", "", "", ""));
 }
 
 std::string replies_generator::stats_l(const aux_server& server)

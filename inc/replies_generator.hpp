@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 12:01:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:12:18 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ class replies_generator : public replies
 	std::string mode_ch_ok(const string& channel_name, const string& channel_mode,
 			const string& channel_mod_params);
 	std::string mode_banlist(const string& channel_ban_list, const string& channel_name);
-	std::string mode_exceptlist(const aux_channel& channel);
-	std::string mode_invitelist(const aux_channel& channel);
-	std::string mode_uniqopis(const aux_channel& channel, const user& user);
-	std::string mode_channelmodeis(const aux_channel& channel);
-	std::string motd_ok(const aux_server& server);
-	std::string names_ok(const aux_channel& channel);
+	std::string mode_exceptlist(const string& channel_excep_list, const string& channel_name);
+	std::string mode_invitelist(const string& channel_invite_list, const string& channel_name);
+	std::string mode_uniqopis(const string& channel_name, const string& user_nick);
+	std::string mode_channelmodeis(const string& channel_name, 
+			const string& channel_mode, const string& channel_params);
+	std::string motd_ok(const string& server_name, const string& server_motd);
+	std::string names_ok(const string& channel_name, const string& channel_names_list);
 	std::string oper_ok(void);
 	std::string stats_l(const aux_server& server);
 	std::string stats_m(const aux_server& server);
