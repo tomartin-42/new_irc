@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 13:24:39 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:08:01 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,7 +313,7 @@ std::string replies_generator::join_inviteonlychan(const string& channel_name)
 	return(generate_msg(473, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_badchannelkey(const std::string& msg)
+std::string replies_generator::join_badchannelkey(const string& msg)
 {
 	return(generate_msg(475, msg, "", "", ""));
 }
@@ -328,7 +328,7 @@ std::string replies_generator::join_badchanmask(const string& channel_name)
 	return(generate_msg(471, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_nosuchchannel(const std::string& str)
+std::string replies_generator::join_nosuchchannel(const string& str)
 {
 	return(generate_msg(403, str, "", "", ""));
 }
@@ -338,7 +338,7 @@ std::string replies_generator::join_toomanychannels(const string& channel_name)
 	return(generate_msg(405, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_toomanytargets(const std::string& target)
+std::string replies_generator::join_toomanytargets(const string& target)
 {
 	return(generate_msg(407, target, "", "", ""));
 }
@@ -358,24 +358,24 @@ std::string replies_generator::kick_nosuchchannel(const std::string str)
 	return(generate_msg(403, str, "", "", ""));
 }
 
-std::string replies_generator::kick_badchanmask(const aux_channel& channel)
+std::string replies_generator::kick_badchanmask(const string& channel_name)
 {
-	return(generate_msg(476, channel.get_name(), "", "", ""));
+	return(generate_msg(476, channel_name, "", "", ""));
 }
 
-std::string replies_generator::kick_chanoprivsneeded(const aux_channel& channel)
+std::string replies_generator::kick_chanoprivsneeded(const string& channel_name)
 {
-	return(generate_msg(482, channel.get_name(), "", "", ""));
+	return(generate_msg(482, channel_name, "", "", ""));
 }
 
-std::string replies_generator::kick_notonchannel(const aux_channel& channel)
+std::string replies_generator::kick_notonchannel(const string& channel_name)
 {
-	return(generate_msg(442, channel.get_name(), "", "", ""));
+	return(generate_msg(442, channel_name, "", "", ""));
 }	
 
-std::string replies_generator::kick_usernotinchannel(const user& user, aux_channel& channel)
+std::string replies_generator::kick_usernotinchannel(const string& user_nick, const string& channel_name)
 {
-	return(generate_msg(441, user.get_nickname(), channel.get_name(), "", ""));
+	return(generate_msg(441, user_nick, channel_name, "", ""));
 }
 
 std::string replies_generator::kill_noprivileges(void)
@@ -388,12 +388,12 @@ std::string replies_generator::kill_needmoreparams()
 	return(generate_msg(461, "KILL", "", "", ""));
 }
 
-std::string replies_generator::kill_nosuchnick(const user& user)
+std::string replies_generator::kill_nosuchnick(const string& user_nick)
 {
-	return(generate_msg(401, user.get_nickname(), "", "", ""));
+	return(generate_msg(401, user_nick, "", "", ""));
 }
 	
-std::string replies_generator::list_nosuchserver(const std::string& server_name)
+std::string replies_generator::list_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
@@ -403,37 +403,46 @@ std::string replies_generator::list_toomanymatches()
 	return(generate_msg(503, "", "", "", ""));
 }
 	
+std::string replies_generator::names_nosuchserver(const string& server_name)
+{
+	return(generate_msg(402, server_name, "", "", ""));
+}
+
+std::string replies_generator::names_toomanymatches()
+{
+	return(generate_msg(503, "", "", "", ""));
+}
 std::string replies_generator::mode_needmoreparams()
 {
 	return(generate_msg(461, "MODE", "", "", ""));
 }
 
-std::string replies_generator::mode_chanoprovsneeded(const aux_channel& channel)
+std::string replies_generator::mode_chanoprovsneeded(const string& channel_name)
 {
-	return(generate_msg(483, channel.get_name(), "", "", ""));
+	return(generate_msg(483, channel_name, "", "", ""));
 }
 
-std::string replies_generator::mode_nosuchnick(const user& user)
+std::string replies_generator::mode_nosuchnick(const string& user_nick)
 {
-	return(generate_msg(401, user.get_nickname(), "", "", ""));
+	return(generate_msg(401, user_nick, "", "", ""));
 }
 
-std::string replies_generator::mode_notonchannel(const aux_channel& channel)
+std::string replies_generator::mode_notonchannel(const string& channel_name)
 {
-	return(generate_msg(442, channel.get_name(), "", "", ""));
+	return(generate_msg(442, channel_name, "", "", ""));
 }
 
-std::string replies_generator::mode_keyset(const aux_channel& channel)
+std::string replies_generator::mode_keyset(const string& channel_name)
 {
-	return(generate_msg(467, channel.get_name(), "", "", ""));
+	return(generate_msg(467, channel_name, "", "", ""));
 }
 
-std::string replies_generator::mode_unknownmode(const std::string& c, const aux_channel& channel)
+std::string replies_generator::mode_unknownmode(const string& c, const string& channel_name)
 {
-	return(generate_msg(472, c, channel.get_name(), "", ""));
+	return(generate_msg(472, c, channel_name, "", ""));
 }
 
-std::string replies_generator::mode_nosuchchannel(const std::string str)
+std::string replies_generator::mode_nosuchchannel(const string& str)
 {
 	return(generate_msg(403, str, "", "", ""));
 }
@@ -448,14 +457,14 @@ std::string replies_generator::mode_umodeunknownflag(void)
 	return(generate_msg(501, "", "", "", ""));
 }
 
-std::string replies_generator::mode_nochanmodes(const aux_channel& channel)
+std::string replies_generator::mode_nochanmodes(const string& channel_name)
 {
-	return(generate_msg(477, channel.get_name(), "", "", ""));
+	return(generate_msg(477, channel_name, "", "", ""));
 }
 
-std::string replies_generator::mode_usernotinchannel(const user& user, const aux_channel& channel)
+std::string replies_generator::mode_usernotinchannel(const string& user_nick, const string& channel_name)
 {
-	return(generate_msg(441, user.get_nickname(), channel.get_name(), "", ""));
+	return(generate_msg(441, user_nick, channel_name, "", ""));
 }
 
 std::string replies_generator::motd_nomotd(void)
@@ -468,14 +477,14 @@ std::string replies_generator::nick_nonicknamegiven(void)
 	return(generate_msg(431, "", "", "", ""));
 }
 
-std::string replies_generator::nick_erroneusnickname(const user& user)
+std::string replies_generator::nick_erroneusnickname(const string& user_nick)
 {
-	return(generate_msg(432, user.get_nickname(), "", "", ""));
+	return(generate_msg(432, user_nick, "", "", ""));
 }
 
-std::string replies_generator::nick_nicknameinuse(const user& user)
+std::string replies_generator::nick_nicknameinuse(const string& user_nick)
 {
-	return(generate_msg(433, user.get_nickname(), "", "", ""));
+	return(generate_msg(433, user_nick, "", "", ""));
 }
 
 std::string replies_generator::oper_needmoreparams()
@@ -498,14 +507,14 @@ std::string replies_generator::part_needmoreparams()
 	return(generate_msg(461, "PART", "", "", ""));
 }
 
-std::string replies_generator::part_nosuchchannel(const std::string str)
+std::string replies_generator::part_nosuchchannel(const string& str)
 {
 	return(generate_msg(403, str, "", "", ""));
 }
 
-std::string replies_generator::part_notonchannel(const aux_channel& channel)
+std::string replies_generator::part_notonchannel(const string& channel_name)
 {
-	return(generate_msg(442, channel.get_name(), "", "", ""));
+	return(generate_msg(442, channel_name, "", "", ""));
 }
 
 //std::string replies_generator::mode_nochanmodes(const aux_channel& channel)
@@ -543,7 +552,7 @@ std::string replies_generator::pong_nosuchserver(const std::string& server_name)
 	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::privmsg_norecipient(const std::string cmd)
+std::string replies_generator::privmsg_norecipient(const string& cmd)
 {
 	return(generate_msg(411, cmd, "", "", ""));
 }
@@ -553,37 +562,37 @@ std::string replies_generator::privmsg_notexttosend(void)
 	return(generate_msg(411, "", "", "", ""));
 }
 
-std::string replies_generator::privmsg_cannotsendtochan(const aux_channel& channel)
+std::string replies_generator::privmsg_cannotsendtochan(const string& channel_name)
 {
-	return(generate_msg(404, channel.get_name(), "", "", ""));
+	return(generate_msg(404, channel_name, "", "", ""));
 }
 
-std::string replies_generator::privmsg_notoplevel(const std::string mask)
+std::string replies_generator::privmsg_notoplevel(const string& mask)
 {
 	return(generate_msg(413, mask, "", "", ""));
 }
 
-std::string replies_generator::privmsg_wildtoplevel(const std::string mask)
+std::string replies_generator::privmsg_wildtoplevel(const string& mask)
 {
 	return(generate_msg(444, mask, "", "", ""));
 }
 
-std::string replies_generator::privmsg_nosuchnick(const user& user)
+std::string replies_generator::privmsg_nosuchnick(const string& user_nick)
 {
-	return(generate_msg(401, user.get_name(), "", "", ""));
+	return(generate_msg(401, user_nick, "", "", ""));
 }
 
-std::string replies_generator::privmsg_toomanytargets(const std::string target)
+std::string replies_generator::privmsg_toomanytargets(const string& target)
 {
 	return(generate_msg(407, target, "", "", ""));
 }
 
-std::string replies_generator::stats_nosuchserver(const std::string& server_name)
+std::string replies_generator::stats_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::time_nosuchserver(const std::string& server_name)
+std::string replies_generator::time_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
@@ -593,19 +602,19 @@ std::string replies_generator::topic_needmoreparams()
 	return(generate_msg(461, "TOPIC", "", "", ""));
 }
 
-std::string replies_generator::topic_notonchannel(const aux_channel& channel)
+std::string replies_generator::topic_notonchannel(const string& channel_name)
 {
-	return(generate_msg(442, channel.get_name(), "", "", ""));
+	return(generate_msg(442, channel_name, "", "", ""));
 }	
 
-std::string replies_generator::topic_chanoprivsneeded(const aux_channel& channel)
+std::string replies_generator::topic_chanoprivsneeded(const string& channel_name)
 {
-	return(generate_msg(482, channel.get_name(), "", "", ""));
+	return(generate_msg(482, channel_name, "", "", ""));
 }
 
-std::string replies_generator::topic_nochanmodes(const aux_channel& channel)
+std::string replies_generator::topic_nochanmodes(const string& channel_mode)
 {
-	return(generate_msg(477, channel.get_mode(), "", "", ""));
+	return(generate_msg(477, channel_mode, "", "", ""));
 }
 
 std::string replies_generator::user_needmoreparams()
@@ -623,12 +632,12 @@ std::string replies_generator::userhost_needmoreparams()
 	return(generate_msg(461, "USERHOST", "", "", ""));
 }
 
-std::string replies_generator::users_nosuchserver(const std::string& server_name)
+std::string replies_generator::users_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::users_fileerror(const std::string f_o, const std::string file)
+std::string replies_generator::users_fileerror(const string& f_o, const string& file)
 {
 	return(generate_msg(424, f_o, file, "", ""));
 }
@@ -638,7 +647,7 @@ std::string replies_generator::users_usersdisabled(void)
 	return(generate_msg(446, "", "", "", ""));
 }
 
-std::string replies_generator::version_nosuchserver(const std::string& server_name)
+std::string replies_generator::version_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
@@ -648,12 +657,12 @@ std::string replies_generator::wallops_needmoreparams()
 	return(generate_msg(461, "WALLOPS", "", "", ""));
 }
 
-std::string replies_generator::who_nosuchserver(const std::string& server_name)
+std::string replies_generator::who_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::whois_nosuchserver(const std::string& server_name)
+std::string replies_generator::whois_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
@@ -663,9 +672,9 @@ std::string replies_generator::whois_nonicknamegiven(void)
 	return(generate_msg(431, "", "", "", ""));
 }
 
-std::string replies_generator::whois_nosuchnick(const user& user)
+std::string replies_generator::whois_nosuchnick(const string& user_nick)
 {
-	return(generate_msg(401, user.get_nickname(), "", "", ""));
+	return(generate_msg(401, user_nick, "", "", ""));
 }
 
 std::string replies_generator::whowas_nonicknamegiven(void)
@@ -673,9 +682,9 @@ std::string replies_generator::whowas_nonicknamegiven(void)
 	return(generate_msg(431, "", "", "", ""));
 }
 
-std::string replies_generator::whowas_wasnosuchnick(const user& user)
+std::string replies_generator::whowas_wasnosuchnick(const string& user_nick)
 {
-	return(generate_msg(406, user.get_nickname(), "", "", ""));
+	return(generate_msg(406, user_nick, "", "", ""));
 }
 
 //user_lisr is the list when load the reply
@@ -689,13 +698,4 @@ void replies_generator::load_reply_to_users(std::queue<user> &user_list, std::st
 	}
 }
 
-std::string replies_generator::names_nosuchserver(const std::string& server_name)
-{
-	return(generate_msg(402, server_name, "", "", ""));
-}
-
-std::string replies_generator::names_toomanymatches()
-{
-	return(generate_msg(503, "", "", "", ""));
-}
 
