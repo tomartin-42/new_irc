@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 18:47:32 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:48:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # define RPL_INVITING(channel, pseudo) (channel + " " + pseudo + "\r\n")
 # define RPL_SUMMONING(user) (user + " :Summoning user to IRC\r\n")
 # define RPL_VERSION(version, debuglevel, server, comment) (version + "." + debuglevel + " " + server + " :" + comment + "\r\n")
-//# define RPL_WHOREPLY(channel, user, host, server, pseudo) (channel + " " + user + " " + host + " " + server + " " + pseudo + " <H|G>[*][@|+] :<compteur de distance> <vrai nom>\r\n")
 # define RPL_ENDOFWHO(name) (name + " :End of WHO list\r\n")
 # define RPL_NAMREPLY(channel, nick_list) (channel + " :" + nick_list + "\r\n") //modif_ici
 # define RPL_ENDOFNAMES(channel) (channel + " :End of NAMES list\r\n")

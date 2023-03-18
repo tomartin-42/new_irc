@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 12:12:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:08:11 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,29 @@ class replies_generator : public replies
 	std::string motd_ok(const string& server_name, const string& server_motd);
 	std::string names_ok(const string& channel_name, const string& channel_names_list);
 	std::string oper_ok(void);
+	std::string who_ok(const string& who_query, const string& user_name);
 	std::string stats_l(const aux_server& server);
 	std::string stats_m(const aux_server& server);
 	std::string stats_o(const aux_server& server);
 	std::string stats_u(const aux_server& server);
-	std::string time_ok(const aux_server& server, const std::string hour);
-	std::string topic_ok(const aux_channel& channel);
-	std::string topic_no(const aux_channel& channel);
-	std::string userhost_ok(const aux_server& server);
-	std::string userip_ok(const user& user);
-	std::string user_ok(const aux_server& server);
+	std::string time_ok(const string& server_name, const std::string& hour);
+	std::string topic_ok(const string& channel_name, const string& channel_topic);
+	std::string topic_no(const string& channel_name);
+//	std::string userhost_ok(const aux_server& server);
+//	std::string userip_ok(const user& user);
+	std::string user_ok(const string& user_reply);
 	std::string user_empty(void);
-	std::string version_ok(const aux_server& server);
-	std::string who_ok(const user& user);
-	std::string whois_user(const user& user);
-	std::string whois_channels(const user& user, const aux_channel& channel);
-	std::string whois_away(const user& user);
-	std::string whois_idle(const user& user);
-	std::string whois_server(const user& user, aux_server& server);
-	std::string whois_operator(const user& user);
+	std::string version_ok(const string& ser_version, const string& ser_debug_lvl,
+			const string& ser_name, const string& ser_comment);
+	std::string whois_user(const string& user_nick, const string& user_name, 
+			const string& user_host, const string& user_real_name);
+	std::string whois_channels(const string& user_nick, const string& channel_name);
+	std::string whois_away(const string& user_nick, const string& user_away);
+	std::string whois_idle(const string& user_pseudo, const string& user_idle, 
+			const string& user_signon);
+	std::string whois_server(const string& user_pseudo, const string& server_name, 
+			const string& server_info);
+	std::string whois_operator(const string& user_nick);
 	std::string ping_nooring(void);
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
 	//-----------------ERRORS----------------------//
