@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 11:46:23 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:01:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ class replies_generator : public replies
 	public:
 	std::string	admin_ok(const string& server_name, const string& admin_name, 
 			const string& admin_nick, const string& admin_email);
-	std::string away_rpy(const user& user);
-	std::string away_unaway(void);
-	std::string away_nowaway(void);
 	std::string info_rpy(const string& server_info);
 	std::string invite_ok(const string& channel_name, const string& user_name);
-	std::string invite_away(const user& user);
-	std::string ison_ok(const std::string ison_list);
-	std::string join_ok(const aux_channel& channel);
-	std::string mode_us_ok(const user& user);
-	std::string mode_ch_ok(const aux_channel& chanel);
-	std::string mode_banlist(const aux_channel& channel);
+	std::string invite_away(const string& user_nick, const string& away_msg);
+	std::string ison_ok(const string& ison_list);
+	std::string join_ok(const string& channel_name, string& channel_topic);
+	std::string list_ok(const string& channel_list, const string& channel_topic);
+	std::string mode_us_ok(const string& user_modies);
+	std::string mode_ch_ok(const string& channel_name, const string& channel_mode,
+			const string& channel_mod_params);
+	std::string mode_banlist(const string& channel_ban_list, const string& channel_name);
 	std::string mode_exceptlist(const aux_channel& channel);
 	std::string mode_invitelist(const aux_channel& channel);
 	std::string mode_uniqopis(const aux_channel& channel, const user& user);
@@ -57,7 +56,6 @@ class replies_generator : public replies
 	std::string user_empty(void);
 	std::string version_ok(const aux_server& server);
 	std::string who_ok(const user& user);
-	std::string list_ok(const aux_server& server);
 	std::string whois_user(const user& user);
 	std::string whois_channels(const user& user, const aux_channel& channel);
 	std::string whois_away(const user& user);
