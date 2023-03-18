@@ -6,20 +6,21 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/13 21:24:51 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/18 11:47:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/replies_generator.hpp"
 
-std::string	replies_generator::admin_ok(const aux_server& server, const user& admin)
+std::string	replies_generator::admin_ok(const string& server_name, const string& admin_name, 
+		const string& admin_nick, const string& admin_email)
 {
 	std::string	answ;
 
-	answ.append(generate_msg(256, server.get_name(), "", "", ""));
-	answ.append(generate_msg(257, admin.get_name(), "", "", ""));
-	answ.append(generate_msg(258, admin.get_nickname(), "", "", ""));
-	answ.append(generate_msg(259, admin.get_email(), "", "", ""));
+	answ.append(generate_msg(256, server_name, "", "", ""));
+	answ.append(generate_msg(257, admin_name, "", "", ""));
+	answ.append(generate_msg(258, admin_nick, "", "", ""));
+	answ.append(generate_msg(259, admin_email, "", "", ""));
 	return answ;
 }
 
@@ -39,20 +40,18 @@ std::string replies_generator::away_nowaway(void)
 	return(generate_msg(306, "", "", "", ""));
 }
 
-std::string replies_generator::info_rpy(const aux_server& server)
+std::string replies_generator::info_rpy(const string& server_info)
 {
 	std::string answ;
 
-	answ.append(generate_msg(371, server.get_info(), "", "", ""));
+	answ.append(generate_msg(371, server_info, "", "", ""));
 	answ.append(generate_msg(374, "", "", "", ""));
 	return answ;
 }
 
-std::string replies_generator::invite_ok(const aux_channel& channel, 
-	const user& user)
+std::string replies_generator::invite_ok(const string& channel_name, const string& user_name)
 {
-	return(generate_msg(341, channel.get_name(), 
-		user.get_name(), "", ""));
+	return(generate_msg(341, channel_name, user_name, "", ""));
 }
 
 std::string replies_generator::invite_away(const user& user)
