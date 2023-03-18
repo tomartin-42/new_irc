@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 13:08:11 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:24:12 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,29 @@ class replies_generator : public replies
 	std::string whois_operator(const string& user_nick);
 	std::string ping_nooring(void);
 	// std::string whowas_user(const aux_server& serv, const aux_user& user);
-	//-----------------ERRORS----------------------//
-	//-----------------ERRORS----------------------//
-	//-----------------ERRORS----------------------//
-	//-----------------ERRORS----------------------//
-	std::string admin_nosuchserver(const std::string& server_name);
+	//---------------------------ERRORS--------------------------------//
+	//---------------------------ERRORS--------------------------------//
+	//---------------------------ERRORS--------------------------------//
+	//---------------------------ERRORS--------------------------------//
+	std::string admin_nosuchserver(const string& server_name);
 	std::string die_fail(void);
-	std::string info_nosuchserver(const std::string& server_name);
-	std::string invite_moreparams(const std::string msg);
-	std::string invite_nosuchnick(const user& user);
-	std::string invite_notonchannel(const aux_channel& channel);
-	std::string invite_useronchannel(const user& user, const aux_channel& channel);
-	std::string invite_chanoprivsneeded(const aux_channel& channel);
+	std::string info_nosuchserver(const string& server_name);
+	std::string invite_moreparams(const string& msg);
+	std::string invite_nosuchnick(const string& user_nick);
+	std::string invite_notonchannel(const string& channel_name);
+	std::string invite_useronchannel(const string& user_nick, const string& channel_name);
+	std::string invite_chanoprivsneeded(const string& channel_name);
 	std::string ison_needmoreparams(void);
 	std::string join_needmoreparams(void);
-	std::string join_bannedfromchan(const aux_channel& channel);
-	std::string join_inviteonlychan(const aux_channel& channel);
-	std::string join_badchannelkey(const std::string msg);
-	std::string join_channelisfull(const aux_channel& channel);
-	std::string join_badchanmask(const aux_channel& channel);
-	std::string join_nosuchchannel(const std::string str);
-	std::string join_toomanychannels(const aux_channel& channel);
-	std::string join_toomanytargets(const std::string target);
-	std::string join_unavailresource(const aux_channel& channel);
+	std::string join_bannedfromchan(const string& channel_name);
+	std::string join_inviteonlychan(const string& channel_name);
+	std::string join_badchannelkey(const std::string& msg);
+	std::string join_channelisfull(const string& channel_name);
+	std::string join_badchanmask(const string& channel_name);
+	std::string join_nosuchchannel(const std::string& str);
+	std::string join_toomanychannels(const string& channel_name);
+	std::string join_toomanytargets(const std::string& target);
+	std::string join_unavailresource(const string& channel_name);
 	std::string kick_needmoreparams(void);
 	std::string kick_nosuchchannel(const std::string str);
 	std::string kick_badchanmask(const aux_channel& channel);

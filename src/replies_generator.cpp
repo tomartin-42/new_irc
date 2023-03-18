@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 13:08:27 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:24:39 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ std::string replies_generator::whois_operator(const string& user_nick)
 	//-----------------ERRORS----------------------//
 	//-----------------ERRORS----------------------//
 	//
-std::string replies_generator::admin_nosuchserver(const std::string& server_name)
+std::string replies_generator::admin_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
@@ -263,34 +263,34 @@ std::string replies_generator::die_fail(void)
 	return(generate_msg(481, "", "", "", ""));
 }
 
-std::string replies_generator::info_nosuchserver(const std::string& server_name)
+std::string replies_generator::info_nosuchserver(const string& server_name)
 {
 	return(generate_msg(402, server_name, "", "", ""));
 }
 
-std::string replies_generator::invite_moreparams(const std::string msg)
+std::string replies_generator::invite_moreparams(const string& msg)
 {
 	return(generate_msg(461, msg, "", "", ""));
 }
 
-std::string replies_generator::invite_nosuchnick(const user& user)
+std::string replies_generator::invite_nosuchnick(const string& user_nick)
 {
-	return(generate_msg(401, user.get_nickname(), "", "", ""));
+	return(generate_msg(401, user_nick, "", "", ""));
 }
 
-std::string replies_generator::invite_notonchannel(const aux_channel& channel)
+std::string replies_generator::invite_notonchannel(const string& channel_name)
 {
-	return(generate_msg(442, channel.get_name(), "", "", ""));
+	return(generate_msg(442, channel_name, "", "", ""));
 }
 
-std::string replies_generator::invite_useronchannel(const user& user, const aux_channel& channel)
+std::string replies_generator::invite_useronchannel(const string& user_nick, const string& channel_name)
 {
-	return(generate_msg(441, user.get_nickname(), channel.get_name(), "", ""));
+	return(generate_msg(441, user_nick, channel_name, "", ""));
 }
 
-std::string replies_generator::invite_chanoprivsneeded(const aux_channel& channel)
+std::string replies_generator::invite_chanoprivsneeded(const string& channel_name)
 {
-	return(generate_msg(483, channel.get_name(), "", "", ""));
+	return(generate_msg(483, channel_name, "", "", ""));
 }
 
 std::string replies_generator::ison_needmoreparams()
@@ -303,49 +303,49 @@ std::string replies_generator::join_needmoreparams()
 	return(generate_msg(461, "JOIN", "", "", ""));
 }
 
-std::string replies_generator::join_bannedfromchan(const aux_channel& channel)
+std::string replies_generator::join_bannedfromchan(const string& channel_name)
 {
-	return(generate_msg(474, channel.get_name(), "", "", ""));
+	return(generate_msg(474, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_inviteonlychan(const aux_channel& channel)
+std::string replies_generator::join_inviteonlychan(const string& channel_name)
 {
-	return(generate_msg(473, channel.get_name(), "", "", ""));
+	return(generate_msg(473, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_badchannelkey(const std::string msg)
+std::string replies_generator::join_badchannelkey(const std::string& msg)
 {
 	return(generate_msg(475, msg, "", "", ""));
 }
 
-std::string replies_generator::join_channelisfull(const aux_channel& channel)
+std::string replies_generator::join_channelisfull(const string& channel_name)
 {
-	return(generate_msg(471, channel.get_name(), "", "", ""));
+	return(generate_msg(471, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_badchanmask(const aux_channel& channel)
+std::string replies_generator::join_badchanmask(const string& channel_name)
 {
-	return(generate_msg(471, channel.get_name(), "", "", ""));
+	return(generate_msg(471, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_nosuchchannel(const std::string str)
+std::string replies_generator::join_nosuchchannel(const std::string& str)
 {
 	return(generate_msg(403, str, "", "", ""));
 }
 
-std::string replies_generator::join_toomanychannels(const aux_channel& channel)
+std::string replies_generator::join_toomanychannels(const string& channel_name)
 {
-	return(generate_msg(405, channel.get_name(), "", "", ""));
+	return(generate_msg(405, channel_name, "", "", ""));
 }
 
-std::string replies_generator::join_toomanytargets(const std::string target)
+std::string replies_generator::join_toomanytargets(const std::string& target)
 {
 	return(generate_msg(407, target, "", "", ""));
 }
 
-std::string replies_generator::join_unavailresource(const aux_channel& channel)
+std::string replies_generator::join_unavailresource(const string& channel_name)
 {
-	return(generate_msg(437, channel.get_name(), "", "", ""));
+	return(generate_msg(437, channel_name, "", "", ""));
 }
 
 std::string replies_generator::kick_needmoreparams()
