@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 11:47:12 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/18 11:48:14 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,6 @@ std::string	replies_generator::admin_ok(const string& server_name, const string&
 	answ.append(generate_msg(258, admin_nick, "", "", ""));
 	answ.append(generate_msg(259, admin_email, "", "", ""));
 	return answ;
-}
-
-std::string replies_generator::away_rpy(const user& user)
-{
-	return (generate_msg(301, user.get_nickname(), 
-		user.get_away_msg(), "", ""));
-}
-
-std::string replies_generator::away_unaway(void)
-{
-	return(generate_msg(305, "", "", "", ""));
-}
-
-std::string replies_generator::away_nowaway(void)
-{
-	return(generate_msg(306, "", "", "", ""));
 }
 
 std::string replies_generator::info_rpy(const string& server_info)
