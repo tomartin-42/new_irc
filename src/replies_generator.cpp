@@ -6,15 +6,23 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/29 18:01:59 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:26:07 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/replies_generator.hpp"
 
-std::string replies_generator::welcome(const string& user_nick)
+std::string replies_generator::welcome(const string& user_nick, const string& server_name, 
+		const string& server_version, const string& usr_modes, 
+		const string& chann_modes, const string& server_date)
 {
-	return(generate_msg(001, user_nick, "", "", ""));
+	std::string	answ;
+	
+	answ.append(generate_msg(001, user_nick, "", "", ""));
+	answ.append(generate_msg(002, server_name, server_version, "", ""));
+	answ.append(generate_msg(003, server_name, server_version, usr_modes, chann_modes));
+	answ.append(generate_msg(004, server_date, "", "", ""));
+	return answ;
 }
 
 std::string	replies_generator::admin_ok(const string& server_name, const string& admin_name, 

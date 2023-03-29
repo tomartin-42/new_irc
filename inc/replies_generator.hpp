@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/29 18:00:08 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:24:20 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ using namespace std;
 class replies_generator : public replies
 {
 	public:
-	std::string welcome(const string& user_nick);
+	std::string welcome(const string& user_nick, const string& server_name, 
+			const string& server_version, const string& usr_modes, const string& chann_modes,
+			const string& server_date);
 	std::string	admin_ok(const string& server_name, const string& admin_name, 
 			const string& admin_nick, const string& admin_email);
 	std::string info_rpy(const string& server_info);
