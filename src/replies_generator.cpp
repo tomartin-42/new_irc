@@ -6,11 +6,16 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/21 20:34:24 by tommy            ###   ########.fr       */
+/*   Updated: 2023/03/29 18:01:59 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/replies_generator.hpp"
+
+std::string replies_generator::welcome(const string& user_nick)
+{
+	return(generate_msg(001, user_nick, "", "", ""));
+}
 
 std::string	replies_generator::admin_ok(const string& server_name, const string& admin_name, 
 		const string& admin_nick, const string& admin_email)
