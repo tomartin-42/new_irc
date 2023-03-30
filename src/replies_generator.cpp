@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/29 18:31:29 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:07:15 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,7 +309,7 @@ std::string replies_generator::invite_useronchannel(const string& user_nick, con
 
 std::string replies_generator::invite_chanoprivsneeded(const string& channel_name)
 {
-	return(generate_msg(483, channel_name, "", "", ""));
+	return(generate_msg(482, channel_name, "", "", ""));
 }
 
 std::string replies_generator::ison_needmoreparams()
@@ -436,9 +436,9 @@ std::string replies_generator::mode_needmoreparams()
 	return(generate_msg(461, "MODE", "", "", ""));
 }
 
-std::string replies_generator::mode_chanoprovsneeded(const string& channel_name)
+std::string replies_generator::mode_chanoprivsneeded(const string& channel_name)
 {
-	return(generate_msg(483, channel_name, "", "", ""));
+	return(generate_msg(482, channel_name, "", "", ""));
 }
 
 std::string replies_generator::mode_nosuchnick(const string& user_nick)

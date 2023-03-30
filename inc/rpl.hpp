@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:45:18 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/18 12:48:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:09:31 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@
 # define ERR_ERR_BANLISTFULL(channel, chr) (channel + " " + chr + ":Channel list is full" + "\r\n")
 # define ERR_NOPRIVILEGES() (":Permission Denied- You're not an IRC operator\r\n")
 # define ERR_CHANOPRIVSNEEDED(channel) (channel + ":You're not channel operator\r\n")
-# define ERR_CANTKILLSERVER() (":You can't kill a server!")
+# define ERR_CANTKILLSERVER() (":You can't kill a server!\r\n")
 # define ERR_RESTRICTED() (":Your connection is restricted!\r\n")
 # define ERR_UNIQOPPRIVSNEEDED() (":You're not the original channel operator\r\n")
 # define ERR_NOOPERHOST() (":No O-lines for your host\r\n")

@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/29 18:32:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:08:13 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ class replies_generator : public replies
 	std::string names_nosuchserver(const string& server_name);
 	std::string names_toomanymatches(void);
 	std::string mode_needmoreparams(void);
-	std::string mode_chanoprovsneeded(const string& channel_name);
+	std::string mode_chanoprivsneeded(const string& channel_name);
 	std::string mode_nosuchnick(const string& user_nick);
 	std::string mode_notonchannel(const string& channel_name);
 	std::string mode_keyset(const string& channel_name);
