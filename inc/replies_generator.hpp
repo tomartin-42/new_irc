@@ -38,7 +38,7 @@ class replies_generator : public replies
 	std::string invite_away(const string& user_nick, const string& away_msg);
 	std::string ison_ok(const string& ison_list);
 	std::string join_ok(const string& channel_name, string& channel_topic);
-	std::string list_ok(queue<const string> channel_list, queue<const string> channel_topic);
+	std::string list_ok(queue<std::pair<const string, const string> > channel_topic);
 	std::string mode_us_ok(const string& user_modies);
 	std::string mode_ch_ok(const string& channel_name, const string& channel_mode,
 			const string& channel_mod_params);

@@ -67,14 +67,13 @@ std::string replies_generator::join_ok(const string& channel_name, string& chann
 	return(generate_msg(332, channel_name, channel_topic, "", ""));
 }
 
-std::string replies_generator::list_ok(queue<const string> channel_list, queue<const string> channel_topic)
+std::string replies_generator::list_ok(queue<std::pair<const string, const string> > channel_topic)
 {
 	std::string answ;
 
-	while (!channel_list.empty() && !channel_topic.empty())
+	while (!channel_topic.empty())
 	{
-		answ.append(generate_msg(322, channel_list.front(), channel_topic.front(), "", ""));
-		channel_list.pop();
+		answ.append(generate_msg(322, channel_topic.front().first, channel_topic.front().second, "", ""));
 		channel_topic.pop();
 	}
 	answ.append(generate_msg(323, "", "", "", ""));
