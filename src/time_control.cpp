@@ -106,12 +106,10 @@ void	time_control::check_if_kick()
 {
 	time_t	now = time_control::get_time();	
 
-	this->print_times();
 	if((now - this->t_ping) > TIME_PING)
 		this->kick = KICK;
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
-	this->print_times();
 }
 
 bool	time_control::launch_send_ping() const

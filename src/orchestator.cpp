@@ -67,7 +67,7 @@ void    orchestator::orchestation()
 
 	while(usr_it != users.end())
     {
-		if (get_revent(usr_it->first) & (POLLIN | POLLHUP))
+		if (get_revent(usr_it->first) & (POLLHUP))
 		{
 			std::cout << "POLLHUB RECV\n";
 			this->kill_list.push(std::make_pair(usr_it->first, std::string("POLLHUP")));
