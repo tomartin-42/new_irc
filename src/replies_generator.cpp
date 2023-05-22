@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:52:09 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/30 21:07:15 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:06:10 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,19 +156,24 @@ std::string replies_generator::who_ok(const string& who_query, const string& use
 	return(answ);
 }
 
-std::string replies_generator::stats_l(const aux_server& server)
+std::string replies_generator::stats_l(const std::string& linkinfo)
 {
 	std::string answ;
-	answ.append(generate_msg(211, server.get_stats_l(), "", "", ""));
-	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	answ.append(generate_msg(211, linkinfo, "", "", ""));
 	return(answ);
 }
 
-std::string replies_generator::stats_m(const aux_server& server)
+std::string replies_generator::stats_m(const std::string &command, const std::string &count, const std::string &byte_count, const std::string &remote_count)
 {
 	std::string answ;
-	answ.append(generate_msg(212, server.get_stats_m(), "", "", ""));
-	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	answ.append(generate_msg(212, command, count, byte_count, remote_count));
+	return(answ);
+}
+
+std::string replies_generator::stats_end(const std::string &letter)
+{
+	std::string answ;
+	answ.append(generate_msg(219, letter, "", "", ""));
 	return(answ);
 }
 
@@ -180,11 +185,11 @@ std::string replies_generator::stats_o(const aux_server& server)
 	return(answ);
 }
 
-std::string replies_generator::stats_u(const aux_server& server)
+std::string replies_generator::stats_u(const std::string &stats_u_string, const std::string &letter)
 {
 	std::string answ;
-	answ.append(generate_msg(242, server.get_stats_u(), "", "", ""));
-	answ.append(generate_msg(219, server.get_stats_letter(), "", "", ""));
+	answ.append(generate_msg(242, stats_u_string, "", "", ""));
+	answ.append(generate_msg(219, letter, "", "", ""));
 	return(answ);
 }
 

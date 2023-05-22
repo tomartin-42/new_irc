@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 18:53:33 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/10 18:33:57 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:54:59 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 time_control::time_control(): kick(OK), s_ping(false)
 { 
-	std::time_t now = time_control::get_time();
+//	start_time = std::chrono::high_resolution_clock::now();
+	time_t now = time_control::get_time();
 	this->t_last_msg = now; //time when last msg send
 	this->t_set_pollout = LONG_MAX; //time to set to pollout
 	this->t_ping = LONG_MAX; //time when send last ping
+	this->set_s_ping(false);
+	this->t_not_login = now;
 }
 
 time_t	time_control::get_t_ping() const
@@ -74,7 +77,7 @@ bool	time_control::get_kick()
 	return this->kick; 
 }
 
-std::time_t	time_control::get_time() 
+time_t	time_control::get_time() 
 { 
 	return std::time(NULL); 
 }
@@ -87,6 +90,7 @@ void	time_control::get_time(time_t* var)
 void	time_control::launch_t_ping()
 {
 	this->t_ping = time_control::get_time();
+	this->set_s_ping(true);
 }
 
 void	time_control::launch_t_last_msg()
@@ -102,16 +106,24 @@ void	time_control::reset_ping_time()
 //This function check all time values
 //If one value exced the time parametres set kick variable ti KICK
 //At the end of cycle all users set to KICK kick
-void	time_control::check_if_kick()
+//
+//I completely agree with the above statement (whatever that is). Signed: 𝓙𝓪𝓿𝓰𝓸𝓷𝔃𝓪
+void	time_control::check_if_kick_logged()
 {
 	time_t	now = time_control::get_time();	
 
-	this->print_times();
-	if((now - this->t_ping) > TIME_PING)
+	if((now - this->t_ping) > TIME_PING && this->s_ping == true)
+	{
 		this->kick = KICK;
+	}
+}
+
+void	time_control::check_if_kick_not_logged()
+{
+	time_t	now = time_control::get_time();	
+
 	if((now - this->t_not_login) > TIME_DONT_LOGIN)
 		this->kick = KICK;
-	this->print_times();
 }
 
 bool	time_control::launch_send_ping() const
@@ -121,8 +133,9 @@ bool	time_control::launch_send_ping() const
 
 	if((now - this->t_last_msg) > TIME_LAST_MSG)
 		answ = true;
-	if((now - this->t_set_pollout) > TIME_LAST_MSG)
-		answ = true;
+	//TODO: ask tomartin
+//	if((now - this->t_set_pollout) > TIME_LAST_MSG)
+//		answ = true;
 	return(answ);
 }
 

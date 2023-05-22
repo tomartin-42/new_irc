@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:30:25 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/30 21:08:13 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:26:32 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ class replies_generator : public replies
 	std::string names_ok(const string& channel_name, const string& channel_names_list);
 	std::string oper_ok(void);
 	std::string who_ok(const string& who_query, const string& user_name);
-	std::string stats_l(const aux_server& server);
-	std::string stats_m(const aux_server& server);
+	std::string stats_l(const std::string& linkinfo);
+	std::string	stats_m(const std::string &command, const std::string &count, const std::string &byte_count, const std::string &remote_count);
 	std::string stats_o(const aux_server& server);
-	std::string stats_u(const aux_server& server);
+	std::string stats_u(const std::string &status_u_string, const std::string &letter);
+	std::string	stats_end(const std::string &letter);
 	std::string time_ok(const string& server_name, const std::string& hour);
 	std::string topic_ok(const string& channel_name, const string& channel_topic);
 	std::string topic_no(const string& channel_name);

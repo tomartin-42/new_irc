@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 18:01:05 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 15:08:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:48:44 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@
 class msg
 {
 	private:
-		std::queue<std::string>	msg_q;
 		std::string				buff_aux;
 	
 		std::string	get_next_msg();
 		std::string	& msg_adecuation(std::string &str);
 	public:
+		std::queue<std::string>	msg_q;
+		msg();
 		~msg();
+		msg(const msg &copy);
 		bool			check_if_empty() const;
 		int				number_msg() const;
 		void			add_msg(const char* str);
@@ -42,6 +44,7 @@ class msg
 		void			direct_push(const char* str);
 		std::string		fragmentation_msg_send(std::string str, int point);
 		bool			check_status_queue();
+		void	operator=(const msg& to_copy);
 };
 
 #endif

@@ -6,14 +6,17 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:53:28 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/09 22:42:02 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:06:22 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/orchestator.hpp"
 #include <iostream>
 
-orchestator::orchestator(int port) : com(port)
+#include "../../vicmarti/src/db/Database.hpp"
+#include "../../command_executor/code/source/ServerInfo/ServerInfo.hpp"
+
+orchestator::orchestator(int port, Database &db) : com(port), db(db)
 {
 	int	fd = get_fd_socket();
 	socket_lisent();
@@ -24,8 +27,9 @@ orchestator::orchestator(int port) : com(port)
 
 void	orchestator::insert_new_user(const int fd)
 {
-	std::string	host_name = get_host_name();
-	users.insert(std::make_pair(fd, user(fd, UNKNOW, host_name)));
+	(void) fd;
+//	std::string	host_name = get_host_name();
+//	users.insert(std::make_pair(fd, user(fd, UNKNOW, host_name)));
 }
 
 void	orchestator::delete_user(const int fd)
@@ -43,13 +47,22 @@ void	orchestator::accept_new_connect()
 	fd = accept_connection_in_socket();
 	if(fd != -1)
 	{
-		insert_new_user(fd);
+//		insert_new_user(fd);
 		std::cout << "CONEXION IN FD " << fd << std::endl;
-		send_msg(fd, "HOLA\n");
+//		send_msg(fd, "HOLA\n");
+
+		///IN THE BEGINNING WERE THE TROUBLES
+	//
+		//TODO: End the troubles
+		ClientId id("", get_host_name(), fd);
+		db.UnregisteredClients().Insert(Unregistered(id, true));
+	//
+		///END OF THE BEGGINING
+
 	}
 	if(users.size() > MAX_CONNECTIONS)
 	{
-		this->users.find(fd)->second.set_type(EXPULSE);
+//		this->users.find(fd)->second.set_type(EXPULSE);
 		disconnect_user(fd, "PIRATE SERVER LLENO");
 		this->delete_user(fd);
 		return;
@@ -62,25 +75,26 @@ void	orchestator::accept_new_connect()
 //It's the heard of send-recv orchestator
 void    orchestator::orchestation()
 {
-	std::map<int, user>::iterator	usr_it = users.begin();
+//	std::map<int, user>::iterator	usr_it = users.begin();
 	//std::vector<int>				delete_list;
 
-	while(usr_it != users.end())
-    {
-		if (get_revent(usr_it->first) & (POLLIN | POLLHUP))
-		{
-			std::cout << "POLLHUB RECV\n";
-			this->kill_list.push(std::make_pair(usr_it->first, std::string("POLLHUP")));
+//	while(usr_it != users.end())
+  //  {
+//		if (get_revent(usr_it->first & (POLLHUP)))
+//		{
+//			std::cout << "POLLHUB RECV\n";
+//			this->kill_list.push(std::make_pair(usr_it->first, std::string("POLLHUP")));
 			//Desconectar
-			++usr_it;
-			continue;
-		}
-    	//TO READ
-        this->recv_msgs(usr_it->first);
-        //TO SEND
-        this->send_msgs(usr_it->first);
-        ++usr_it;
-    }
+//		}
+//		else
+//		{
+			//TO READ
+        	//this->recv_msgs(usr_it->first);
+        	//TO SEND
+        	//this->send_msgs(usr_it->first);
+//		}
+   //     ++usr_it;
+    //}
     //delete_users_from_list(delete_list);
 }
 
@@ -92,6 +106,7 @@ void	orchestator::delete_users_from_list()
 {
 	while(!(this->kill_list.empty()))
 	{
+std::cout << "DELETING USER" << std::endl;
 		std::pair<int, std::string> 	user_kill = this->kill_list.front();
 		disconnect_user(user_kill.first);
 		users.erase(user_kill.first);
@@ -110,30 +125,34 @@ void	orchestator::delete_users_from_list()
 //set POLLOUT it's set POLLIN because it's restore the connection
 void	orchestator::send_msgs(const int fd)
 {
-	std::map<int, user>::iterator	usr_it = users.find(fd);
     int                             send_leng;
+	ClientData	*client = db.get_client_data_from_fd(fd);
 
-	if(usr_it->second.msg_out.msg_q_size() == 0)
+	if(client->msg_out.msg_q_size() == 0)
 		return;
-	if(!(get_event(usr_it->first) & POLLOUT) || (get_revent(usr_it->first) & POLLOUT)) 
+	if(!(get_event(fd) & POLLOUT) || (get_revent(fd) & POLLOUT)) 
    {
-		send_leng = send_msg(usr_it->first, usr_it->second.msg_out.extract_msg());
-		if(send_leng < usr_it->second.msg_out.msg_front_len())
-			usr_it->second.msg_out.erase_front_msg(send_leng);
+		std::string	message = client->msg_out.extract_msg();
+		message += "\r\n";
+		send_leng = send_msg(fd, message);
+		if(send_leng < client->msg_out.msg_front_len())
+			client->msg_out.erase_front_msg(send_leng);
 		else
-		    usr_it->second.msg_out.pop_msg();
-			if(get_revent(usr_it->first) & POLLOUT)
-				set_value_poll_list(usr_it->first, POLLIN);
+		    client->msg_out.pop_msg();
+			if(get_revent(fd) & POLLOUT)
+				set_value_poll_list(fd, POLLIN);
     }
 }
 
 //This function read and load msg in one user
 void    orchestator::recv_msgs(const int fd)
 {
-    std::map<int, user>::iterator	usr_it = users.find(fd);
+    if((get_revent(fd) & POLLIN))
+	{
+		ClientData *client = db.get_client_data_from_fd(fd);
 
-    if((get_revent(usr_it->first) & POLLIN))
-		usr_it->second.msg_in.add_msg(recv_msg(usr_it->first));
+		client->msg_in.add_msg(recv_msg(fd));
+	}
 }
 
 /*
@@ -157,7 +176,7 @@ void	orchestator::recv_msg_from_user(const int fd)
 	std::string	msg;
 
 	msg = recv_msg(fd);
-	this->users.find(fd)->second.msg_in.add_msg(msg);
+	db.get_unregistered_from_fd(fd)->msg_in.add_msg(msg);
 }
 
 void	orchestator::check_status()
@@ -169,19 +188,19 @@ void	orchestator::check_status()
 	//1º check times values user.time_control.check_if_kick();
 	//2º check msg lengs user.recv_msg_q.check_status_queue();
 	//...
-	if(this->users.empty() != true)
-	{
-		std::map<int, user>::iterator	it = this->users.begin();
-		for(;it != this->users.end(); it++)
-		{
-			it->second.user_times.check_if_kick();
-			if(it->second.user_times.launch_send_ping() &&
-			   it->second.user_times.get_s_ping() == false)
-			{
-				internal_ping(it->second, this->name);
-			}
-		}
-	}
+//	if(this->users.empty() != true)
+//	{
+//		std::map<int, user>::iterator	it = this->users.begin();
+//		for(;it != this->users.end(); it++)
+//		{
+//			it->second.user_times.check_if_kick();
+//			if(it->second.user_times.launch_send_ping() &&
+//			   it->second.user_times.get_s_ping() == false)
+//			{
+//				internal_ping(it->second, this->name);
+//			}
+//		}
+//	}
 }
 
 void	orchestator::clean_up()

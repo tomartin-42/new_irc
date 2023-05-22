@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:51:19 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/05 16:49:54 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/17 10:19:17 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,20 @@ msg::~msg()
 {
 	while(!this->msg_q.empty())
 		this->msg_q.pop();
+}
+
+msg::msg()
+{
+}
+
+msg::msg(const msg &copy) : buff_aux(copy.buff_aux), msg_q(copy.msg_q)
+{
+}
+
+void	msg::operator=(const msg &to_copy)
+{
+	buff_aux = std::string(to_copy.buff_aux);
+	msg_q = std::queue<std::string>(to_copy.msg_q);
 }
 
 int		msg::msg_q_size()

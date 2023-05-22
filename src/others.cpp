@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:26:54 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/03 20:11:18 by tommy            ###   ########.fr       */
+/*   Updated: 2023/05/09 16:22:58 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	check_first_arg_digit(std::vector<std::string>& args)
 	for(int i = 0 ; std_arg[i] ; i++)
 		if(!std::isdigit(std_arg[i]))
 		{
-			std::cout << "CAN NOT CONECT WITH OTHER SERVER O SERVER ADDRES INCORRECT" << std::endl;
+			std::cerr << "CAN NOT CONECT WITH OTHER SERVER O SERVER ADDRES INCORRECT" << std::endl;
 			args.clear();
 			exit(1);
 		}
@@ -36,7 +36,7 @@ int		get_arg_port(std::vector<std::string>& args)
 	int port = std::atoi(args[1].c_str());
 	if(port < 1 || port > 65535)
 	{
-		std::cout << "INCORRECT PORT" << std::endl;
+		std::cerr << "INCORRECT PORT" << std::endl;
 		args.clear();
 		exit(1);
 	}
@@ -79,13 +79,13 @@ std::pair<int, std::string>	parse_arg(int argc, char **argv)
 	}
 	if(argc == 4)
 	{
-		std::cout << "CAN NOT CONECT WITH OTHER SERVER O SERVER ADDRES INCORRECT" << std::endl;
+		std::cerr << "CAN NOT CONECT WITH OTHER SERVER O SERVER ADDRES INCORRECT" << std::endl;
 		args.clear();
 		exit(1);
 	}
 	if(argc > 4)
 	{
-		std::cout << "ARGUMENTS ERROR!!!" << std::endl; 
+		std::cerr << "ARGUMENTS ERROR!!!" << std::endl; 
 		args.clear();
 		exit(1);
 	}

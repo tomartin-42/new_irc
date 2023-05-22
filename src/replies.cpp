@@ -6,7 +6,7 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:51:30 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/11 17:55:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:00:02 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 	this->set_head_len(0);
     std::string send_code(generate_send_code(code));
     //Temporal---------------------------------------//
-    std::string user("tommy");
-	std::string host("c1r5s6.42madrid.com");
 
-	std::string	head(":" + host + " " + send_code + " " + user + " ");
+	std::string	head(":" + hostname + " " + send_code + " " + target_string + " ");
 	this->set_head_len(head.size() + 1);
 	switch (code)
 	{
@@ -61,7 +59,7 @@ std::string replies::generate_msg(const int code, std::string arg1, std::string 
 		case 211:
 			return head + RPL_STATSLINKINFO(arg1);
 		case 212:
-			return head + RPL_STATSCOMMANDS(arg1);
+			return head + RPL_STATSCOMMANDS(arg1, arg2, arg3, arg4);
 		case 219:
 			return head + RPL_ENDOFSTATS(arg1);
 		case 221:

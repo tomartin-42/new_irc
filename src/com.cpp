@@ -6,14 +6,14 @@
 /*   By: tomartin <tomartin@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:35:15 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 18:28:14 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:12:41 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/com.hpp"
 #include <iostream>
 
-com::com(const int port) : port(port), my_log("in_out.log")
+com::com(const int port) : port(port)
 {
 	//Prereserve poll_list 
 	//+2 is for socket and conexion over the limit
@@ -102,7 +102,7 @@ int    com::preparation_com()
 {
     int answ;
 
-    answ = poll(&this->poll_list[0], this->poll_list.size(), 1000);
+    answ = poll(&this->poll_list[0], this->poll_list.size(), 100);
     if(answ == -1)
     	throw com_exceptions("Error Poll list", 5);
     return answ;
@@ -196,12 +196,10 @@ int	com::send_msg(const int fd, const std::string msg)
     if(send_leng < static_cast<int>(msg.size()))
 	{
     	this->set_value_poll_list(fd, POLLOUT);
-		my_log.put_msg("SERVER", ft_itoa(fd), msg); //Ojo cambiar lo que realmente ha enviado
         return send_leng;
 	}
 	else
 		this->set_value_poll_list(fd, POLLIN);
-	my_log.put_msg("SERVER", ft_itoa(fd), msg);
     return send_leng;
 }
 
@@ -211,14 +209,15 @@ std::string com::recv_msg(const int fd)
     char    buff[513];
     ssize_t aux = 0;
 
-    aux = recv(fd, &buff, 512, MSG_DONTWAIT);
+    aux = recv(fd, buff, 512, MSG_DONTWAIT);
+	if (aux == -1)
+		return ("");
 //	if(!aux)
 //		this->disconnect_user(fd, "COM ERROR");
     buff[aux] = '\0';
+
     if(aux > 0)
-		my_log.put_msg(ft_itoa(fd), "SERVER", std::string(buff));
         return std::string(buff);
-	my_log.put_msg(ft_itoa(fd), "SERVER", "None");
     return std::string("");
 }
 
@@ -232,7 +231,7 @@ short	com::get_revent(const int fd) const
     		return it->revents;
     	it++;
 	}
-	return -1;
+	return 0;
 }
 
 short    com::get_event(const int fd) const

@@ -6,7 +6,7 @@
 #    By: tomartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 09:11:45 by tomartin          #+#    #+#              #
-#    Updated: 2023/03/08 10:35:41 by tommy            ###   ########.fr        #
+#    Updated: 2023/05/11 19:08:12 by javgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,16 @@ NAME = ft_ircserv
 
 # Compiling and flags
 #CXX = clang++ --std=c++98
-CXX = g++ -std=c++98
-CXXFLAGS = -Wall -Wextra -Werror -Iinc -MD -O3 -g3 -fsanitize=address
-LDFLAGS = -fsanitize=address
+CXX = g++
+CXXFLAGS = -Wall -Wextra -Werror -Iinc -I../vicmarti/src -g3 --std=c++98
+LDFLAGS = 
 
 # Folders
 OBJ_DIR = obj/
 SRC_DIR = src/
 
 # Source files and includes
-SRC_FILES = main.cpp com.cpp com_exceptions.cpp orchestator.cpp user.cpp \
+SRC_FILES = com.cpp com_exceptions.cpp orchestator.cpp user.cpp \
 			msg.cpp replies.cpp replies_generator.cpp aux_server.cpp \
 			time_control.cpp log.cpp others.cpp internal_commands.cpp
 
@@ -54,7 +54,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 $(NAME): $(OBJ)
 	@echo "Compiling "$(NAME)
 	@echo "By Javgonza, Vicmarti & Tomartin in 42Madrid"
-	@$(CXX) $(OBJ) $(LDFLAGS) -o $(NAME)
+#	@$(CXX) $(OBJ) $(LDFLAGS) -o $(NAME)
 	@echo "Compilation OK!!"
 	@echo "$(NAME) ready!".
 
@@ -74,6 +74,9 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(NAME) removed!"
+
+tomartin.a:
+	ar -crs tomartin.a $(OBJ)
 
  # re rule
  re: fclean all

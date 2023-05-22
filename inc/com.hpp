@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:22:56 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/04 17:58:03 by tomartin         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:27:41 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class com
 {
     private:
         const int					port;
-		log							my_log;
+		//log							my_log;
         struct sockaddr_in			data_socket;
         int							fd_socket;
 		std::vector<pollfd>			poll_list;

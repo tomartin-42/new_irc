@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 16:42:55 by tomartin          #+#    #+#             */
-/*   Updated: 2023/03/08 14:47:04 by tommy            ###   ########.fr       */
+/*   Updated: 2023/05/10 16:05:48 by javgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "com.hpp"
 #include "user.hpp"
 #include "../inc/internal_commands.hpp"
+#include "../../vicmarti/src/db/Database.hpp"
 
 class orchestator : public com
 {
@@ -26,13 +27,14 @@ class orchestator : public com
 		std::string name;
 		void										insert_new_user(const int fd);
 		void										delete_user(const int fd);
-		void										delete_users_from_list();
-		std::queue<std::pair<int, std::string> >	kill_list;
+		Database	&db;
 
 	public:
+		void										delete_users_from_list();
+		std::queue<std::pair<int, std::string> >	kill_list;
 		std::map<int, user>	users;
 
-		orchestator(int port);
+		orchestator(int port, Database &db);
         void	orchestation();
         void	recv_msgs(const int fd);
 		void	send_msgs(const int fd);
